@@ -1,0 +1,215 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ilp-protocol-stream</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">ilp-protocol-stream</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> ilp-protocol-stream</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<h1 id="ilp-stream-multiplexed-money-and-data-streams">ILP/STREAM: Multiplexed Money and Data Streams</h1>
+				<blockquote>
+					<p>Interledger transport protocol for multiplexing streams of money and data over an ILP connection.</p>
+				</blockquote>
+				<p>Implementation of <a href="https://github.com/interledger/rfcs/pull/417">ILP/STREAM</a>. This module handles sending multiple streams of money and data over a single ILP connection between a client and server. It automatically handles flow control, backpressure, exchange rates, multiple classes of errors, data encryption and authentication, and condition and fulfillment generation.</p>
+				<h2 id="getting-started">Getting Started</h2>
+				<pre><code class="lang-sh">npm install --save ilp-protocol-stream
+</code></pre>
+				<p>See <a href="./example.js"><code>example.js</code></a> or the TSDoc for the usage.</p>
+				<h2 id="todos">TODOs</h2>
+				<ul>
+					<li>[x] Quoting</li>
+					<li>[x] Minimum destination amount and amount arrived</li>
+					<li>[x] Track exchange rate and apply slippage</li>
+					<li>[x] Prevent replay attacks and ensure response is correctly on fulfill or reject</li>
+					<li>[x] Determine Max Packet Amount</li>
+					<li>[x] Events to know when money has been fully sent</li>
+					<li>[x] Retry temporary errors</li>
+					<li>[x] Combine always needed frames into one (and make it appear first?)</li>
+					<li>[x] Length-prefix frames for extensibility?</li>
+					<li>[x] Backpressure</li>
+					<li>[x] Helper functions for sending / receiving and waiting until it&#39;s finished</li>
+					<li>[x] Handle stream closing</li>
+					<li>[x] Protocol error frame</li>
+					<li>[x] Padding frame</li>
+					<li>[x] Data stream</li>
+					<li>[x] Should money and data streams use different sets of numbers for stream ids?</li>
+					<li>[x] Connection closing</li>
+					<li>[x] Max number of streams</li>
+					<li>[x] stream.end should accept data like node stream</li>
+					<li>[x] Separate connection &quot;end&quot; and &quot;destroy&quot;, where the former flushes everything first</li>
+					<li>[x] Use stream.destroy instead of end to close immediately -- end should flush data and money and emit finish or whatever when it&#39;s done, destroy closes it right away</li>
+					<li>[x] Test connection.destroy</li>
+					<li>[x] Stream-level flow control</li>
+					<li>[x] Blocked frames (when more is available to send)</li>
+					<li>[x] Connection-level flow control</li>
+					<li>[x] Allow stream- and connection-level highWaterMark to be configured</li>
+					<li>[ ] connection.end should only close it when the streams are finished sending</li>
+					<li>[ ] Only send data in prepares</li>
+					<li>[ ] Resend certain types of frames when packets are rejected</li>
+					<li>[ ] Clean up closed streams (and throw error if packet is received for a closed stream)</li>
+					<li>[ ] Should we keep &quot;shares&quot; as the way to express how much money goes to each stream or switch to Michiel&#39;s idea of expressing ax + b to allow for relative and absolute amounts?</li>
+					<li>[ ] When waiting to receive money, occasionally resend the max receive amount in case the sender hasn&#39;t gotten it (and also send it if they send too much)</li>
+					<li>[ ] Multiple packets in flight at the same time</li>
+					<li>[ ] Don&#39;t send extra packet at the end if it isn&#39;t necessary</li>
+					<li>[ ] Refactor handleData and sendPacket functions to make them easier to understand and reason about</li>
+					<li>[ ] Use <code>ilp-plugin</code> to get plugin from environment</li>
+					<li>[ ] Drop connection when it has sent a certain number of packets</li>
+					<li>[ ] Randomize expiry time</li>
+					<li>[ ] Make it work even if one side can only receive 0 amount packets</li>
+					<li>[ ] Add timeouts for lack of activity</li>
+					<li>[ ] Handle plugin disconnecting</li>
+					<li>[ ] Make it possible to create outgoing connections using the same plugin a server is using (not possible because plugins can only have one incoming listener)</li>
+					<li>[ ] Enable money and data to be sent in the first packet (instead of using a dummy test packet to determine the exchange rate)</li>
+					<li>[ ] Apply backoff if packets are being constantly rejected</li>
+				</ul>
+				<h2 id="credits">Credits</h2>
+				<p>Thanks to @sharafian for coming up with the acronym for STREAM.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_connection_.html">"connection"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_index_.html">"index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_stream_.html">"stream"</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
