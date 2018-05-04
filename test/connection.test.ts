@@ -193,12 +193,12 @@ describe('Connection', function () {
   })
 
   describe('Exchange Rate Handling', function () {
-    it('should modify the exchange rate until its worse than the minimum acceptable amount and the packets are rejected', async function () {
+    it('should reject and retry packets if the exchange rate is worse than the minimum acceptable rate', async function () {
       this.clientPlugin.maxAmount = 400
       const exchangeRates = [0.5, 0.75, 0.25, 0.1, 0.49, 0.5, 1.25]
       const realSendData = this.clientPlugin.sendData
       let callCount = 0
-      const args: Buffer[] = []    
+      const args: Buffer[] = []
       let rejected: Array<IlpPacket.IlpRejection> = []
       this.clientPlugin.sendData = async (data: Buffer) => {
         callCount++
@@ -223,11 +223,11 @@ describe('Connection', function () {
       assert.equal(rejected[3].code.includes('F99'), true)
     })
 
-    it('should set slippage and modify the exchange rate until its worse than the minimum acceptable amount - slippage and the packets are rejected', async function () {      
+    it('should reject and retry packets if the exchange rate is worse than the minimum acceptable amount - slippage', async function() {
       this.clientPlugin.deregisterDataHandler()
       this.serverPlugin.deregisterDataHandler()
 
-      this.server = await createServer({ //TODO: Move to createServer
+      this.server = await createServer({
         plugin: this.serverPlugin,
         serverSecret: Buffer.alloc(32)
       })
@@ -275,10 +275,10 @@ describe('Connection', function () {
       // F99X Are Application Errors due to the exchange rate dropping below the minimum acceptable amount + slippage
       assert.equal(rejected[0].message, 'Packet amount too large')
       assert.equal(rejected[1].code.includes('F99'), true)
-      assert.equal(rejected[1].code.includes('F99'), true)
+      assert.equal(rejected[2].code.includes('F99'), true)
     })
 
-    it('should check that the total received, sent, and delivered are properly calculated for the client and the server', async function () {
+    it('should properly calcuate the total received, sent, and delivered for the client and the server', async function () {
       this.clientPlugin.deregisterDataHandler()
       this.serverPlugin.deregisterDataHandler()
 
@@ -309,7 +309,7 @@ describe('Connection', function () {
       })
 
       const clientStream = this.clientConn.createStream()
-      await clientStream.setReceiveMax(10000)
+      clientStream.setReceiveMax(10000)
       await clientStream.sendTotal(2000)
 
       // Server Sends 111

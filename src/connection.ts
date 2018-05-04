@@ -293,7 +293,7 @@ export class Connection extends EventEmitter {
   }
 
   /**
-   * Total received so far, denominated in the connection plugin's units.
+   * Total received so far by the local side, denominated in the connection plugin's units.
    */
   get totalReceived (): string {
     return this._totalReceived.toString()
@@ -443,7 +443,7 @@ export class Connection extends EventEmitter {
 
     // Return fulfillment and response packet
     const responsePacket = new Packet(requestPacket.sequence, IlpPacketType.Fulfill, prepare.amount, responseFrames)
-    this._totalReceived = this._totalReceived.plus(responsePacket.prepareAmount)
+    this._totalReceived = this._totalReceived.plus(prepare.amount)
     this.debug(`fulfilling prepare with fulfillment: ${fulfillment.toString('hex')} and response packet: ${JSON.stringify(responsePacket)}`)
     return {
       fulfillment,
