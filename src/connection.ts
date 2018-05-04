@@ -270,7 +270,7 @@ export class Connection extends EventEmitter {
     }
     return '0'
   }
-  
+
  /**
   * Calculates the last exchange rate based on last packet successfully sent.
   */
@@ -1067,6 +1067,7 @@ export class Connection extends EventEmitter {
     }
 
     this.debug(`got response to packet: ${packet.sequence}: ${JSON.stringify(responsePacket)}`)
+
     return responsePacket
   }
 
