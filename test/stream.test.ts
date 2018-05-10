@@ -368,10 +368,45 @@ describe('DataAndMoneyStream', function () {
       })
     })
 
-    it('should not allow more data to be written once the stream is closed', async function () {
+    it('should not allow more data to be written once the stream is closed and throw an error', async function () {
       const clientStream = this.clientConn.createStream()
       clientStream.end()
       assert.throws(() => clientStream.write('hello'), 'write after end')
+    })
+
+    it('should not allow more data to be written once the stream is closed and emit an error', async function() {
+      const clientStream = this.clientConn.createStream()
+      clientStream.on('error', (err: Error) => {
+        assert.equal(err.message, 'write after end')
+      })
+      clientStream.end()
+      clientStream.write('hello')
+    })
+
+    it('should not allow more data to be written once the stream is closed and throw an error', async function() {
+      const clientStream = this.clientConn.createStream()
+      await clientStream.end()
+      assert.throws(() => clientStream.setSendMax(400), 'Stream already closed')
+    })
+
+    it('should not allow more money to be sent once the stream is closed and throw an error', async function() {
+      const clientStream = this.clientConn.createStream()
+      await clientStream.end()
+      try {
+        await clientStream.sendTotal(300)
+      } catch (err) {
+        assert.equal(err.message, 'Stream already closed')
+      }
+    })
+
+    it('should not allow more money to be sent once the stream is closed mid sending and throw an error', async function() {
+      const clientStream = this.clientConn.createStream()
+      clientStream.end()
+      try {
+        await clientStream.sendTotal(300)
+      } catch (err) {
+        assert.equal(err.message, 'Stream was closed before desired amount was sent (target: 300, totalSent: 0)')
+      }
     })
   })
 
