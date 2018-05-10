@@ -329,6 +329,18 @@ describe('DataAndMoneyStream', function () {
       })
     })
 
+    it('should not close the stream until all the data has been sent', function(done) {
+      this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
+        stream.on('data', (data: Buffer) => {
+          assert.equal(data.toString(), 'hello')
+          done()
+        })
+      })
+      const clientStream = this.clientConn.createStream()
+      clientStream.write('hello')
+      clientStream.end()
+    })
+
     it('should close the stream if it could send more money but the other side is blocking it', function (done) {
       const clientStream = this.clientConn.createStream()
       clientStream.setSendMax(1000)

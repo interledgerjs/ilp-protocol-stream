@@ -56,8 +56,8 @@ describe('Connection', function () {
     })
   })
 
-  describe('end', function () {
-    it('should close the other side of the connection', async function () {
+  describe('end', function() {
+    it('should close the other side of the connection', async function() {
       const endSpy = sinon.spy()
       const closeSpy = sinon.spy()
       this.clientConn.on('end', endSpy)
@@ -68,46 +68,222 @@ describe('Connection', function () {
       assert.calledOnce(closeSpy)
     })
 
-    it('should close all outgoing streams', async function () {
-      const spy1 = sinon.spy()
-      const spy2 = sinon.spy()
+    it('should close all outgoing streams', async function() {
+      const stream1Spy = {
+        finish: sinon.spy(),
+        end: sinon.spy(),
+        close: sinon.spy()
+      }
+      const stream2Spy = {
+        finish: sinon.spy(),
+        end: sinon.spy(),
+        close: sinon.spy()
+      }
+
       const stream1 = this.clientConn.createStream()
-      stream1.on('end', spy1)
+      stream1.on('finish', stream1Spy.finish)
+      stream1.on('end', stream1Spy.end)
+      stream1.on('close', stream1Spy.close)
       stream1.setSendMax(100)
       const stream2 = this.clientConn.createStream()
       stream2.write('hello')
-      stream2.on('finish', spy2)
+      stream2.on('finish', stream2Spy.finish)
+      stream2.on('end', stream2Spy.end)
+      stream2.on('close', stream2Spy.close)
 
       await this.clientConn.end()
 
-      assert.callCount(spy1, 1)
-      assert.callCount(spy2, 1)
+      assert.calledOnce(stream1Spy.finish)
+      assert.calledOnce(stream1Spy.end)
+      assert.calledOnce(stream1Spy.close)
+      assert.calledOnce(stream2Spy.finish)
+      assert.calledOnce(stream2Spy.end)
+      assert.calledOnce(stream2Spy.close)
     })
 
-    it.skip('should close all incoming streams', async function () {
+    it('should close all incoming streams', async function() {
+      const closeSpy = sinon.spy()
+      this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
+        stream.on('close', closeSpy)
+      })
+      const stream1 = this.clientConn.createStream()
+      await stream1.setSendMax(100)
+      const stream2 = this.clientConn.createStream()
+      await stream2.write('hello')
+      await this.serverConn.end()
+
+      assert.calledTwice(closeSpy)
+    })
+
+    it.skip('should remove the stream record once one side calls end', async function() {
+      // TODO figure out how to check the stream record was removed..
+    })
+
+    it('should complete sending all data from server when end is called on server side of the connection', function() {
+      this.clientConn.on('stream', (stream: DataAndMoneyStream) => {
+        stream.on('data', (data: Buffer) => {
+          assert.equal(data.toString(), 'hello')
+        })
+      })
+      const serverStream = this.serverConn.createStream()
+      serverStream.write('hello')
+      this.serverConn.end()
+    })
+
+    it('should complete sending all money from server when end is called on server side of the connection', function() {
+      this.clientConn.on('stream', (stream: DataAndMoneyStream) => {
+        stream.setReceiveMax(1000)
+        stream.on('money', (amount) => {
+          assert.equal(amount, 200)
+        })
+      })
+      const serverStream = this.serverConn.createStream()
+      serverStream.sendTotal(100)
+      this.serverConn.end()
+    })
+
+    it('should complete sending all data from client when end is called on client side of the connection', function() {
+      this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
+        stream.on('data', (data: Buffer) => {
+          assert.equal(data.toString(), 'hello')
+        })
+      })
+      const clientStream = this.clientConn.createStream()
+      clientStream.write('hello')
+      this.clientConn.end()
+    })
+
+    it('should complete sending all money from client when end is called on client side of the connection', function() {
+      this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
+        stream.setReceiveMax(1000)
+        stream.on('money', (amount) => {
+          assert.equal(amount, 50)
+        })
+      })
+      const clientStream = this.clientConn.createStream()
+      clientStream.sendTotal(100)
+      this.clientConn.end()
+    })
+
+    it('should complete sending data & money from server on multiple streams when end is called on server side of the connection ', async function() {
       const moneySpy = sinon.spy()
       const dataSpy = sinon.spy()
       this.clientConn.on('stream', (stream: DataAndMoneyStream) => {
-        stream.on('end', () => {
-          console.log('money stream end')
+        stream.setReceiveMax(1000)
+        stream.on('money', (amount) => {
           moneySpy()
+          assert.equal(amount, 200)
         })
-      })
-      this.clientConn.on('stream', (stream: DataAndMoneyStream) => {
-        stream.on('finish', () => {
-          console.log('data strem end')
+        stream.on('data', (data: Buffer) => {
           dataSpy()
+          assert.equal(data.toString(), 'hello')
         })
       })
-      this.serverConn.createStream().setSendMax(100)
-      this.serverConn.createStream().write('hello')
+      const serverStreamA = this.serverConn.createStream()
+      const serverStreamB = this.serverConn.createStream()
+      serverStreamA.write('hello')
+      serverStreamA.sendTotal(100)
+      serverStreamB.write('hello')
+      serverStreamB.sendTotal(100)
 
-      console.log('about to end')
+      await this.serverConn.end()
+      assert.calledTwice(moneySpy)
+      assert.calledTwice(dataSpy)
+    })
+
+    it('should complete sending data & money from client on multiple streams when end is called on client side of the connection ', async function() {
+      const moneySpy = sinon.spy()
+      const dataSpy = sinon.spy()
+      this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
+        stream.setReceiveMax(1000)
+        stream.on('money', (amount) => {
+          moneySpy()
+          assert.equal(amount, 50)
+        })
+        stream.on('data', (data: Buffer) => {
+          dataSpy()
+          assert.equal(data.toString(), 'hello')
+        })
+      })
+      const clientStreamA = this.clientConn.createStream()
+      const clientStreamB = this.clientConn.createStream()
+      clientStreamA.write('hello')
+      clientStreamA.sendTotal(100)
+      clientStreamB.write('hello')
+      clientStreamB.sendTotal(100)
+
       await this.clientConn.end()
-      console.log('ended')
+      assert.calledTwice(moneySpy)
+      assert.calledTwice(dataSpy)
+    })
 
-      assert.callCount(moneySpy, 1)
-      assert.callCount(dataSpy, 1)
+    it('should error on sending data from client after the server end is called', async function() {
+      const clientStreamError = sinon.spy()
+      const serverStreamData = sinon.spy()
+      this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
+        stream.setReceiveMax(1000)
+        stream.on('data', serverStreamData)
+      })
+      const clientStream = this.clientConn.createStream()
+      clientStream.on('error', clientStreamError)
+      clientStream.write('hello')
+      await this.serverConn.end()
+      clientStream.write('hello')
+
+      assert.calledOnce(clientStreamError)
+      assert.calledOnce(serverStreamData)
+    })
+
+    it('should error on sending data from client after the client end is called', async function() {
+      const clientStreamError = sinon.spy()
+      const serverStreamData = sinon.spy()
+      this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
+        stream.setReceiveMax(1000)
+        stream.on('data', serverStreamData)
+      })
+      const clientStream = this.clientConn.createStream()
+      clientStream.on('error', clientStreamError)
+      clientStream.write('hello')
+      await this.clientConn.end()
+      clientStream.write('hello')
+
+      assert.calledOnce(clientStreamError)
+      assert.calledOnce(serverStreamData)
+    })
+  })
+
+  describe('destroy', function() {
+    it('should close the other side of the connection', function(done) {
+      this.clientConn.on('close', done)
+      this.serverConn.destroy()
+    })
+
+    it('should accept an error that will be emitted on the other side of the connection', function(done) {
+      const spy = sinon.spy()
+      this.clientConn.on('error', (err: Error) => {
+        assert.equal(err.message, 'Remote connection error. Code: InternalError, message: i had enough of this')
+        done()
+      })
+
+      this.serverConn.destroy(new Error('i had enough of this'))
+    })
+
+    it('should close all outgoing streams even if there is data and money still to send', function(done) {
+      const spy = sinon.spy()
+      const stream: DataAndMoneyStream = this.clientConn.createStream()
+      stream.on('close', () => {
+        spy()
+        assert.calledOnce(spy)
+        assert.equal(stream.totalSent, '0')
+        // Don't use an assert.equal here because the behavior changed between Node 8 and 10
+        assert.isAtLeast(stream.writableLength, 1)
+        assert.equal(stream.isOpen(), false)
+        done()
+      })
+      stream.setSendMax(100)
+      stream.write(Buffer.alloc(20000))
+
+      this.clientConn.destroy()
     })
   })
 
