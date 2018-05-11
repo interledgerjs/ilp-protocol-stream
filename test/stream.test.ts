@@ -337,10 +337,9 @@ describe('DataAndMoneyStream', function () {
         })
       })
       const clientStream = this.clientConn.createStream()
-      await new Promise(setImmediate)
       clientStream.write(Buffer.alloc(30000))
+      clientStream.end()
       await new Promise(setImmediate)
-      await clientStream.end()
       await new Promise(setImmediate)
       await new Promise(setImmediate)
       assert.equal(Buffer.concat(data).length, 30000)
@@ -359,13 +358,13 @@ describe('DataAndMoneyStream', function () {
     it('should accept incoming money for closed streams', function (done) {
       const spy = sinon.spy()
       this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
-        stream.setReceiveMax(1000)
+        stream.setReceiveMax(20000)
         stream.end()
         stream.on('money', spy)
       })
 
       const clientStream = this.clientConn.createStream()
-      clientStream.setSendMax(1000)
+      clientStream.setSendMax(20000)
       clientStream.on('end', () => {
         assert.equal(clientStream.totalSent, '1000')
         assert.calledWith(spy, '500')
