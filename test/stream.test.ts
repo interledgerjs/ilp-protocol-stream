@@ -329,16 +329,22 @@ describe('DataAndMoneyStream', function () {
       })
     })
 
-    it('should not close the stream until all the data has been sent', function(done) {
+    it('should not close the stream until all the data has been sent', async function () {
+      let data: Buffer[] = []
       this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
-        stream.on('data', (data: Buffer) => {
-          assert.equal(data.toString(), 'hello')
-          done()
+        stream.on('data', (chunk: Buffer) => {
+          data.push(chunk)
+          console.log('STREAM ' + Buffer.concat(data).length)
         })
       })
       const clientStream = this.clientConn.createStream()
-      clientStream.write('hello')
-      clientStream.end()
+      await new Promise(setImmediate)
+      clientStream.write(Buffer.alloc(30000))
+      await new Promise(setImmediate)
+      await clientStream.end()
+      await new Promise(setImmediate)
+      await new Promise(setImmediate)
+      assert.equal(Buffer.concat(data).length, 30000)
     })
 
     it('should close the stream if it could send more money but the other side is blocking it', function (done) {
@@ -374,7 +380,7 @@ describe('DataAndMoneyStream', function () {
       assert.throws(() => clientStream.write('hello'), 'write after end')
     })
 
-    it('should not allow more data to be written once the stream is closed and emit an error', async function() {
+    it('should not allow more data to be written once the stream is closed and emit an error', async function () {
       const clientStream = this.clientConn.createStream()
       clientStream.on('error', (err: Error) => {
         assert.equal(err.message, 'write after end')
