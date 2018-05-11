@@ -68,7 +68,7 @@ describe('Connection', function () {
       assert.calledOnce(closeSpy)
     })
 
-    it.skip('should close all outgoing streams', async function() {
+    it('should close all outgoing streams', async function() {
       const clientSpy = {
         stream1: {
           finish: sinon.spy(),
@@ -101,6 +101,7 @@ describe('Connection', function () {
         stream.on('finish', serverStreamSpy.finish)
         stream.on('end', serverStreamSpy.end)
         stream.on('close', serverStreamSpy.close)
+        stream.on('data', () => {})
       })
       this.serverConn.on('end', connSpy.server.end)
       this.serverConn.on('close', connSpy.server.close)
@@ -123,6 +124,7 @@ describe('Connection', function () {
       await new Promise(setImmediate)
       await this.clientConn.end()
       await new Promise(setImmediate)
+
       assert.calledOnce(clientSpy.stream1.finish)
       assert.calledOnce(clientSpy.stream1.end)
       assert.calledOnce(clientSpy.stream1.close)
@@ -136,12 +138,11 @@ describe('Connection', function () {
       assert.calledOnce(connSpy.client.end)
 
       assert.calledTwice(serverStreamSpy.finish)
-      // End is not being called twice, seems to not be called when write is used on the stream
       assert.calledTwice(serverStreamSpy.end)
       assert.calledTwice(serverStreamSpy.close)
     })
 
-    it.skip('should close all incoming streams', async function() {
+    it('should close all incoming streams', async function() {
       const clientSpy = {
         stream1: {
           finish: sinon.spy(),
@@ -174,6 +175,7 @@ describe('Connection', function () {
         stream.on('finish', serverStreamSpy.finish)
         stream.on('end', serverStreamSpy.end)
         stream.on('close', serverStreamSpy.close)
+        stream.on('data', () => {})
       })
       this.serverConn.on('end', connSpy.server.end)
       this.serverConn.on('close', connSpy.server.close)
@@ -209,7 +211,6 @@ describe('Connection', function () {
       assert.calledOnce(connSpy.client.end)
 
       assert.calledTwice(serverStreamSpy.finish)
-      // End is not being called twice, seems to not be called when write is used on the stream
       assert.calledTwice(serverStreamSpy.end)
       assert.calledTwice(serverStreamSpy.close)
     })
@@ -283,10 +284,8 @@ describe('Connection', function () {
     it('should keep connection open when a stream is ended', async function () {
       const stream1 = this.clientConn.createStream()
       const stream2 = this.clientConn.createStream()
-
       const dataSpy = sinon.spy()
       const moneySpy = sinon.spy()
-
       this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
         stream.on('data', (data: Buffer) => {
           dataSpy()
@@ -379,13 +378,14 @@ describe('Connection', function () {
     it('should close the connection immediately and not allow money or data to be transmitted', async function () {
       const clientStream = this.clientConn.createStream()
       const serverStream = this.serverConn.createStream()
-
       await this.serverConn.destroy()
 
       assert.throws(() => clientStream.write('hello'), 'write after end')
       assert.throws(() => clientStream.setSendMax(300), 'Stream already closed')
       await assert.isRejected(clientStream.sendTotal(300), 'Stream already closed')
-      assert.throws(() => serverStream.write('hello'), 'Cannot call write after a stream was destroyed')
+      // Node v10.0.0 throws 'Cannot call write after a stream was destroyed'
+      // Node v8.11.1 throws 'write after end'
+      assert.throws(() => serverStream.write('hello'), /Cannot call write after a stream was destroyed|write after end/)
       assert.throws(() => serverStream.setSendMax(300), 'Stream already closed')
       await assert.isRejected(serverStream.sendTotal(300), 'Stream already closed')
     })
@@ -393,10 +393,8 @@ describe('Connection', function () {
     it('should keep connection open when a stream is destroyed', async function () {
       const stream1 = this.clientConn.createStream()
       const stream2 = this.clientConn.createStream()
-
       const dataSpy = sinon.spy()
       const moneySpy = sinon.spy()
-
       this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
         stream.on('data', (data: Buffer) => {
           dataSpy()
