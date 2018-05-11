@@ -280,6 +280,37 @@ describe('Connection', function () {
       assert.callCount(moneySpy, 12)
     })
 
+    it('should keep connection open when a stream is ended', async function () {
+      const stream1 = this.clientConn.createStream()
+      const stream2 = this.clientConn.createStream()
+
+      const dataSpy = sinon.spy()
+      const moneySpy = sinon.spy()
+
+      this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
+        stream.on('data', (data: Buffer) => {
+          dataSpy()
+        })
+        stream.on('money', (amount) => {
+          moneySpy()
+        })
+      })
+
+      stream1.write('hello')
+      await new Promise(setImmediate)
+      stream1.setSendMax(100)
+      await new Promise(setImmediate)
+      await stream1.end()
+
+      stream2.write('hello')
+      await new Promise(setImmediate)
+      stream2.setSendMax(200)
+      await new Promise(setImmediate)
+      assert.calledTwice(dataSpy)
+      assert.calledTwice(moneySpy)
+    })
+
+
     it('should emit error on attempting to send data on a closed connection if an error listener is present', async function () {
       const serverStreamData = sinon.spy()
       this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
@@ -297,13 +328,13 @@ describe('Connection', function () {
       assert.calledOnce(serverStreamData)
     })
 
-    it('should throw error on sending data if no error listener', async function() {
+    it('should throw error on sending data if no error listener', async function () {
       const clientStream = this.clientConn.createStream()
       await this.serverConn.end()
       assert.throws(() => clientStream.write('hello'), 'write after end')
     })
 
-    it('should throw error on sending money from client after the client end is called', async function() {
+    it('should throw error on sending money from client after the client end is called', async function () {
       const clientStream = this.clientConn.createStream()
       await this.clientConn.end()
       assert.throws(() => clientStream.setSendMax(300), 'Stream already closed')
@@ -343,6 +374,50 @@ describe('Connection', function () {
       stream.write(Buffer.alloc(20000))
 
       this.clientConn.destroy()
+    })
+
+    it('should close the connection immediately and not allow money or data to be transmitted', async function () {
+      const clientStream = this.clientConn.createStream()
+      const serverStream = this.serverConn.createStream()
+
+      await this.serverConn.destroy()
+
+      assert.throws(() => clientStream.write('hello'), 'write after end')
+      assert.throws(() => clientStream.setSendMax(300), 'Stream already closed')
+      await assert.isRejected(clientStream.sendTotal(300), 'Stream already closed')
+      assert.throws(() => serverStream.write('hello'), 'Cannot call write after a stream was destroyed')
+      assert.throws(() => serverStream.setSendMax(300), 'Stream already closed')
+      await assert.isRejected(serverStream.sendTotal(300), 'Stream already closed')
+    })
+
+    it('should keep connection open when a stream is destroyed', async function () {
+      const stream1 = this.clientConn.createStream()
+      const stream2 = this.clientConn.createStream()
+
+      const dataSpy = sinon.spy()
+      const moneySpy = sinon.spy()
+
+      this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
+        stream.on('data', (data: Buffer) => {
+          dataSpy()
+        })
+        stream.on('money', (amount) => {
+          moneySpy()
+        })
+      })
+
+      stream1.write('hello')
+      await new Promise(setImmediate)
+      stream1.setSendMax(100)
+      await new Promise(setImmediate)
+      await stream1.destroy()
+
+      stream2.write('hello')
+      await new Promise(setImmediate)
+      stream2.setSendMax(200)
+      await new Promise(setImmediate)
+      assert.calledTwice(dataSpy)
+      assert.calledTwice(moneySpy)
     })
   })
 
