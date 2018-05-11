@@ -136,7 +136,8 @@ describe('Connection', function () {
       assert.calledOnce(connSpy.client.end)
 
       assert.calledTwice(serverStreamSpy.finish)
-      assert.calledTwice(serverStreamSpy.end) // Not being called twice
+      // End is not being called twice, seems to not be called when write is used on the stream
+      assert.calledTwice(serverStreamSpy.end)
       assert.calledTwice(serverStreamSpy.close)
     })
 
@@ -208,7 +209,8 @@ describe('Connection', function () {
       assert.calledOnce(connSpy.client.end)
 
       assert.calledTwice(serverStreamSpy.finish)
-      assert.calledTwice(serverStreamSpy.end) // Not being called twice
+      // End is not being called twice, seems to not be called when write is used on the stream
+      assert.calledTwice(serverStreamSpy.end)
       assert.calledTwice(serverStreamSpy.close)
     })
 
@@ -217,7 +219,6 @@ describe('Connection', function () {
     })
 
     it('should complete sending all data from server when end is called on server side of the connection', async function() {
-      // TODO: Failing so skip for now
       let data: Buffer[] = []
       this.clientConn.on('stream', (stream: DataAndMoneyStream) => {
         stream.on('data', (chunk: Buffer) => {
@@ -225,10 +226,25 @@ describe('Connection', function () {
         })
       })
       const serverStream = this.serverConn.createStream()
-      serverStream.write(Buffer.alloc(30000))
+      serverStream.write(Buffer.alloc(300000))
       await new Promise(setImmediate)
       await this.serverConn.end()
-      assert.equal(Buffer.concat(data).length, 30000)
+      assert.equal(Buffer.concat(data).length, 300000)
+    })
+
+    it('should complete sending all data from client when end is called on client side of the connection', async function() {
+      let data: Buffer[] = []
+      this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
+        stream.on('data', (chunk: Buffer) => {
+          data.push(chunk)
+        })
+      })
+      const clientStream = this.clientConn.createStream()
+      clientStream.write(Buffer.alloc(300000))
+      await new Promise(setImmediate)
+      await this.clientConn.end()
+      await this.serverConn.end()
+      assert.equal(Buffer.concat(data).length, 300000)
     })
 
     it('should complete sending all money from server when end is called on server side of the connection', async function () {
@@ -248,21 +264,6 @@ describe('Connection', function () {
       assert.callCount(moneySpy, 6)
     })
 
-    it('should complete sending all data from client when end is called on client side of the connection', async function() {
-      // TODO: Failing so skip for now
-      let data: Buffer[] = []
-      this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
-        stream.on('data', (chunk: Buffer) => {
-          data.push(chunk)
-        })
-      })
-      const clientStream = this.clientConn.createStream()
-      clientStream.write(Buffer.alloc(30000))
-      await new Promise(setImmediate)
-      await this.clientConn.end()
-      assert.equal(Buffer.concat(data).length, 30000)
-    })
-
     it('should complete sending all money from client when end is called on client side of the connection', async function () {
       const moneySpy = sinon.spy()
       let totalMoney: number = 0
@@ -279,7 +280,7 @@ describe('Connection', function () {
       assert.callCount(moneySpy, 12)
     })
 
-    it('should emit error on sending data from client after the server end is called', async function () {
+    it('should emit error on attempting to send data on a closed connection if an error listener is present', async function () {
       const serverStreamData = sinon.spy()
       this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
         stream.setReceiveMax(1000)
@@ -296,32 +297,9 @@ describe('Connection', function () {
       assert.calledOnce(serverStreamData)
     })
 
-    it('should throw error on sending data from client after the server end is called', async function () {
+    it('should throw error on sending data if no error listener', async function() {
       const clientStream = this.clientConn.createStream()
       await this.serverConn.end()
-      assert.throws(() => clientStream.write('hello'), 'write after end')
-    })
-
-    it('should emit error on sending data from client after the client end is called', async function () {
-      const serverStreamData = sinon.spy()
-      this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
-        stream.setReceiveMax(1000)
-        stream.on('data', serverStreamData)
-      })
-      const clientStream = this.clientConn.createStream()
-      clientStream.on('error', (err: Error) => {
-        assert.equal(err.message, 'write after end')
-      })
-      clientStream.write('hello')
-      await this.clientConn.end()
-      clientStream.write('hello')
-
-      assert.calledOnce(serverStreamData)
-    })
-
-    it('should throw error on sending data from client after the client end is called', async function () {
-      const clientStream = this.clientConn.createStream()
-      await this.clientConn.end()
       assert.throws(() => clientStream.write('hello'), 'write after end')
     })
 
@@ -329,11 +307,7 @@ describe('Connection', function () {
       const clientStream = this.clientConn.createStream()
       await this.clientConn.end()
       assert.throws(() => clientStream.setSendMax(300), 'Stream already closed')
-      try {
-        await clientStream.sendTotal(300)
-      } catch (err) {
-        assert.equal(err.message, 'Stream already closed')
-      }
+      await assert.isRejected(clientStream.sendTotal(300), 'Stream already closed')
     })
   })
 

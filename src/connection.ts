@@ -208,17 +208,10 @@ export class Connection extends EventEmitter {
   // TODO should this be sync or async?
   async end (): Promise<void> {
     this.debug('closing connection')
-
-    let anyOpenStreams: boolean = false
     for (let [_, stream] of this.streams) {
       if (stream.isOpen()) {
-        anyOpenStreams = true
         stream.end()
-        // TODO should this mark the remoteStreams as closed?
       }
-    }
-    if (!anyOpenStreams){
-      this.closed = true
     }
 
     await new Promise((resolve, reject) => {
@@ -228,6 +221,9 @@ export class Connection extends EventEmitter {
       /* tslint:disable-next-line:no-floating-promises */
       this.startSendLoop()
     })
+    // Wait for the send loop to finish before marking the connection as closed
+    // so the streams can finish sending data or money.
+    this.closed = true
     await this.sendConnectionClose()
     this.safeEmit('end')
     this.safeEmit('close')
