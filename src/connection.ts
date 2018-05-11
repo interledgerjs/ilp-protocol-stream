@@ -208,13 +208,17 @@ export class Connection extends EventEmitter {
   // TODO should this be sync or async?
   async end (): Promise<void> {
     this.debug('closing connection')
-    this.closed = true
 
+    let anyOpenStreams: boolean = false
     for (let [_, stream] of this.streams) {
       if (stream.isOpen()) {
+        anyOpenStreams = true
         stream.end()
         // TODO should this mark the remoteStreams as closed?
       }
+    }
+    if (!anyOpenStreams){
+      this.closed = true
     }
 
     await new Promise((resolve, reject) => {

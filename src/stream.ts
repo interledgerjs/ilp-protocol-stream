@@ -53,7 +53,7 @@ export class DataAndMoneyStream extends Duplex {
   protected bytesRead: number
 
   constructor (opts: StreamOpts) {
-    super()
+    super({ allowHalfOpen: false })
     this.id = opts.id
     this.isServer = opts.isServer
     this.debug = Debug(`ilp-protocol-stream:${this.isServer ? 'Server' : 'Client'}:Stream:${this.id}`)

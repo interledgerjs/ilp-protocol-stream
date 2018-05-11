@@ -216,7 +216,7 @@ describe('Connection', function () {
       // TODO figure out how to check the stream record was removed..
     })
 
-    it.skip('should complete sending all data from server when end is called on server side of the connection', async function() {
+    it('should complete sending all data from server when end is called on server side of the connection', async function() {
       // TODO: Failing so skip for now
       let data: Buffer[] = []
       this.clientConn.on('stream', (stream: DataAndMoneyStream) => {
@@ -226,6 +226,7 @@ describe('Connection', function () {
       })
       const serverStream = this.serverConn.createStream()
       serverStream.write(Buffer.alloc(30000))
+      await new Promise(setImmediate)
       await this.serverConn.end()
       assert.equal(Buffer.concat(data).length, 30000)
     })
@@ -247,7 +248,7 @@ describe('Connection', function () {
       assert.callCount(moneySpy, 6)
     })
 
-    it.skip('should complete sending all data from client when end is called on client side of the connection', async function() {
+    it('should complete sending all data from client when end is called on client side of the connection', async function() {
       // TODO: Failing so skip for now
       let data: Buffer[] = []
       this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
@@ -257,6 +258,7 @@ describe('Connection', function () {
       })
       const clientStream = this.clientConn.createStream()
       clientStream.write(Buffer.alloc(30000))
+      await new Promise(setImmediate)
       await this.clientConn.end()
       assert.equal(Buffer.concat(data).length, 30000)
     })
