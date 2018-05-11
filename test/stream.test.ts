@@ -334,7 +334,6 @@ describe('DataAndMoneyStream', function () {
       this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
         stream.on('data', (chunk: Buffer) => {
           data.push(chunk)
-          console.log('STREAM ' + Buffer.concat(data).length)
         })
       })
       const clientStream = this.clientConn.createStream()
