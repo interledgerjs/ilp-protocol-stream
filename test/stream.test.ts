@@ -363,14 +363,14 @@ describe('DataAndMoneyStream', function () {
   })
 
   describe('end', function () {
-    it('should end without opening connection on other side if no data send', function (done) {
-      const serverConnect = sinon.spy()
+    it('should end without opening connection on other side if no data sent', function (done) {
       const clientEnd = sinon.spy()
-      this.serverConn.on('stream', serverConnect)
+      this.serverConn.on('stream', () => {
+        done('client opened connection to server')
+      })
       const stream = this.clientConn.createStream()
-      stream.on('end', () => {
+      stream.on('end', async () => {
         clientEnd()
-        assert.notCalled(serverConnect)
         assert.calledOnce(clientEnd)
         done()
       })
@@ -798,7 +798,7 @@ describe('DataAndMoneyStream', function () {
   })
 
   describe('Control Frames', function() {
-    it('should retry stream close control frame when rejected by connector', function (done) {
+    it('should retry StreamCloseFrame when rejected by connector', function(done) {
       const serverEndSpy = sinon.spy()
       const clientEndSpy = sinon.spy()
       this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
@@ -825,7 +825,7 @@ describe('DataAndMoneyStream', function () {
       clientStream.end('hello')
     })
 
-    it('should retry stream close control frame when rejected by receiver', function (done) {
+    it('should retry StreamCloseFrame when rejected by receiver', function (done) {
       const serverEndSpy = sinon.spy()
       const clientEndSpy = sinon.spy()
       this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
@@ -845,6 +845,40 @@ describe('DataAndMoneyStream', function () {
         .resolves(IlpPacket.serializeIlpReject({
           code: 'F99',
           message: 'uh oh',
+          triggeredBy: 'test.receiver',
+          data: Buffer.alloc(0)
+        }))
+        .callThrough()
+      clientStream.end('hello')
+    })
+
+    it('should retry StreamCloseFrame when rejected multiple times by receiver', function(done) {
+      const serverEndSpy = sinon.spy()
+      const clientEndSpy = sinon.spy()
+      this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
+        stream.on('end', () => {
+          serverEndSpy()
+          assert.calledOnce(clientEndSpy)
+          assert.calledOnce(serverEndSpy)
+          done()
+        })
+      })
+      const clientStream = this.clientConn.createStream()
+      clientStream.on('end', clientEndSpy)
+
+      // Allow the write through on first call, reject second to block Close Frame
+      sinon.stub(this.clientPlugin, 'sendData')
+        .onSecondCall()
+        .resolves(IlpPacket.serializeIlpReject({
+          code: 'F99',
+          message: 'uh oh',
+          triggeredBy: 'test.receiver',
+          data: Buffer.alloc(0)
+        }))
+        .onThirdCall()
+        .resolves(IlpPacket.serializeIlpReject({
+          code: 'F99',
+          message: 'second rejection',
           triggeredBy: 'test.receiver',
           data: Buffer.alloc(0)
         }))

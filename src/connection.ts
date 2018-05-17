@@ -901,9 +901,9 @@ export class Connection extends EventEmitter {
         this.sending = false
         return
       } else {
-        // Check if any of the frames are Close, Data, or Money Frames
-        // If none of those frames are present then we can stop sending
-        // after the current frames in the request packet are sent.
+        // Check if any Close, Data, or Money Frames are present in the packet. 
+        // If any of those are do not sent sending to false so the send loop
+        // has an opportunity to retry if those packets are rejected.
         if (!requestPacket.frames.find(frame =>
             ((frame.type === FrameType.StreamClose)
             || (frame.type === FrameType.StreamData)
