@@ -778,6 +778,35 @@ describe('Connection', function () {
       clock.restore()
     })
 
+    it('should set the packet amount to a minimum of 1 when it gets T04 errors', async function () {
+      const clock = sinon.useFakeTimers({
+        toFake: ['setTimeout'],
+      })
+      const interval = setInterval(() => clock.tick(100), 1)
+      const sendDataStub = sinon.stub(this.clientPlugin, 'sendData')
+        .onFirstCall().resolves(IlpPacket.serializeIlpReject({
+          code: 'T04',
+          message: 'Insufficient Liquidity Error',
+          data: Buffer.alloc(0),
+          triggeredBy: 'test.connector'
+        }))
+        .onSecondCall().resolves(IlpPacket.serializeIlpReject({
+          code: 'T04',
+          message: 'Insufficient Liquidity Error',
+          data: Buffer.alloc(0),
+          triggeredBy: 'test.connector'
+        }))
+        .callThrough()
+
+      const clientStream = this.clientConn.createStream()
+      await clientStream.sendTotal(1)
+      assert.equal(IlpPacket.deserializeIlpPrepare(sendDataStub.args[0][0]).amount, '1')
+      assert.equal(IlpPacket.deserializeIlpPrepare(sendDataStub.args[1][0]).amount, '1')
+      clearInterval(interval)
+      clock.restore()
+
+    })
+
     it('should retry on temporary errors', async function () {
       const clock = sinon.useFakeTimers({
         toFake: ['setTimeout'],
