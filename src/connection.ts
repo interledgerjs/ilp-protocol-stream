@@ -30,6 +30,7 @@ require('source-map-support').install()
 
 const TEST_PACKET_AMOUNT = new BigNumber(1000)
 const RETRY_DELAY_START = 100
+const RETRY_DELAY_MAX = 43200000 // 12 hours should be long enough
 const MAX_DATA_SIZE = 32767
 const DEFAULT_MAX_REMOTE_STREAMS = 10
 
@@ -1186,9 +1187,9 @@ export class Connection extends EventEmitter {
       await new Promise((resolve, reject) => setTimeout(resolve, delay))
     } else if (reject.code[0] === 'T') {
       // TODO should we reduce the packet amount on other TXX errors too?
-      this.debug(`got temporary error. waiting ${this.retryDelay} before trying again`)
+      this.debug(`got temporary error. waiting ${this.retryDelay}ms before trying again`)
       const delay = this.retryDelay
-      this.retryDelay = this.retryDelay * 2
+      this.retryDelay = Math.min(this.retryDelay * 2, RETRY_DELAY_MAX)
       await new Promise((resolve, reject) => setTimeout(resolve, delay))
     } else {
       this.debug(`unexpected error. code: ${reject.code}, message: ${reject.message}, data: ${reject.data.toString('hex')}`)
