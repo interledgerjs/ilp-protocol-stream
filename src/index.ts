@@ -206,13 +206,13 @@ export class Server extends EventEmitter {
       const localAddressParts = prepare.destination.replace(this.sourceAccount + '.', '').split('.')
       if (localAddressParts.length === 0 || !localAddressParts[0]) {
         this.debug(`destination in ILP Prepare packet does not have a Connection ID: ${prepare.destination}`)
-        throw new IlpPacket.Errors.UnreachableError('')
+        throw new IlpPacket.Errors.UnreachableError('Error in ilp-protocol-stream')
       }
       const connectionId = localAddressParts[0]
 
       if (this.closedConnections[connectionId]) {
         this.debug(`got packet for connection that was already closed: ${connectionId}`)
-        throw new IlpPacket.Errors.UnreachableError('')
+        throw new IlpPacket.Errors.UnreachableError('Error in ilp-protocol-stream')
       }
 
       if (!this.connections[connectionId]) {
@@ -223,7 +223,7 @@ export class Server extends EventEmitter {
           cryptoHelper.decrypt(sharedSecret, prepare.data)
         } catch (err) {
           this.debug(`got prepare for an address and token that we did not generate: ${prepare.destination}`)
-          throw new IlpPacket.Errors.UnreachableError('')
+          throw new IlpPacket.Errors.UnreachableError('Error in ilp-protocol-stream')
         }
 
         // If we get here, that means it was a token + sharedSecret we created
