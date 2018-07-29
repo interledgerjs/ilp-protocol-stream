@@ -513,7 +513,7 @@ describe('Connection', function () {
       })
     })
 
-    it('should throw an error if the exchange rate is smaller than 1/1000000000', async function () {
+    it.skip('should throw an error if the exchange rate is smaller than 1/1000000000', async function () {
       this.clientPlugin.exchangeRate = 0.0000000001
       this.serverPlugin.exchangeRate = 1 / this.clientPlugin.exchangeRate
       await assert.isRejected(createConnection({
@@ -586,6 +586,85 @@ describe('Connection', function () {
       clearInterval(interval)
       clock.restore()
     })
+
+    it('should fail to determine exchange rate if its not precise enough', async function () {
+      const clock = sinon.useFakeTimers({
+        toFake: ['setTimeout'],
+      })
+      const interval = setInterval(() => clock.tick(1000), 1)
+
+      this.clientPlugin.exchangeRate = 1
+      this.clientPlugin.maxAmount = 1000000
+      const sendDataStub = sinon.stub(this.clientPlugin, 'sendData')
+        .onCall(2).resolves(IlpPacket.serializeIlpReject({
+          code: 'F08',
+          message: 'Amount Too Large',
+          data: Buffer.alloc(0),
+          triggeredBy: 'test.connector'
+        }))
+        .onCall(3).resolves(IlpPacket.serializeIlpReject({
+          code: 'F08',
+          message: 'Amount Too Large',
+          data: Buffer.alloc(0),
+          triggeredBy: 'test.connector'
+        }))
+        .onCall(4).resolves(IlpPacket.serializeIlpReject({
+          code: 'F08',
+          message: 'Amount Too Large',
+          data: Buffer.alloc(0),
+          triggeredBy: 'test.connector'
+        }))
+        .callThrough()
+
+      await assert.isRejected(createConnection({
+        ...this.server.generateAddressAndSecret(),
+        plugin: this.clientPlugin
+      }), 'Error connecting: Unable to determine path exchange rate')
+
+      clearInterval(interval)
+      clock.restore()
+    })
+
+    it('should determine exchange rate with low precision if set to 1', async function () {
+      const clock = sinon.useFakeTimers({
+        toFake: ['setTimeout'],
+      })
+      const interval = setInterval(() => clock.tick(1000), 1)
+
+      this.clientPlugin.exchangeRate = 1
+      this.clientPlugin.maxAmount = 1000000
+      const sendDataStub = sinon.stub(this.clientPlugin, 'sendData')
+        .onCall(2).resolves(IlpPacket.serializeIlpReject({
+          code: 'F08',
+          message: 'Amount Too Large',
+          data: Buffer.alloc(0),
+          triggeredBy: 'test.connector'
+        }))
+        .onCall(3).resolves(IlpPacket.serializeIlpReject({
+          code: 'F08',
+          message: 'Amount Too Large',
+          data: Buffer.alloc(0),
+          triggeredBy: 'test.connector'
+        }))
+        .onCall(4).resolves(IlpPacket.serializeIlpReject({
+          code: 'F08',
+          message: 'Amount Too Large',
+          data: Buffer.alloc(0),
+          triggeredBy: 'test.connector'
+        }))
+        .callThrough()
+
+      await createConnection({
+        ...this.server.generateAddressAndSecret(),
+        minExchangeRatePrecision: 1,
+        plugin: this.clientPlugin
+      })
+
+      clearInterval(interval)
+      clock.restore()
+    })
+
+
   })
 
   describe('Exchange Rate Handling', function () {
