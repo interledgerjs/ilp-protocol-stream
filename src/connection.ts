@@ -34,6 +34,7 @@ const RETRY_DELAY_INCREASE_FACTOR = 1.5
 const DEFAULT_PACKET_TIMEOUT = 30000
 const MAX_DATA_SIZE = 32767
 const DEFAULT_MAX_REMOTE_STREAMS = 10
+const DEFAULT_MINIMUM_EXCHANGE_RATE_PRECISION = 3
 
 export interface ConnectionOpts {
   /** Ledger plugin (V2) */
@@ -52,6 +53,8 @@ export interface ConnectionOpts {
   maxRemoteStreams?: number,
   /** Number of bytes each connection can have in the buffer. Defaults to 65534 */
   connectionBufferSize?: number
+  /** Minimum Precision to use when determining the exchange rate */
+  minExchangeRatePrecision?: number
 }
 
 export interface FullConnectionOpts extends ConnectionOpts {
@@ -102,6 +105,7 @@ export class Connection extends EventEmitter {
   protected testMaximumPacketAmount: BigNumber
   /** The path's Maximum Packet Amount, discovered through F08 errors */
   protected maximumPacketAmount: BigNumber
+  protected minExchangeRatePrecision: number
   protected closed: boolean
   protected exchangeRate?: BigNumber
   protected retryDelay: number
@@ -131,6 +135,7 @@ export class Connection extends EventEmitter {
     this.connectionTag = opts.connectionTag
     this.maxStreamId = 2 * (opts.maxRemoteStreams || DEFAULT_MAX_REMOTE_STREAMS)
     this.maxBufferedData = opts.connectionBufferSize || MAX_DATA_SIZE * 2
+    this.minExchangeRatePrecision = opts.minExchangeRatePrecision || DEFAULT_MINIMUM_EXCHANGE_RATE_PRECISION
 
     this.nextPacketSequence = 1
     // TODO should streams be a Map or just an object?
@@ -1028,27 +1033,7 @@ export class Connection extends EventEmitter {
       return { maxDigits, exchangeRate }
     }, { maxDigits: 0, exchangeRate: new BigNumber(0) })
 
-    // TODO make the level of precision configurable
-    if (maxDigits >= 3) {
-      this.log.debug(`determined exchange rate to be ${exchangeRate}`)
-      this.exchangeRate = exchangeRate
-      return
-    }
-
-    // Try sending another packet if we don't have enough precision but ran into an F08 error
-    if (this.maximumPacketAmount.isFinite() && testPacketAmounts.indexOf(this.maximumPacketAmount.toNumber()) === -1) {
-      this.log.debug(`trying another packet with the maximum packet amount: ${this.maximumPacketAmount}`)
-      const result = await this.sendTestPacket(this.maximumPacketAmount)
-      // TODO what if this gets an F08 error?
-      if ((result as Packet).prepareAmount) {
-        this.exchangeRate = (result as Packet).prepareAmount.dividedBy(this.maximumPacketAmount)
-        this.log.debug(`sent the path maximum packet amount of ${this.maximumPacketAmount} and determined exchange rate to be ${this.exchangeRate}`)
-        return
-      }
-    }
-
-    // A lower precision exchange rate is better than nothing
-    if (exchangeRate.isGreaterThan(0)) {
+    if (maxDigits >= this.minExchangeRatePrecision) {
       this.log.debug(`determined exchange rate to be ${exchangeRate}`)
       this.exchangeRate = exchangeRate
       return
