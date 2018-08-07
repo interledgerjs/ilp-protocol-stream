@@ -6,6 +6,7 @@ import { DataAndMoneyStream } from '../src/stream'
 import * as IlpPacket from 'ilp-packet'
 import * as sinon from 'sinon'
 import * as Chai from 'chai'
+import { Writer } from 'oer-utils'
 import * as chaiAsPromised from 'chai-as-promised'
 Chai.use(chaiAsPromised)
 const assert = Object.assign(Chai.assert, sinon.assert)
@@ -488,8 +489,17 @@ describe('Connection', function () {
     })
 
     it('should determine the exchange rate even if it is small', async function () {
-      this.clientPlugin.exchangeRate = 0.0001
-      this.clientPlugin.maxAmount = 1000000
+      this.clientPlugin.exchangeRate = 0.0000001
+      this.clientPlugin.maxAmount = 1000000000 // 10^9
+      await createConnection({
+        ...this.server.generateAddressAndSecret(),
+        plugin: this.clientPlugin
+      })
+    })
+
+    it('should determine the exchange rate even if it is very very small', async function () {
+      this.clientPlugin.exchangeRate = 0.0000000001
+      this.clientPlugin.maxAmount = 1000000000000 // 10^12
       await createConnection({
         ...this.server.generateAddressAndSecret(),
         plugin: this.clientPlugin
@@ -505,12 +515,78 @@ describe('Connection', function () {
       }), 'Error connecting: Unable to determine path exchange rate')
     })
 
+    it('should determine the exchange rate if it gets F08 which can be used for a valid exchange rate ', async function () {
+      const clock = sinon.useFakeTimers({
+        toFake: ['setTimeout'],
+      })
+      const interval = setInterval(() => clock.tick(1000), 1)
+
+      this.clientPlugin.exchangeRate = 0.001
+      this.clientPlugin.maxAmount = 150000
+
+      await createConnection({
+        ...this.server.generateAddressAndSecret(),
+        plugin: this.clientPlugin
+      })
+
+      clearInterval(interval)
+      clock.restore()
+    })
+
+    it('should fail to determine the exchange rate if it gets F08 which cannot calculate a precise enough exchange rate', async function () {
+      const clock = sinon.useFakeTimers({
+        toFake: ['setTimeout'],
+      })
+      const interval = setInterval(() => clock.tick(1000), 1)
+
+      this.clientPlugin.exchangeRate = 0.001
+      this.clientPlugin.maxAmount = 1500
+
+      await assert.isRejected(createConnection({
+        ...this.server.generateAddressAndSecret(),
+        plugin: this.clientPlugin
+      }), 'Error connecting: Unable to determine path exchange rate')
+      clearInterval(interval)
+      clock.restore()
+    })
+
+    it('should fail to determine the exchange rate if it keeps getting F08 errors', async function () {
+      const clock = sinon.useFakeTimers({
+        toFake: ['setTimeout']
+      })
+      const interval = setInterval(() => clock.tick(1000), 1)
+
+      this.clientPlugin.exchangeRate = 0.000001
+      this.clientPlugin.maxAmount = 1500
+
+      const testData = new Writer()
+      testData.writeUInt64(10)
+      testData.writeUInt64(500)
+      const realSendData = this.clientPlugin.sendData.bind(this.clientPlugin)
+      const sendDataStub = sinon.stub(this.clientPlugin, 'sendData')
+        .onFirstCall().callsFake(realSendData)
+        .resolves(IlpPacket.serializeIlpReject({
+          code: 'F08',
+          message: 'Amount too Large',
+          data: testData.getBuffer(),
+          triggeredBy: 'test.connector'
+        }))
+
+      await assert.isRejected(createConnection({
+        ...this.server.generateAddressAndSecret(),
+        plugin: this.clientPlugin
+      }), 'Error connecting: Unable to determine path exchange rate')
+
+      clearInterval(interval)
+      clock.restore()
+    })
+
     it('should fail to determine exchange rate if its not precise enough', async function () {
       const clock = sinon.useFakeTimers({
         toFake: ['setTimeout'],
       })
       const interval = setInterval(() => clock.tick(1000), 1)
-      this.clientPlugin.exchangeRate = 1
+      this.clientPlugin.exchangeRate = .00001
       this.clientPlugin.maxAmount = 1000000
       const sendDataStub = sinon.stub(this.clientPlugin, 'sendData')
         .onCall(2).resolves(IlpPacket.serializeIlpReject({

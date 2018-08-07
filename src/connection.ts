@@ -971,18 +971,11 @@ export class Connection extends EventEmitter {
       }
     }
   }
-
   /**
-   * (Internal) Probe using test packets to find the exchange rate.
+   * (Internal) Send volly of test packests to find the exchange rate, its precision, and potential other amounts to try.
    * @private
    */
-  protected async determineExchangeRate (): Promise<void> {
-    this.log.trace('determineExchangeRate')
-    if (!this.destinationAccount) {
-      throw new Error('Cannot determine exchange rate. Destination account is unknown')
-    }
-
-    const testPacketAmounts = [1, 1000, 1000000, 1000000000]
+  protected async sendTestPacketVolley (testPacketAmounts: number[]): Promise<any> {
     const results = await Promise.all(testPacketAmounts.map(async (amount) => {
       try {
         return this.sendTestPacket(new BigNumber(amount))
@@ -992,8 +985,8 @@ export class Connection extends EventEmitter {
       }
     }))
 
-    // Check if we got F08 errors (which will help determine the path maximum packet amount)
-    const maximumPacketAmounts = testPacketAmounts.map((sourceAmount, index) => {
+    // parse F08 packets and get the max packet amounts from them
+    const maxPacketAmounts = testPacketAmounts.map((sourceAmount, index) => {
       if (results[index] && (results[index] as IlpPacket.IlpRejection).code === 'F08') {
         try {
           const reader = Reader.from((results[index] as IlpPacket.IlpRejection).data)
@@ -1010,12 +1003,6 @@ export class Connection extends EventEmitter {
       }
       return new BigNumber(Infinity)
     })
-    this.maximumPacketAmount = BigNumber.minimum(...maximumPacketAmounts.concat(this.maximumPacketAmount))
-    this.testMaximumPacketAmount = this.maximumPacketAmount
-    if (this.maximumPacketAmount.isEqualTo(0)) {
-      this.log.error(`cannot send anything through this path. the maximum packet amount is 0`)
-      throw new Error('Cannot send. Path has a Maximum Packet Amount of 0')
-    }
 
     // Figure out which test packet discovered the exchange rate with the most precision
     const { maxDigits, exchangeRate } = results.reduce(({ maxDigits, exchangeRate }, result, index) => {
@@ -1032,11 +1019,46 @@ export class Connection extends EventEmitter {
       }
       return { maxDigits, exchangeRate }
     }, { maxDigits: 0, exchangeRate: new BigNumber(0) })
+    return { maxDigits, exchangeRate, maxPacketAmounts }
+  }
 
-    if (maxDigits >= this.minExchangeRatePrecision) {
-      this.log.debug(`determined exchange rate to be ${exchangeRate}`)
-      this.exchangeRate = exchangeRate
-      return
+  /**
+   * (Internal) Probe using test packets to find the exchange rate.
+   * @private
+   */
+  protected async determineExchangeRate (): Promise<void> {
+    this.log.trace('determineExchangeRate')
+    if (!this.destinationAccount) {
+      throw new Error('Cannot determine exchange rate. Destination account is unknown')
+    }
+
+    let testPacketAmounts = [1, 1000, 1000000, 1000000000, 1000000000000] // 1, 10^3, 10^6, 10^9, 10^12
+    let attempts = 0
+
+    // set a max attempts in case F08 errors keep occurring
+    while (!this.exchangeRate && testPacketAmounts.length > 0 && attempts < 3) {
+      attempts++
+      const { maxDigits, exchangeRate, maxPacketAmounts } = await this.sendTestPacketVolley(testPacketAmounts)
+
+      this.maximumPacketAmount = BigNumber.minimum(...maxPacketAmounts.concat(this.maximumPacketAmount))
+      this.testMaximumPacketAmount = this.maximumPacketAmount
+      if (this.maximumPacketAmount.isEqualTo(0)) {
+        this.log.error(`cannot send anything through this path. the maximum packet amount is 0`)
+        throw new Error('Cannot send. Path has a Maximum Packet Amount of 0')
+      }
+
+      if (maxDigits >= this.minExchangeRatePrecision) {
+        this.log.debug(`determined exchange rate to be ${exchangeRate} with ${maxDigits} digits precision`)
+        this.exchangeRate = exchangeRate
+        return
+      }
+
+      // If we get here the first volley failed, try new volley using all unique packet amounts based on the max packets
+      testPacketAmounts = maxPacketAmounts
+        .filter((amount: any) => !amount.isEqualTo(new BigNumber(Infinity)))
+        .reduce((acc: any, curr: any) => [...new Set([...acc, curr.toString()])], [])
+
+      this.log.debug(`retry with packet amounts ${testPacketAmounts}`)
     }
 
     throw new Error(`Unable to determine path exchange rate`)
