@@ -524,10 +524,11 @@ describe('Connection', function () {
       this.clientPlugin.exchangeRate = 0.001
       this.clientPlugin.maxAmount = 150000
 
-      await createConnection({
+      const connection = await createConnection({
         ...this.server.generateAddressAndSecret(),
         plugin: this.clientPlugin
       })
+      assert.equal(connection.minimumAcceptableExchangeRate, '0.001')
 
       clearInterval(interval)
       clock.restore()
