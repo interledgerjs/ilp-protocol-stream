@@ -819,6 +819,7 @@ export class Connection extends EventEmitter {
     for (let [_, stream] of this.streams) {
       if (stream.isOpen()) {
         requestPacket.frames.push(new StreamMaxMoneyFrame(stream.id, stream.receiveMax, stream.totalReceived))
+        requestPacket.frames.push(new StreamMaxDataFrame(stream.id, stream._getIncomingOffsets().maxAcceptable))
       }
     }
     if (this.closed && !this.remoteClosed) {
