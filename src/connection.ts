@@ -888,6 +888,10 @@ export class Connection extends EventEmitter {
 
     for (let [_, stream] of this.streams) {
       // TODO use a sensible estimate for the StreamDataFrame overhead
+      if (bytesLeftInPacket - 20 <= 0) {
+        // Never pass a negative offset to _getAmountAvailableToSend.
+        break
+      }
       const { data, offset } = stream._getAvailableDataToSend(bytesLeftInPacket - 20)
       if (data && data.length > 0) {
         const streamDataFrame = new StreamDataFrame(stream.id, offset, data)

@@ -540,7 +540,7 @@ export class DataAndMoneyStream extends Duplex {
       // Let the peer know that this stream can receive more data.
       // Don't call immediately since looping before the read() has finished
       // would report incorrect offsets.
-      if (this["readableFlowing"] !== true) {
+      if (this['readableFlowing'] !== true) {
         process.nextTick(() => this.emit('_maybe_start_send_loop'))
       }
       return
