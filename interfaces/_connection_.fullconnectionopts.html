@@ -91,6 +91,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_connection_.fullconnectionopts.html#connectiontag" class="tsd-kind-icon">connection<wbr>Tag</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_connection_.fullconnectionopts.html#destinationaccount" class="tsd-kind-icon">destination<wbr>Account</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_connection_.fullconnectionopts.html#enablepadding" class="tsd-kind-icon">enable<wbr>Padding</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_connection_.fullconnectionopts.html#idletimeout" class="tsd-kind-icon">idle<wbr>Timeout</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_connection_.fullconnectionopts.html#isserver" class="tsd-kind-icon">is<wbr>Server</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_connection_.fullconnectionopts.html#maxremotestreams" class="tsd-kind-icon">max<wbr>Remote<wbr>Streams</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_connection_.fullconnectionopts.html#minexchangerateprecision" class="tsd-kind-icon">min<wbr>Exchange<wbr>Rate<wbr>Precision</a></li>
@@ -112,7 +113,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#connectionbuffersize">connectionBufferSize</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/2d66004/src/connection.ts#L55">connection.ts:55</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9e2b865/src/connection.ts#L56">connection.ts:56</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -128,7 +129,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#connectiontag">connectionTag</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/2d66004/src/connection.ts#L51">connection.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9e2b865/src/connection.ts#L52">connection.ts:52</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -144,7 +145,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#destinationaccount">destinationAccount</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/2d66004/src/connection.ts#L43">connection.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9e2b865/src/connection.ts#L44">connection.ts:44</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -160,12 +161,28 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#enablepadding">enablePadding</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/2d66004/src/connection.ts#L49">connection.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9e2b865/src/connection.ts#L50">connection.ts:50</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Pad packets to the maximum size (data field of 32767 bytes). False by default</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="idletimeout" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> idle<wbr>Timeout</h3>
+					<div class="tsd-signature tsd-kind-icon">idle<wbr>Timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#idletimeout">idleTimeout</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9e2b865/src/connection.ts#L60">connection.ts:60</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Inactivity timeout (milliseconds)</p>
 						</div>
 					</div>
 				</section>
@@ -175,7 +192,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Server<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/2d66004/src/connection.ts#L62">connection.ts:62</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9e2b865/src/connection.ts#L65">connection.ts:65</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -186,7 +203,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#maxremotestreams">maxRemoteStreams</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/2d66004/src/connection.ts#L53">connection.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9e2b865/src/connection.ts#L54">connection.ts:54</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -202,7 +219,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#minexchangerateprecision">minExchangeRatePrecision</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/2d66004/src/connection.ts#L57">connection.ts:57</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9e2b865/src/connection.ts#L58">connection.ts:58</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -218,7 +235,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#plugin">plugin</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/2d66004/src/connection.ts#L41">connection.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9e2b865/src/connection.ts#L42">connection.ts:42</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -233,7 +250,7 @@
 					<div class="tsd-signature tsd-kind-icon">shared<wbr>Secret<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Buffer</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/2d66004/src/connection.ts#L64">connection.ts:64</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9e2b865/src/connection.ts#L67">connection.ts:67</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -249,7 +266,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#slippage">slippage</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/2d66004/src/connection.ts#L47">connection.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9e2b865/src/connection.ts#L48">connection.ts:48</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -265,7 +282,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#sourceaccount">sourceAccount</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/2d66004/src/connection.ts#L61">connection.ts:61</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9e2b865/src/connection.ts#L64">connection.ts:64</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -316,6 +333,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_connection_.fullconnectionopts.html#enablepadding" class="tsd-kind-icon">enable<wbr>Padding</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_connection_.fullconnectionopts.html#idletimeout" class="tsd-kind-icon">idle<wbr>Timeout</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_connection_.fullconnectionopts.html#isserver" class="tsd-kind-icon">is<wbr>Server</a>
 							</li>
@@ -341,6 +361,9 @@
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_connection_.html#default_idle_timeout" class="tsd-kind-icon">DEFAULT_<wbr>IDLE_<wbr>TIMEOUT</a>
+					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="../modules/_connection_.html#default_max_remote_streams" class="tsd-kind-icon">DEFAULT_<wbr>MAX_<wbr>REMOTE_<wbr>STREAMS</a>
 					</li>
