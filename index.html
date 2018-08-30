@@ -116,6 +116,10 @@ run().catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =
 
   server.on(<span class="hljs-string">'connection'</span>, (connection) =&gt; {
     connection.on(<span class="hljs-string">'stream'</span>, (stream) =&gt; {
+
+      <span class="hljs-comment">// Set the maximum amount of money this stream can receive</span>
+      stream.setReceiveMax(<span class="hljs-number">10000</span>)
+
       stream.on(<span class="hljs-string">'money'</span>, (amount) =&gt; {
         <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`got money: <span class="hljs-subst">${amount}</span> on stream <span class="hljs-subst">${stream.id}</span>`</span>)
       })
