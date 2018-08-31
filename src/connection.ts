@@ -880,7 +880,7 @@ export class Connection extends EventEmitter {
 
       // Hold the money and add a frame to the packet
       if (amountToSendFromStream.isGreaterThan(0)) {
-        stream._holdOutgoing(requestPacket.sequence.toString(), amountToSendFromStream)
+        amountToSendFromStream = stream._holdOutgoing(requestPacket.sequence.toString(), amountToSendFromStream)
         // TODO make sure the length of the frames doesn't exceed packet data limit
         requestPacket.frames.push(new StreamMoneyFrame(stream.id, amountToSendFromStream))
         amountToSend = amountToSend.plus(amountToSendFromStream)
