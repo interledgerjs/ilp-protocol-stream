@@ -111,9 +111,13 @@
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#destinationaccount" class="tsd-kind-icon">destination<wbr>Account</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#destinationassetcode" class="tsd-kind-icon">destination<wbr>Asset<wbr>Code</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#destinationassetscale" class="tsd-kind-icon">destination<wbr>Asset<wbr>Scale</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#lastpacketexchangerate" class="tsd-kind-icon">last<wbr>Packet<wbr>Exchange<wbr>Rate</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#minimumacceptableexchangerate" class="tsd-kind-icon">minimum<wbr>Acceptable<wbr>Exchange<wbr>Rate</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#sourceaccount" class="tsd-kind-icon">source<wbr>Account</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#sourceassetcode" class="tsd-kind-icon">source<wbr>Asset<wbr>Code</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#sourceassetscale" class="tsd-kind-icon">source<wbr>Asset<wbr>Scale</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#totaldelivered" class="tsd-kind-icon">total<wbr>Delivered</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#totalreceived" class="tsd-kind-icon">total<wbr>Received</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#totalsent" class="tsd-kind-icon">total<wbr>Sent</a></li>
@@ -160,7 +164,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/86f4de5/src/connection.ts#L130">connection.ts:130</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b047a60/src/connection.ts#L137">connection.ts:137</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -182,7 +186,7 @@
 					<div class="tsd-signature tsd-kind-icon">connection<wbr>Tag<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/86f4de5/src/connection.ts#L88">connection.ts:88</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b047a60/src/connection.ts#L91">connection.ts:91</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -215,7 +219,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/86f4de5/src/connection.ts#L312">connection.ts:312</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b047a60/src/connection.ts#L321">connection.ts:321</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -224,6 +228,56 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">undefined</span>
+							</h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="destinationassetcode" class="tsd-anchor"></a>
+					<h3>destination<wbr>Asset<wbr>Code</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> destinationAssetCode<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b047a60/src/connection.ts#L335">connection.ts:335</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Code of the asset used by the remote party to this connection</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">undefined</span>
+							</h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="destinationassetscale" class="tsd-anchor"></a>
+					<h3>destination<wbr>Asset<wbr>Scale</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> destinationAssetScale<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b047a60/src/connection.ts#L328">connection.ts:328</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Scale of the asset used by the remote party to this connection</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span>
 								<span class="tsd-signature-symbol"> | </span>
 								<span class="tsd-signature-type">undefined</span>
 							</h4>
@@ -240,7 +294,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/86f4de5/src/connection.ts#L338">connection.ts:338</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b047a60/src/connection.ts#L375">connection.ts:375</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -262,7 +316,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/86f4de5/src/connection.ts#L326">connection.ts:326</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b047a60/src/connection.ts#L363">connection.ts:363</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -284,7 +338,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/86f4de5/src/connection.ts#L319">connection.ts:319</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b047a60/src/connection.ts#L342">connection.ts:342</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -293,6 +347,50 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="sourceassetcode" class="tsd-anchor"></a>
+					<h3>source<wbr>Asset<wbr>Code</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> sourceAssetCode<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b047a60/src/connection.ts#L356">connection.ts:356</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Code of the asset used by the plugin passed to this connection</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="sourceassetscale" class="tsd-anchor"></a>
+					<h3>source<wbr>Asset<wbr>Scale</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> sourceAssetScale<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b047a60/src/connection.ts#L349">connection.ts:349</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Scale of the asset used by the plugin passed to this connection</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -306,7 +404,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/86f4de5/src/connection.ts#L345">connection.ts:345</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b047a60/src/connection.ts#L382">connection.ts:382</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -328,7 +426,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/86f4de5/src/connection.ts#L359">connection.ts:359</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b047a60/src/connection.ts#L396">connection.ts:396</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -350,7 +448,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/86f4de5/src/connection.ts#L352">connection.ts:352</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b047a60/src/connection.ts#L389">connection.ts:389</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -421,7 +519,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/86f4de5/src/connection.ts#L185">connection.ts:185</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b047a60/src/connection.ts#L194">connection.ts:194</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -448,7 +546,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/86f4de5/src/connection.ts#L286">connection.ts:286</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b047a60/src/connection.ts#L295">connection.ts:295</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -470,7 +568,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/86f4de5/src/connection.ts#L262">connection.ts:262</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b047a60/src/connection.ts#L271">connection.ts:271</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -526,7 +624,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/86f4de5/src/connection.ts#L226">connection.ts:226</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b047a60/src/connection.ts#L235">connection.ts:235</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -586,7 +684,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/86f4de5/src/connection.ts#L369">connection.ts:369</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b047a60/src/connection.ts#L406">connection.ts:406</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1080,6 +1178,12 @@
 								<a href="_connection_.connection.html#destinationaccount" class="tsd-kind-icon">destination<wbr>Account</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="_connection_.connection.html#destinationassetcode" class="tsd-kind-icon">destination<wbr>Asset<wbr>Code</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="_connection_.connection.html#destinationassetscale" class="tsd-kind-icon">destination<wbr>Asset<wbr>Scale</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="_connection_.connection.html#lastpacketexchangerate" class="tsd-kind-icon">last<wbr>Packet<wbr>Exchange<wbr>Rate</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
@@ -1087,6 +1191,12 @@
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="_connection_.connection.html#sourceaccount" class="tsd-kind-icon">source<wbr>Account</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="_connection_.connection.html#sourceassetcode" class="tsd-kind-icon">source<wbr>Asset<wbr>Code</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="_connection_.connection.html#sourceassetscale" class="tsd-kind-icon">source<wbr>Asset<wbr>Scale</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="_connection_.connection.html#totaldelivered" class="tsd-kind-icon">total<wbr>Delivered</a>
