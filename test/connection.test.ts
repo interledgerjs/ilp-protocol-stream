@@ -37,7 +37,7 @@ describe('Connection', function () {
     this.serverConn = await connectionPromise
     this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
       stream.setReceiveMax(10000)
-    })  
+    })
   })
 
   describe('Exported Properties', function () {
