@@ -9,7 +9,8 @@ const DEFAULT_TIMEOUT = 60000
 
 export interface StreamOpts {
   id: number,
-  isServer: boolean
+  isServer: boolean,
+  receiveOnly: boolean
 }
 
 export interface SendOpts {
@@ -46,6 +47,7 @@ export class DataAndMoneyStream extends Duplex {
 
   protected log: any
   protected isServer: boolean
+  protected receiveOnly: boolean
 
   protected _totalSent: BigNumber
   protected _totalReceived: BigNumber
@@ -69,6 +71,7 @@ export class DataAndMoneyStream extends Duplex {
     super({ allowHalfOpen: false })
     this.id = opts.id
     this.isServer = opts.isServer
+    this.receiveOnly = opts.receiveOnly
     this.log = createLogger(`ilp-protocol-stream:${this.isServer ? 'Server' : 'Client'}:Stream:${this.id}`)
     this.log.info('new stream created')
 
@@ -197,6 +200,9 @@ export class DataAndMoneyStream extends Duplex {
    * Note that this is absolute, not relative so calling `setSendMax(100)` twice will only send 100 units.
    */
   setSendMax (limit: BigNumber.Value): void {
+    if (this.receiveOnly) {
+      throw new Error('Cannot send money in receiveOnly mode')
+    }
     if (this.closed) {
       throw new Error('Stream already closed')
     }

@@ -72,6 +72,30 @@ describe('DataAndMoneyStream', function () {
       const clientStream = this.clientConn.createStream()
       assert.throws(() => clientStream.setSendMax(Infinity), 'sendMax must be finite')
     })
+
+    it('should throw if the stream is in receiveOnly mode', async function () {
+      const server = new Server({
+        plugin: this.serverPlugin,
+        serverSecret: Buffer.alloc(32),
+        receiveOnly: true
+      })
+      await server.listen()
+
+      const { destinationAccount, sharedSecret } = server.generateAddressAndSecret()
+
+      const connectionPromise = server.acceptConnection()
+
+      const clientConn = await createConnection({
+        plugin: this.clientPlugin,
+        destinationAccount,
+        sharedSecret
+      })
+
+      const serverConn = await connectionPromise
+      const serverStream = serverConn.createStream()
+
+      assert.throws(() => serverStream.setSendMax(1000), 'Cannot send money in receiveOnly mode')
+    })
   })
 
   describe('setReceiveMax', function () {
@@ -211,6 +235,30 @@ describe('DataAndMoneyStream', function () {
 
       await clientStream.sendTotal(500)
       assert.equal(spy.callCount, count)
+    })
+
+    it('should reject if the stream is in receiveOnly mode', async function () {
+      const server = new Server({
+        plugin: this.serverPlugin,
+        serverSecret: Buffer.alloc(32),
+        receiveOnly: true
+      })
+      await server.listen()
+
+      const { destinationAccount, sharedSecret } = server.generateAddressAndSecret()
+
+      const connectionPromise = server.acceptConnection()
+
+      const clientConn = await createConnection({
+        plugin: this.clientPlugin,
+        destinationAccount,
+        sharedSecret
+      })
+
+      const serverConn = await connectionPromise
+      const serverStream = serverConn.createStream()
+
+      assert.isRejected(serverStream.sendTotal(2000), 'Cannot send money in receiveOnly mode')
     })
 
     it('should reject if the stream closes before the amount has been sent', async function () {

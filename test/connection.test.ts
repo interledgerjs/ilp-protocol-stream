@@ -523,6 +523,43 @@ describe('Connection', function () {
       assert.calledOnce(spy)
       assert.calledWith(spy, '58')
     })
+
+    it('should not send money in receiveOnly mode', async function ()  {
+      this.server = await createServer({
+        plugin: this.serverPlugin,
+        serverSecret: Buffer.alloc(32),
+        receiveOnly: true
+      })
+
+      const { destinationAccount, sharedSecret } = this.server.generateAddressAndSecret()
+      this.destinationAccount = destinationAccount
+      this.sharedSecret = sharedSecret
+
+      const connectionPromise = this.server.acceptConnection()
+
+      this.clientConn = await createConnection({
+        plugin: this.clientPlugin,
+        destinationAccount,
+        sharedSecret
+      })
+
+      const moneySpy = sinon.spy()
+      this.clientConn.on('money', moneySpy)
+
+      const dataSpy = sinon.spy()
+      this.clientConn.on('data', dataSpy)
+
+      this.serverConn = await connectionPromise
+      this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
+        stream.setReceiveMax(10000)
+      })
+
+      const clientStream = this.clientConn.createStream()
+      await clientStream.sendTotal(117)
+
+      assert.notCalled(moneySpy)
+      assert.notCalled(dataSpy)
+    })
   })
 
   describe('Multiplexed Money', function () {
@@ -967,6 +1004,36 @@ describe('Connection', function () {
       // Check Last Packet Exchange Rate
       assert.equal(this.serverConn.lastPacketExchangeRate, 2)
       assert.equal(this.clientConn.lastPacketExchangeRate, 0.5)
+    })
+
+    it('should calculate a 0 exchange rate in receiveOnly mode', async function () {
+      this.server = await createServer({
+        plugin: this.serverPlugin,
+        serverSecret: Buffer.alloc(32),
+        receiveOnly: true
+      })
+
+      const { destinationAccount, sharedSecret } = this.server.generateAddressAndSecret()
+      this.destinationAccount = destinationAccount
+      this.sharedSecret = sharedSecret
+
+      const connectionPromise = this.server.acceptConnection()
+
+      this.clientConn = await createConnection({
+        plugin: this.clientPlugin,
+        destinationAccount,
+        sharedSecret
+      })
+
+      this.serverConn = await connectionPromise
+      this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
+        stream.setReceiveMax(10000)
+      })
+
+      const clientStream = this.clientConn.createStream()
+      await clientStream.sendTotal(550)
+
+      assert(this.serverConn.minimumAcceptableExchangeRate === '0')
     })
   })
 

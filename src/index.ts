@@ -79,6 +79,8 @@ export async function createConnection (opts: CreateConnectionOpts): Promise<Con
 
 export interface ServerOpts extends ConnectionOpts {
   serverSecret?: Buffer
+  /** Don't send data or money over this connection. False by default */
+  receiveOnly?: boolean
 }
 
 /**
@@ -103,16 +105,14 @@ export class Server extends EventEmitter {
   protected connected: boolean
   protected connectionOpts: ConnectionOpts
 
-  constructor (opts: ServerOpts) {
+  constructor ({ serverSecret, ...opts }: ServerOpts) {
     super()
-    this.serverSecret = opts.serverSecret || randomBytes(32)
+    this.serverSecret = serverSecret || randomBytes(32)
     this.plugin = opts.plugin
     this.log = createLogger('ilp-protocol-stream:Server')
     this.connections = {}
     this.closedConnections = {}
-    this.connectionOpts = Object.assign({}, opts, {
-      serverSecret: undefined
-    }) as ConnectionOpts
+    this.connectionOpts = opts
     this.connected = false
   }
 
