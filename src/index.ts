@@ -79,8 +79,6 @@ export async function createConnection (opts: CreateConnectionOpts): Promise<Con
 
 export interface ServerOpts extends ConnectionOpts {
   serverSecret?: Buffer
-  /** Don't send data or money over this connection. False by default */
-  receiveOnly?: boolean
 }
 
 /**
