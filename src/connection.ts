@@ -555,8 +555,7 @@ export class Connection extends EventEmitter {
     // Tell peer about closed streams and how much each stream can receive
     if (!this.closed && !this.remoteClosed) {
       for (let [_, stream] of this.streams) {
-        const streamIsClosed = !stream.isOpen() && stream._getAmountAvailableToSend().isEqualTo(0)
-        if (streamIsClosed && !stream._remoteClosed) {
+        if (!stream.isOpen() && !stream._remoteClosed) {
           this.log.trace(`telling other side that stream ${stream.id} is closed`)
           if (stream._errorMessage) {
             responseFrames.push(new StreamCloseFrame(stream.id, ErrorCode.ApplicationError, stream._errorMessage))
