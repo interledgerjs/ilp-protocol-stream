@@ -495,6 +495,7 @@ describe('DataAndMoneyStream', function () {
       const response = await this.clientConn['sendPacket'].call(this.clientConn, new Packet(this.clientConn['nextPacketSequence']++, 12, 0, [
         new StreamMoneyFrame(clientStream.id, 1)
       ]), new BigNumber(100))
+      assert.equal(response.ilpPacketType, IlpPacket.Type.TYPE_ILP_REJECT)
       assert.deepInclude(response.frames, new StreamCloseFrame(clientStream.id, ErrorCode.NoError, ''))
     })
 
@@ -512,6 +513,7 @@ describe('DataAndMoneyStream', function () {
       const response = await this.clientConn['sendPacket'].call(this.clientConn, new Packet(this.clientConn['nextPacketSequence']++, 12, 0, [
         new StreamDataFrame(clientStream.id, 5, Buffer.from('blah'))
       ]), new BigNumber(0))
+      assert.equal(response.ilpPacketType, IlpPacket.Type.TYPE_ILP_REJECT)
       assert.deepInclude(response.frames, new StreamCloseFrame(clientStream.id, ErrorCode.NoError, ''))
     })
 

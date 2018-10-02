@@ -410,7 +410,6 @@ describe('Connection', function () {
     })
 
     it('should accept an error that will be emitted on the other side of the connection', function (done) {
-      const spy = sinon.spy()
       this.clientConn.on('error', (err: Error) => {
         assert.equal(err.message, 'Remote connection error. Code: InternalError, message: i had enough of this')
         done()
@@ -420,11 +419,8 @@ describe('Connection', function () {
     })
 
     it('should close all outgoing streams even if there is data and money still to send', function (done) {
-      const spy = sinon.spy()
       const stream: DataAndMoneyStream = this.clientConn.createStream()
       stream.on('close', () => {
-        spy()
-        assert.calledOnce(spy)
         assert.equal(stream.totalSent, '0')
         // Don't use an assert.equal here because the behavior changed between Node 8 and 10
         assert.isAtLeast(stream.writableLength, 1)
