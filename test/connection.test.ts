@@ -524,7 +524,13 @@ describe('Connection', function () {
       assert.calledWith(spy, '58')
     })
 
-    it('should not send money in receiveOnly mode', async function ()  {
+    it('should not send money from server in receiveOnly mode', async function () {
+      const spy = sinon.spy(this.serverPlugin, 'sendData')
+      const zeroAmountPacket = sinon.match(
+        (data: Buffer) => IlpPacket.deserializeIlpPrepare(data).amount === '0'
+      )
+      spy.alwaysCalledWithExactly(zeroAmountPacket)
+
       this.server = await createServer({
         plugin: this.serverPlugin,
         serverSecret: Buffer.alloc(32),
@@ -532,9 +538,6 @@ describe('Connection', function () {
       })
 
       const { destinationAccount, sharedSecret } = this.server.generateAddressAndSecret()
-      this.destinationAccount = destinationAccount
-      this.sharedSecret = sharedSecret
-
       const connectionPromise = this.server.acceptConnection()
 
       this.clientConn = await createConnection({
@@ -543,22 +546,26 @@ describe('Connection', function () {
         sharedSecret
       })
 
-      const moneySpy = sinon.spy()
-      this.clientConn.on('money', moneySpy)
+      await connectionPromise
+    })
 
-      const dataSpy = sinon.spy()
-      this.clientConn.on('data', dataSpy)
+    it('should not send money from client in receiveOnly mode', async function ()  {
+      const spy = sinon.spy(this.clientPlugin, 'sendData')
+      const zeroAmountPacket = sinon.match(
+        (data: Buffer) => IlpPacket.deserializeIlpPrepare(data).amount === '0'
+      )
+      spy.alwaysCalledWithExactly(zeroAmountPacket)
 
-      this.serverConn = await connectionPromise
-      this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
-        stream.setReceiveMax(10000)
+      const connectionPromise = this.server.acceptConnection()
+
+      this.clientConn = await createConnection({
+        plugin: this.clientPlugin,
+        destinationAccount: this.destinationAccount,
+        sharedSecret: this.sharedSecret,
+        receiveOnly: true
       })
 
-      const clientStream = this.clientConn.createStream()
-      await clientStream.sendTotal(117)
-
-      assert.notCalled(moneySpy)
-      assert.notCalled(dataSpy)
+      await connectionPromise
     })
   })
 
@@ -1006,7 +1013,7 @@ describe('Connection', function () {
       assert.equal(this.clientConn.lastPacketExchangeRate, 0.5)
     })
 
-    it('should calculate a 0 exchange rate in receiveOnly mode', async function () {
+    it('should return a 0 exchange rate in receiveOnly mode', async function () {
       this.server = await createServer({
         plugin: this.serverPlugin,
         serverSecret: Buffer.alloc(32),
