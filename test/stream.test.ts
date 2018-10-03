@@ -163,6 +163,12 @@ describe('DataAndMoneyStream', function () {
       clientStream.setSendMax(2000)
     })
 
+    it('should throw if the specified amount is lower than current ReceiveMax', function () {
+      const clientStream = this.clientConn.createStream()
+      clientStream.setReceiveMax(200)
+      assert.throws(() => clientStream.setReceiveMax(199), 'Cannot decrease the receiveMax')
+    })
+
     it('should allow the limit to be set to Infinity', async function () {
       const spy = sinon.spy()
       this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
