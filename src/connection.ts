@@ -691,12 +691,15 @@ export class Connection extends EventEmitter {
           if (!stream) {
             break
           }
-          this.log.trace(`peer told us that stream ${frame.streamId} can receive up to byte offset: ${frame.maxOffset} (we've sent up to offset: ${stream._getOutgoingOffsets().current})`)
           const oldOffset = stream._remoteMaxOffset
-          stream._remoteMaxOffset = frame.maxOffset.toNumber()
-          if (stream._remoteMaxOffset > oldOffset) {
+          const newOffset = frame.maxOffset.toNumber()
+          if (newOffset > oldOffset) {
+            this.log.trace(`peer told us that stream ${frame.streamId} can receive up to byte offset: ${frame.maxOffset} (we've sent up to offset: ${stream._getOutgoingOffsets().current})`)
+            stream._remoteMaxOffset = newOffset
             /* tslint:disable-next-line:no-floating-promises */
             this.startSendLoop()
+          } else {
+            this.log.trace(`peer told us that stream ${frame.streamId} can receive up to byte offset: ${oldOffset}; ignoring new offset: ${newOffset}`)
           }
           break
         case FrameType.StreamDataBlocked:
