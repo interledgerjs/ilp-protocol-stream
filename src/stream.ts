@@ -587,7 +587,7 @@ export class DataAndMoneyStream extends Duplex {
     const offset = this.outgoingOffset
     const data = this._outgoingData.read(maxBytes)
     if (data && data.length > 0) {
-      this.outgoingOffset = this.outgoingOffset += data.length
+      this.outgoingOffset += data.length
       this.log.trace(`${data.length} bytes taken from the outgoing data queue`)
     }
     return { data, offset }
