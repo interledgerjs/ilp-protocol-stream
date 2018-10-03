@@ -73,7 +73,31 @@ describe('DataAndMoneyStream', function () {
       assert.throws(() => clientStream.setSendMax(Infinity), 'sendMax must be finite')
     })
 
-    it('should throw if the stream is in receiveOnly mode', async function () {
+    it('should throw on client if the stream is in receiveOnly mode', async function () {
+      const server = new Server({
+        plugin: this.serverPlugin,
+        serverSecret: Buffer.alloc(32),
+      })
+      await server.listen()
+
+      const { destinationAccount, sharedSecret } = server.generateAddressAndSecret()
+
+      const connectionPromise = server.acceptConnection()
+
+      const clientConn = await createConnection({
+        plugin: this.clientPlugin,
+        destinationAccount,
+        sharedSecret,
+        receiveOnly: true
+      })
+
+      await connectionPromise
+
+      const clientStream = clientConn.createStream()
+      assert.throws(() => clientStream.setSendMax(1000), 'Cannot send money in receiveOnly mode')
+    })
+
+    it('should throw on server if the stream is in receiveOnly mode', async function () {
       const server = new Server({
         plugin: this.serverPlugin,
         serverSecret: Buffer.alloc(32),
@@ -85,7 +109,7 @@ describe('DataAndMoneyStream', function () {
 
       const connectionPromise = server.acceptConnection()
 
-      const clientConn = await createConnection({
+      await createConnection({
         plugin: this.clientPlugin,
         destinationAccount,
         sharedSecret
@@ -237,7 +261,31 @@ describe('DataAndMoneyStream', function () {
       assert.equal(spy.callCount, count)
     })
 
-    it('should reject if the stream is in receiveOnly mode', async function () {
+    it('should reject on client if the stream is in receiveOnly mode', async function () {
+      const server = new Server({
+        plugin: this.serverPlugin,
+        serverSecret: Buffer.alloc(32),
+      })
+      await server.listen()
+
+      const { destinationAccount, sharedSecret } = server.generateAddressAndSecret()
+
+      const connectionPromise = server.acceptConnection()
+
+      const clientConn = await createConnection({
+        plugin: this.clientPlugin,
+        destinationAccount,
+        sharedSecret,
+        receiveOnly: true
+      })
+
+      await connectionPromise
+
+      const clientStream = clientConn.createStream()
+      assert.isRejected(clientStream.sendTotal(2000), 'Cannot send money in receiveOnly mode')
+    })
+
+    it('should reject on server if the stream is in receiveOnly mode', async function () {
       const server = new Server({
         plugin: this.serverPlugin,
         serverSecret: Buffer.alloc(32),
@@ -249,7 +297,7 @@ describe('DataAndMoneyStream', function () {
 
       const connectionPromise = server.acceptConnection()
 
-      const clientConn = await createConnection({
+      await createConnection({
         plugin: this.clientPlugin,
         destinationAccount,
         sharedSecret
