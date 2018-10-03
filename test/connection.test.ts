@@ -1506,7 +1506,7 @@ describe('Connection', function () {
       await new Promise(setImmediate)
 
       assert.calledOnce(spy)
-      assert.equal(spy.args[0][0].message, 'Remote connection error. Code: InternalError, message: Exceeded flow control limits. Stream 1 can accept up to offset: 16384 but got bytes up to offset: 20000')
+      assert.equal(spy.args[0][0].message, 'Remote connection error. Code: FlowControlError, message: Exceeded flow control limits. Stream 1 can accept up to offset: 16384 but got bytes up to offset: 20000')
     })
 
     it('should allow the per-connection buffer size to be configured', async function () {

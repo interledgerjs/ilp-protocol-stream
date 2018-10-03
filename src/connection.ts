@@ -683,7 +683,7 @@ export class Connection extends EventEmitter {
           const incomingOffsets = stream._getIncomingOffsets()
           if (incomingOffsets.max > incomingOffsets.maxAcceptable) {
             /* tslint:disable-next-line:no-floating-promises */
-            this.destroy(new ConnectionError(`Exceeded flow control limits. Stream ${stream.id} can accept up to offset: ${incomingOffsets.maxAcceptable} but got bytes up to offset: ${incomingOffsets.max}`))
+            this.destroy(new ConnectionError(`Exceeded flow control limits. Stream ${stream.id} can accept up to offset: ${incomingOffsets.maxAcceptable} but got bytes up to offset: ${incomingOffsets.max}`, ErrorCode.FlowControlError))
           }
           break
         case FrameType.StreamMaxData:
