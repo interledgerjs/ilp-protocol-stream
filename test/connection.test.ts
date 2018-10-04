@@ -375,7 +375,6 @@ describe('Connection', function () {
     it('should emit error on attempting to send data on a closed connection if an error listener is present', async function () {
       const serverStreamData = sinon.spy()
       this.serverConn.on('stream', (stream: DataAndMoneyStream) => {
-        stream.setReceiveMax(1000)
         stream.on('data', serverStreamData)
       })
       const clientStream = this.clientConn.createStream()
