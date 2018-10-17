@@ -27,6 +27,20 @@ describe('Server', function () {
     })
   })
 
+  describe('acceptConnection', function () {
+    beforeEach(async function () {
+      this.server = new Server({
+        serverSecret: Buffer.alloc(32),
+        plugin: this.serverPlugin
+      })
+    })
+
+    it('rejects when the server closes', async function () {
+      process.nextTick(() => { this.server.close() })
+      await assert.isRejected(this.server.acceptConnection())
+    })
+  })
+
   describe('generateAddressAndSecret', function () {
     beforeEach(async function () {
       this.server = new Server({
@@ -103,7 +117,7 @@ describe('Server', function () {
         plugin: this.clientPlugin,
         destinationAccount: destinationAccount + '456',
         sharedSecret
-      }), 'Error connecting: Unable to determine path exchange rate')
+      }), 'Error connecting: Unable to establish connection, no packets meeting the minimum exchange precision of 3 digits made it through the path.')
 
       assert.notCalled(spy)
     })
@@ -199,7 +213,7 @@ describe('Server', function () {
         plugin: this.clientPlugin,
         sharedSecret: this.sharedSecret,
         destinationAccount: this.destinationAccount
-      }), 'Error connecting: Unable to determine path exchange rate')
+      }), 'Error connecting: Unable to establish connection, no packets meeting the minimum exchange precision of 3 digits made it through the path.')
     })
 
     it('should remove the record of closed connections', async function () {
