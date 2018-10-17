@@ -252,7 +252,9 @@ export class Server extends EventEmitter {
         try {
           const token = Buffer.from(connectionId, 'ascii')
           sharedSecret = cryptoHelper.generateSharedSecretFromToken(this.serverSecret, token)
-          cryptoHelper.decrypt(sharedSecret, prepare.data)
+          let pskEncryptionKey = cryptoHelper.generateEncryptionKey(sharedSecret)
+
+          cryptoHelper.decrypt(pskEncryptionKey, prepare.data)
         } catch (err) {
           this.log.error(`got prepare for an address and token that we did not generate: ${prepare.destination}`)
           // See "Why no error message here?" note above
