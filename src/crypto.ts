@@ -14,7 +14,6 @@ const FULFILLMENT_GENERATION_STRING = Buffer.from('ilp_stream_fulfillment', 'utf
 const TOKEN_LENGTH = 18
 const SHARED_SECRET_GENERATION_STRING = Buffer.from('ilp_stream_shared_secret', 'utf8')
 
-const sharedSecretMap = new Map()
 const fulfillmentKeyMap = new Map()
 const pskKeyMap = new Map()
 
@@ -29,12 +28,8 @@ export function generateTokenAndSharedSecret (seed: Buffer): { token: Buffer, sh
 }
 
 export function generateSharedSecretFromToken (seed: Buffer, token: Buffer): Buffer {
-  let sharedSecret = sharedSecretMap.get(token)
-  if (!sharedSecret) {
-    const keygen = hmac(seed, SHARED_SECRET_GENERATION_STRING)
-    sharedSecret = hmac(keygen, token)
-    sharedSecretMap.set(token, sharedSecret)
-  }
+  const keygen = hmac(seed, SHARED_SECRET_GENERATION_STRING)
+  const sharedSecret = hmac(keygen, token)
   return sharedSecret
 }
 
