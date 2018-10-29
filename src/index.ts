@@ -8,7 +8,7 @@ import { Connection, ConnectionOpts } from './connection'
 import { Plugin } from './util/plugin-interface'
 require('source-map-support').install()
 
-const CONNECTION_ID_REGEX = /^[a-zA-Z0-9_-~]+$/
+const CONNECTION_ID_REGEX = /^[a-zA-Z0-9~_-]+$/
 
 export { Connection } from './connection'
 export { DataAndMoneyStream } from './stream'
