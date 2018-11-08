@@ -8,7 +8,7 @@ import { Connection, ConnectionOpts } from './connection'
 import { Plugin } from './util/plugin-interface'
 require('source-map-support').install()
 
-const CONNECTION_ID_REGEX = /^[a-zA-Z0-9_-]+$/
+const CONNECTION_ID_REGEX = /^[a-zA-Z0-9~_-]+$/
 
 export { Connection } from './connection'
 export { DataAndMoneyStream } from './stream'
@@ -150,6 +150,7 @@ export class Server extends EventEmitter {
 
     this.plugin.deregisterDataHandler()
     await this.plugin.disconnect()
+    this.emit('_close')
     this.connected = false
   }
 
@@ -163,7 +164,14 @@ export class Server extends EventEmitter {
     await this.listen()
     /* tslint:disable-next-line:no-unnecessary-type-assertion */
     return new Promise((resolve, reject) => {
-      this.once('connection', resolve)
+      const done = (connection: Connection | undefined) => {
+        this.removeListener('connection', done)
+        this.removeListener('_close', done)
+        if (connection) resolve(connection)
+        else reject(new Error('server closed'))
+      }
+      this.once('connection', done)
+      this.once('_close', done)
     }) as Promise<Connection>
   }
 
@@ -181,7 +189,7 @@ export class Server extends EventEmitter {
     let token = base64url(cryptoHelper.generateToken())
     if (connectionTag) {
       if (!CONNECTION_ID_REGEX.test(connectionTag)) {
-        throw new Error('connectionTag can only include ASCII characters a-z, A-Z, 0-9, "_", and "-"')
+        throw new Error('connectionTag can only include ASCII characters a-z, A-Z, 0-9, "_", "-", and "~"')
       }
       token = token + '~' + connectionTag
     }
@@ -250,7 +258,8 @@ export class Server extends EventEmitter {
         try {
           const token = Buffer.from(connectionId, 'ascii')
           sharedSecret = cryptoHelper.generateSharedSecretFromToken(this.serverSecret, token)
-          cryptoHelper.decrypt(sharedSecret, prepare.data)
+          const pskKey = cryptoHelper.generatePskEncryptionKey(sharedSecret)
+          cryptoHelper.decrypt(pskKey, prepare.data)
         } catch (err) {
           this.log.error(`got prepare for an address and token that we did not generate: ${prepare.destination}`)
           // See "Why no error message here?" note above

@@ -101,6 +101,8 @@ export class Connection extends EventEmitter {
   protected _destinationAssetCode?: string
   protected _destinationAssetScale?: number
   protected sharedSecret: Buffer
+  protected _pskKey: Buffer
+  protected _fulfillmentKey: Buffer
   protected isServer: boolean
   protected receiveOnly: boolean
   protected slippage: BigNumber
@@ -184,6 +186,8 @@ export class Connection extends EventEmitter {
     this._totalSent = new BigNumber(0)
     this._totalDelivered = new BigNumber(0)
     this._lastPacketExchangeRate = new BigNumber(0)
+    this._pskKey = cryptoHelper.generatePskEncryptionKey(this.sharedSecret)
+    this._fulfillmentKey = cryptoHelper.generateFulfillmentKey(this.sharedSecret)
   }
 
   /**
@@ -413,7 +417,7 @@ export class Connection extends EventEmitter {
     // Parse packet
     let requestPacket: Packet
     try {
-      requestPacket = Packet.decryptAndDeserialize(this.sharedSecret, prepare.data)
+      requestPacket = Packet.decryptAndDeserialize(this._pskKey, prepare.data)
     } catch (err) {
       this.log.error(`error parsing frames:`, err)
       throw new IlpPacket.Errors.UnexpectedPaymentError('')
@@ -436,7 +440,7 @@ export class Connection extends EventEmitter {
       this.queuedFrames = []
       const responsePacket = new Packet(requestPacket.sequence, IlpPacketType.Reject, prepare.amount, responseFrames)
       this.log.trace(`rejecting packet ${requestPacket.sequence}: ${JSON.stringify(responsePacket)}`)
-      throw new IlpPacket.Errors.FinalApplicationError('', responsePacket.serializeAndEncrypt(this.sharedSecret, (this.enablePadding ? MAX_DATA_SIZE : undefined)))
+      throw new IlpPacket.Errors.FinalApplicationError('', responsePacket.serializeAndEncrypt(this._pskKey, (this.enablePadding ? MAX_DATA_SIZE : undefined)))
     }
 
     // Handle new streams
@@ -498,7 +502,7 @@ export class Connection extends EventEmitter {
     }
 
     // Ensure we can generate correct fulfillment
-    const fulfillment = cryptoHelper.generateFulfillment(this.sharedSecret, prepare.data)
+    const fulfillment = cryptoHelper.generateFulfillment(this._fulfillmentKey, prepare.data)
     const generatedCondition = cryptoHelper.hash(fulfillment)
     if (!generatedCondition.equals(prepare.executionCondition)) {
       this.log.debug(`got unfulfillable prepare for amount: ${prepare.amount}. generated condition: ${generatedCondition.toString('hex')}, prepare condition: ${prepare.executionCondition.toString('hex')}`)
@@ -560,8 +564,7 @@ export class Connection extends EventEmitter {
     // Tell peer about closed streams and how much each stream can receive
     if (!this.closed && !this.remoteClosed) {
       for (let [_, stream] of this.streams) {
-        const streamIsClosed = !stream.isOpen() && stream._getAmountAvailableToSend().isEqualTo(0)
-        if (streamIsClosed && !stream._remoteClosed) {
+        if (!stream.isOpen() && !stream._remoteClosed) {
           this.log.trace(`telling other side that stream ${stream.id} is closed`)
           if (stream._errorMessage) {
             responseFrames.push(new StreamCloseFrame(stream.id, ErrorCode.ApplicationError, stream._errorMessage))
@@ -590,7 +593,7 @@ export class Connection extends EventEmitter {
     this.log.trace(`fulfilling prepare with fulfillment: ${fulfillment.toString('hex')} and response packet: ${JSON.stringify(responsePacket)}`)
     return {
       fulfillment,
-      data: responsePacket.serializeAndEncrypt(this.sharedSecret, (this.enablePadding ? MAX_DATA_SIZE : undefined))
+      data: responsePacket.serializeAndEncrypt(this._pskKey, (this.enablePadding ? MAX_DATA_SIZE : undefined))
     }
   }
 
@@ -689,7 +692,7 @@ export class Connection extends EventEmitter {
           const incomingOffsets = stream._getIncomingOffsets()
           if (incomingOffsets.max > incomingOffsets.maxAcceptable) {
             /* tslint:disable-next-line:no-floating-promises */
-            this.destroy(new ConnectionError(`Exceeded flow control limits. Stream ${stream.id} can accept up to offset: ${incomingOffsets.maxAcceptable} but got bytes up to offset: ${incomingOffsets.max}`))
+            this.destroy(new ConnectionError(`Exceeded flow control limits. Stream ${stream.id} can accept up to offset: ${incomingOffsets.maxAcceptable} but got bytes up to offset: ${incomingOffsets.max}`, ErrorCode.FlowControlError))
           }
           break
         case FrameType.StreamMaxData:
@@ -697,12 +700,15 @@ export class Connection extends EventEmitter {
           if (!stream) {
             break
           }
-          this.log.trace(`peer told us that stream ${frame.streamId} can receive up to byte offset: ${frame.maxOffset} (we've sent up to offset: ${stream._getOutgoingOffsets().current})`)
           const oldOffset = stream._remoteMaxOffset
-          stream._remoteMaxOffset = frame.maxOffset.toNumber()
-          if (stream._remoteMaxOffset > oldOffset) {
+          const newOffset = frame.maxOffset.toNumber()
+          if (newOffset > oldOffset) {
+            this.log.trace(`peer told us that stream ${frame.streamId} can receive up to byte offset: ${frame.maxOffset} (we've sent up to offset: ${stream._getOutgoingOffsets().current})`)
+            stream._remoteMaxOffset = newOffset
             /* tslint:disable-next-line:no-floating-promises */
             this.startSendLoop()
+          } else {
+            this.log.trace(`peer told us that stream ${frame.streamId} can receive up to byte offset: ${oldOffset}; ignoring new offset: ${newOffset}`)
           }
           break
         case FrameType.StreamDataBlocked:
@@ -836,7 +842,6 @@ export class Connection extends EventEmitter {
     }
     if (!this._destinationAccount) {
       this.log.debug('not sending because we do not know the client\'s address')
-      this.sending = false
       return
     }
 
@@ -1091,13 +1096,17 @@ export class Connection extends EventEmitter {
 
     // Figure out which test packet discovered the exchange rate with the most precision and gather packet error codes
     const { maxDigits, exchangeRate, packetErrors } = results.reduce<any>(({ maxDigits, exchangeRate, packetErrors }, result, index) => {
+      const sourceAmount = testPacketAmounts[index]
       if (result && (result as IlpPacket.IlpReject).code) {
-        packetErrors.push((result as IlpPacket.IlpReject).code)
+        packetErrors.push({
+          sourceAmount: sourceAmount,
+          code: (result as IlpPacket.IlpReject).code
+        })
       }
       if (result && (result as Packet).prepareAmount) {
         const prepareAmount = (result as Packet).prepareAmount
-        const exchangeRate = prepareAmount.dividedBy(testPacketAmounts[index])
-        this.log.debug(`sending test packet of ${testPacketAmounts[index]} delivered ${prepareAmount} (exchange rate: ${exchangeRate})`)
+        const exchangeRate = prepareAmount.dividedBy(sourceAmount)
+        this.log.debug(`sending test packet of ${sourceAmount} delivered ${prepareAmount} (exchange rate: ${exchangeRate})`)
         if (prepareAmount.precision(true) >= maxDigits) {
           return {
             maxDigits: prepareAmount.precision(true),
@@ -1143,15 +1152,17 @@ export class Connection extends EventEmitter {
         return
       }
 
-      // Find the smallest packet amount we tried in case we ran into Txx errors
-      const smallestPacketAmount = testPacketAmounts.reduce((min: any, amount: any) => BigNumber.min(min, new BigNumber(amount)), new BigNumber(Infinity))
       // If we get here the first volley failed, try new volley using all unique packet amounts based on the max packets
       testPacketAmounts = maxPacketAmounts
         .filter((amount: any) => !amount.isEqualTo(new BigNumber(Infinity)))
         .reduce((acc: any, curr: any) => [...new Set([...acc, curr.toString()])], [])
 
       // Check for any Txx Errors
-      if (packetErrors.some((code: string) => code[0] === 'T')) {
+      if (packetErrors.some((error: any) => error.code[0] === 'T')) {
+        // Find the smallest packet amount we tried in case we ran into Txx errors
+        const smallestPacketAmount = packetErrors.reduce((min: BigNumber, error: any) => {
+          return BigNumber.min(min, new BigNumber(error.sourceAmount))
+        }, new BigNumber(Infinity))
         const reducedPacketAmount = smallestPacketAmount.minus(smallestPacketAmount.dividedToIntegerBy(3))
         this.log.debug(`got Txx error(s), waiting ${retryDelay}ms and reducing packet amount to ${reducedPacketAmount} before sending another test packet`)
         testPacketAmounts = [...testPacketAmounts, reducedPacketAmount]
@@ -1184,7 +1195,7 @@ export class Connection extends EventEmitter {
     const prepare = {
       destination: this._destinationAccount!,
       amount: amount.toString(),
-      data: requestPacket.serializeAndEncrypt(this.sharedSecret),
+      data: requestPacket.serializeAndEncrypt(this._pskKey),
       executionCondition: cryptoHelper.generateRandomCondition(),
       expiresAt: new Date(Date.now() + timeout)
     }
@@ -1210,7 +1221,7 @@ export class Connection extends EventEmitter {
     // Return the receiver's response if there was one
     let responsePacket
     if (ilpReject.code === 'F99' && ilpReject.data.length > 0) {
-      responsePacket = Packet.decryptAndDeserialize(this.sharedSecret, ilpReject.data)
+      responsePacket = Packet.decryptAndDeserialize(this._pskKey, ilpReject.data)
 
       // Ensure the response corresponds to the request
       if (!responsePacket.sequence.isEqualTo(requestPacket.sequence)) {
@@ -1264,7 +1275,7 @@ export class Connection extends EventEmitter {
       const prepare = {
         destination: this._destinationAccount!,
         amount: '0',
-        data: packet.serializeAndEncrypt(this.sharedSecret),
+        data: packet.serializeAndEncrypt(this._pskKey),
         executionCondition: cryptoHelper.generateRandomCondition(),
         expiresAt: new Date(Date.now() + DEFAULT_PACKET_TIMEOUT)
       }
@@ -1282,7 +1293,7 @@ export class Connection extends EventEmitter {
    */
   protected async sendPacket (packet: Packet, sourceAmount: BigNumber, unfulfillable = false): Promise<Packet | void> {
     this.log.trace(`sending packet ${packet.sequence} with source amount: ${sourceAmount}: ${JSON.stringify(packet)})`)
-    const data = packet.serializeAndEncrypt(this.sharedSecret, (this.enablePadding ? MAX_DATA_SIZE : undefined))
+    const data = packet.serializeAndEncrypt(this._pskKey, (this.enablePadding ? MAX_DATA_SIZE : undefined))
 
     let fulfillment: Buffer | undefined
     let executionCondition: Buffer
@@ -1290,7 +1301,7 @@ export class Connection extends EventEmitter {
       fulfillment = undefined
       executionCondition = cryptoHelper.generateRandomCondition()
     } else {
-      fulfillment = cryptoHelper.generateFulfillment(this.sharedSecret, data)
+      fulfillment = cryptoHelper.generateFulfillment(this._fulfillmentKey, data)
       executionCondition = cryptoHelper.hash(fulfillment)
     }
     const prepare = {
@@ -1342,7 +1353,7 @@ export class Connection extends EventEmitter {
     // Parse response data from receiver
     let responsePacket: Packet
     try {
-      responsePacket = Packet.decryptAndDeserialize(this.sharedSecret, response.data)
+      responsePacket = Packet.decryptAndDeserialize(this._pskKey, response.data)
     } catch (err) {
       this.log.error(`unable to decrypt and parse response data:`, err, response.data.toString('hex'))
       // TODO should we continue processing anyway? what if it was fulfilled?
