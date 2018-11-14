@@ -17,7 +17,7 @@ The protocol allows a "client" and "server" to establish a bidirectional connect
 Requires Node >= v8.10.
 
 ```sh
-npm install --save ilp-protocol-stream
+npm install ilp-protocol-stream ilp-plugin
 ```
 
 ## Usage
