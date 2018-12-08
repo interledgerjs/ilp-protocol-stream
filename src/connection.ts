@@ -271,6 +271,7 @@ export class Connection extends EventEmitter {
     await this.sendConnectionClose()
     this.safeEmit('end')
     this.safeEmit('close')
+    clearTimeout(this.idleTimer)
   }
 
   /**
@@ -296,6 +297,7 @@ export class Connection extends EventEmitter {
     // wait for all the streams to be closed before emitting the connection 'close'
     await Promise.all(streamClosePromises)
     this.safeEmit('close')
+    clearTimeout(this.idleTimer)
   }
 
   /**
