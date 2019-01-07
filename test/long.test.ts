@@ -13,6 +13,7 @@ import {
   checkedMultiply,
   multiplyDivideFloor,
   multiplyDivideCeil,
+  multiplyDivideRound,
   multiplyDivide
 } from '../src/util/long'
 require('source-map-support').install()
@@ -215,6 +216,53 @@ describe('util/long', function () {
         multiplyDivideCeil(Long.MAX_UNSIGNED_VALUE.divide(2), L(3), L(1))
           .equals(Long.MAX_UNSIGNED_VALUE)
       )
+    })
+  })
+
+  describe('multiplyDivideRound', function () {
+    it('returns the rounded result', function () {
+      // Integer result (no round).
+      assert.deepEqual(
+        multiplyDivideRound(L(3), L(4), L(6)),
+        L(2)
+      )
+      // Round down: 3*5/7 = 2.1428… ≅ 2
+      assert.deepEqual(
+        multiplyDivideRound(L(3), L(5), L(7)),
+        L(2)
+      )
+      // Round up: 3*5/6 = 2.5 ≅ 3
+      assert.deepEqual(
+        multiplyDivideRound(L(3), L(5), L(6)),
+        L(3)
+      )
+      // Round down (odd denominator): 2*5/3 = 3.3333… ≅ 3.
+      assert.deepEqual(
+        multiplyDivideRound(L(2), L(5), L(3)),
+        L(3)
+      )
+      // Multiply by 0.
+      assert.deepEqual(
+        multiplyDivideRound(L(0), L(10000000000000000000), L(1)),
+        L(0)
+      )
+    })
+
+    it('is equivalent to round(a*b/c)', function () {
+      for (let i = 0; i < REPS; i++) {
+        const a = Math.floor(Math.random() * 100000000)
+        const b = Math.floor(Math.random() * 100000000)
+        const c = Math.floor(Math.random() * 100000000)
+
+        const expect = new BigNumber(a).times(b).div(c)
+          .integerValue(BigNumber.ROUND_HALF_UP)
+        const result = multiplyDivideRound(L(a), L(b), L(c))
+
+        assert.equal(
+          result.toString(), expect.toString(),
+          `attempt ${i}: ${result} != ${expect} = (${a}*${b}/${c})`
+        )
+      }
     })
   })
 

@@ -3,7 +3,8 @@ import * as Long from 'long'
 import {
   multiplyDivide,
   multiplyDivideFloor,
-  multiplyDivideCeil
+  multiplyDivideCeil,
+  multiplyDivideRound
 } from './long'
 require('source-map-support').install()
 
@@ -128,7 +129,7 @@ export default class Rational {
     }
 
     const remainder = this.a.modulo(this.b)
-    const remainderString = multiplyDivideRounded(
+    const remainderString = multiplyDivideRound(
       remainder,
       power10(digits),
       this.b
@@ -155,11 +156,4 @@ function power10 (n: number): Long {
   let value = Long.UONE
   while (n--) value = value.multiply(ten)
   return value
-}
-
-function multiplyDivideRounded (a: Long, b: Long, c: Long): Long {
-  const { quo, rem } = multiplyDivide(a, b, c)
-  return rem.greaterThan(c.divide(2))
-       ? quo.add(Long.UONE)
-       : quo
 }

@@ -182,8 +182,9 @@ describe('Rational', function () {
 
   describe('toString', function () {
     it('returns a string', function () {
-      const value = Rational.fromNumbers(1, 2, true)
-      assert.equal(value.toString(), '0.5')
+      assert.equal(Rational.fromNumbers(1, 2, true).toString(), '0.5')
+      assert.equal(Rational.fromNumbers(2, 1, true).toString(), '2')
+      assert.equal(Rational.UZERO.toString(), '0')
     })
 
     it('returns a string for a Rational with a large numerator', function () {

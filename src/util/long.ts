@@ -98,9 +98,21 @@ export function multiplyDivideFloor (a: Long, b: Long, c: Long): Long {
 
 export function multiplyDivideCeil (a: Long, b: Long, c: Long): Long {
   const { quo, rem } = multiplyDivide(a, b, c)
-  // Don't wrap to 0.
+  // Never wrap to 0.
   if (quo.equals(Long.MAX_UNSIGNED_VALUE)) return quo
   return quo.add(rem.isZero() ? 0 : 1)
+}
+
+export function multiplyDivideRound (a: Long, b: Long, c: Long): Long {
+  const { quo, rem } = multiplyDivide(a, b, c)
+  // Never wrap to 0.
+  if (quo.equals(Long.MAX_UNSIGNED_VALUE)) return quo
+  const roundUp = !rem.isZero() && (
+    c.isOdd()
+      ? rem.greaterThan(c.divide(2)) // 5/2 ≅ 2
+      : rem.greaterThanOrEqual(c.divide(2)) // 4/2 = 2
+  )
+  return roundUp ? quo.add(Long.UONE) : quo
 }
 
 export function multiplyDivide (a: Long, b: Long, c: Long): {
