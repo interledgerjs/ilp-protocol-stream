@@ -395,7 +395,7 @@ export class StreamMaxMoneyFrame extends BaseFrame {
 
   static fromContents (reader: Reader): StreamMaxMoneyFrame {
     const streamId = reader.readVarUIntLong()
-    const receiveMax = reader.readVarUIntLong()
+    const receiveMax = saturatingReadVarUInt(reader)
     const totalReceived = reader.readVarUIntLong()
     return new StreamMaxMoneyFrame(streamId, receiveMax, totalReceived)
   }
@@ -416,7 +416,7 @@ export class StreamMoneyBlockedFrame extends BaseFrame {
 
   static fromContents (reader: Reader): StreamMoneyBlockedFrame {
     const streamId = reader.readVarUIntLong()
-    const sendMax = reader.readVarUIntLong()
+    const sendMax = saturatingReadVarUInt(reader)
     const totalSent = reader.readVarUIntLong()
     return new StreamMoneyBlockedFrame(streamId, sendMax, totalSent)
   }
@@ -525,5 +525,16 @@ function parseFrame (reader: Reader): Frame | undefined {
       return StreamDataBlockedFrame.fromContents(contents)
     default:
       return undefined
+  }
+}
+
+// Behaves like `readVarUIntLong`, but returns `Long.MAX_UNSIGNED_VALUE` if the
+// VarUInt is too large to fit in a UInt64.
+function saturatingReadVarUInt (reader: Reader): Long {
+  if (reader.peekVarOctetString().length > 8) {
+    reader.skipVarOctetString()
+    return Long.MAX_UNSIGNED_VALUE
+  } else {
+    return reader.readVarUIntLong()
   }
 }

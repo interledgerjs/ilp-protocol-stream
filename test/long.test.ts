@@ -52,6 +52,13 @@ describe('util/long', function () {
         /Expected positive number/
       )
     })
+
+    it('throws when creating a Long from a too-large string', function () {
+      assert.throws(
+        () => longFromValue('18446744073709551616', true),
+        /Value 18446744073709551616 does not fit in a Long\./
+      )
+    })
   })
 
   describe('minLong', function () {

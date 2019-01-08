@@ -1,7 +1,15 @@
 import 'mocha'
 import { assert } from 'chai'
-import { Packet, StreamMoneyFrame, Frame } from '../src/packet'
+import {
+  Packet,
+  StreamMoneyFrame,
+  Frame,
+  FrameType,
+  StreamMaxMoneyFrame,
+  StreamMoneyBlockedFrame
+} from '../src/packet'
 import { Reader, Writer } from 'oer-utils'
+import * as Long from 'long'
 require('source-map-support').install()
 
 describe('Packet Format', function () {
@@ -59,6 +67,38 @@ describe('Packet Format', function () {
 
       const deserializedPacket = Packet._deserializeUnencrypted(serializedWithExtraFrames)
       assert.equal(deserializedPacket.frames.length, 2)
+    })
+  })
+
+  describe('StreamMaxMoneyFrame', function () {
+    it('converts larger sendMax to MaxUInt64', function () {
+      const writer = new Writer()
+      writer.writeVarUInt(123) // streamId
+      writer.writeVarOctetString(new Buffer([ // receiveMax
+        0x01, 0x02, 0x03,
+        0x04, 0x05, 0x06,
+        0x07, 0x08, 0x09
+      ]))
+      writer.writeVarUInt(123) // totalReceived
+
+      const frame = StreamMaxMoneyFrame.fromContents(new Reader(writer.getBuffer()))
+      assert.deepEqual(frame.receiveMax, Long.MAX_UNSIGNED_VALUE)
+    })
+  })
+
+  describe('StreamMoneyBlockedFrame', function () {
+    it('converts larger sendMax to MaxUInt64', function () {
+      const writer = new Writer()
+      writer.writeVarUInt(123) // streamId
+      writer.writeVarOctetString(new Buffer([ // sendMax
+        0x01, 0x02, 0x03,
+        0x04, 0x05, 0x06,
+        0x07, 0x08, 0x09
+      ]))
+      writer.writeVarUInt(123) // totalSent
+
+      const frame = StreamMoneyBlockedFrame.fromContents(new Reader(writer.getBuffer()))
+      assert.deepEqual(frame.sendMax, Long.MAX_UNSIGNED_VALUE)
     })
   })
 })

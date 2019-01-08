@@ -15,7 +15,12 @@ export function longFromValue (value: LongValue, unsigned: boolean): Long {
     if (unsigned && value[0] === '-') {
       throw new Error('Expected positive number')
     }
-    return Long.fromString(value, unsigned)
+    const longValue = Long.fromString(value, unsigned)
+    if (longValue.toString() !== value) {
+      // Throw when `Long.fromString` wraps a too-large number.
+      throw new Error('Value ' + value + ' does not fit in a Long.')
+    }
+    return longValue
   }
 
   // TODO maybe just convert to correct sign?

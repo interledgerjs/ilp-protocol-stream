@@ -72,6 +72,14 @@ describe('DataAndMoneyStream', function () {
       const clientStream = this.clientConn.createStream()
       assert.throws(() => clientStream.setSendMax(Infinity), 'sendMax must be finite')
     })
+
+    it('should throw if the amount doesn\'t fit in a UInt64', function () {
+      const clientStream = this.clientConn.createStream()
+      assert.throws(
+        () => clientStream.setSendMax('18446744073709551616'),
+        'Value 18446744073709551616 does not fit in a Long.'
+      )
+    })
   })
 
   describe('setReceiveMax', function () {
