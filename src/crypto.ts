@@ -30,30 +30,34 @@ export function generateSharedSecretFromToken (seed: Buffer, token: Buffer): Buf
   return sharedSecret
 }
 
+// Note: Async is used so we can replace it with the Web Crypto API when webpacked.
+export function generateSharedSecretFromTokenAsync (seed: Buffer, token: Buffer): Promise<Buffer> {
+  return Promise.resolve(generateSharedSecretFromToken(seed, token))
+}
+
 export function generateRandomCondition () {
   return crypto.randomBytes(32)
 }
 
-export function generatePskEncryptionKey (sharedSecret: Buffer) {
-  return hmac(sharedSecret, ENCRYPTION_KEY_STRING)
+export async function generatePskEncryptionKey (sharedSecret: Buffer): Promise<Buffer> {
+  return Promise.resolve(hmac(sharedSecret, ENCRYPTION_KEY_STRING))
 }
 
-export function generateFulfillmentKey (sharedSecret: Buffer) {
-  return hmac(sharedSecret, FULFILLMENT_GENERATION_STRING)
+export async function generateFulfillmentKey (sharedSecret: Buffer): Promise<Buffer> {
+  return Promise.resolve(hmac(sharedSecret, FULFILLMENT_GENERATION_STRING))
 }
 
-export function generateFulfillment (fulfillmentKey: Buffer, data: Buffer) {
-  const fulfillment = hmac(fulfillmentKey, data)
-  return fulfillment
+export async function generateFulfillment (fulfillmentKey: Buffer, data: Buffer): Promise<Buffer> {
+  return Promise.resolve(hmac(fulfillmentKey, data))
 }
 
-export function hash (preimage: Buffer) {
+export async function hash (preimage: Buffer) {
   const h = crypto.createHash(HASH_ALGORITHM)
   h.update(preimage)
-  return h.digest()
+  return Promise.resolve(h.digest())
 }
 
-export function encrypt (pskEncryptionKey: Buffer, ...buffers: Buffer[]): Buffer {
+export async function encrypt (pskEncryptionKey: Buffer, ...buffers: Buffer[]): Promise<Buffer> {
   const iv = crypto.randomBytes(IV_LENGTH)
   const cipher = crypto.createCipheriv(ENCRYPTION_ALGORITHM, pskEncryptionKey, iv)
 
@@ -64,10 +68,10 @@ export function encrypt (pskEncryptionKey: Buffer, ...buffers: Buffer[]): Buffer
   ciphertext.push(cipher.final())
   const tag = cipher.getAuthTag()
   ciphertext.unshift(iv, tag)
-  return Buffer.concat(ciphertext)
+  return Promise.resolve(Buffer.concat(ciphertext))
 }
 
-export function decrypt (pskEncryptionKey: Buffer, data: Buffer): Buffer {
+export async function decrypt (pskEncryptionKey: Buffer, data: Buffer): Promise<Buffer> {
   assert(data.length > 0, 'cannot decrypt empty buffer')
   const nonce = data.slice(0, IV_LENGTH)
   const tag = data.slice(IV_LENGTH, IV_LENGTH + AUTH_TAG_LENGTH)
@@ -75,10 +79,10 @@ export function decrypt (pskEncryptionKey: Buffer, data: Buffer): Buffer {
   const decipher = crypto.createDecipheriv(ENCRYPTION_ALGORITHM, pskEncryptionKey, nonce)
   decipher.setAuthTag(tag)
 
-  return Buffer.concat([
+  return Promise.resolve(Buffer.concat([
     decipher.update(encrypted),
     decipher.final()
-  ])
+  ]))
 }
 
 function hmac (key: Buffer, message: Buffer): Buffer {

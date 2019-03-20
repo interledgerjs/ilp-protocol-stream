@@ -99,8 +99,8 @@ export class Connection extends EventEmitter {
   protected _destinationAssetCode?: string
   protected _destinationAssetScale?: number
   protected sharedSecret: Buffer
-  protected _pskKey: Buffer
-  protected _fulfillmentKey: Buffer
+  protected _pskKey: Promise<Buffer>
+  protected _fulfillmentKey: Promise<Buffer>
   protected isServer: boolean
   protected slippage: BigNumber
   protected allowableReceiveExtra: BigNumber
@@ -414,7 +414,7 @@ export class Connection extends EventEmitter {
     // Parse packet
     let requestPacket: Packet
     try {
-      requestPacket = Packet.decryptAndDeserialize(this._pskKey, prepare.data)
+      requestPacket = await Packet.decryptAndDeserialize(await this._pskKey, prepare.data)
     } catch (err) {
       this.log.error(`error parsing frames:`, err)
       throw new IlpPacket.Errors.UnexpectedPaymentError('')
@@ -432,12 +432,12 @@ export class Connection extends EventEmitter {
     // Tell peer how much data connection can receive
     responseFrames.push(new ConnectionMaxDataFrame(this.getIncomingOffsets().maxAcceptable))
 
-    const throwFinalApplicationError = () => {
+    const throwFinalApplicationError = async () => {
       responseFrames = responseFrames.concat(this.queuedFrames)
       this.queuedFrames = []
       const responsePacket = new Packet(requestPacket.sequence, IlpPacketType.Reject, prepare.amount, responseFrames)
       this.log.trace(`rejecting packet ${requestPacket.sequence}: ${JSON.stringify(responsePacket)}`)
-      throw new IlpPacket.Errors.FinalApplicationError('', responsePacket.serializeAndEncrypt(this._pskKey, (this.enablePadding ? MAX_DATA_SIZE : undefined)))
+      throw new IlpPacket.Errors.FinalApplicationError('', await responsePacket.serializeAndEncrypt(await this._pskKey, (this.enablePadding ? MAX_DATA_SIZE : undefined)))
     }
 
     // Handle new streams
@@ -499,8 +499,8 @@ export class Connection extends EventEmitter {
     }
 
     // Ensure we can generate correct fulfillment
-    const fulfillment = cryptoHelper.generateFulfillment(this._fulfillmentKey, prepare.data)
-    const generatedCondition = cryptoHelper.hash(fulfillment)
+    const fulfillment = await cryptoHelper.generateFulfillment(await this._fulfillmentKey, prepare.data)
+    const generatedCondition = await cryptoHelper.hash(fulfillment)
     if (!generatedCondition.equals(prepare.executionCondition)) {
       this.log.debug(`got unfulfillable prepare for amount: ${prepare.amount}. generated condition: ${generatedCondition.toString('hex')}, prepare condition: ${prepare.executionCondition.toString('hex')}`)
       throwFinalApplicationError()
@@ -590,7 +590,7 @@ export class Connection extends EventEmitter {
     this.log.trace(`fulfilling prepare with fulfillment: ${fulfillment.toString('hex')} and response packet: ${JSON.stringify(responsePacket)}`)
     return {
       fulfillment,
-      data: responsePacket.serializeAndEncrypt(this._pskKey, (this.enablePadding ? MAX_DATA_SIZE : undefined))
+      data: await responsePacket.serializeAndEncrypt(await this._pskKey, (this.enablePadding ? MAX_DATA_SIZE : undefined))
     }
   }
 
@@ -1191,7 +1191,7 @@ export class Connection extends EventEmitter {
     const prepare = {
       destination: this._destinationAccount!,
       amount: amount.toString(),
-      data: requestPacket.serializeAndEncrypt(this._pskKey),
+      data: await requestPacket.serializeAndEncrypt(await this._pskKey),
       executionCondition: cryptoHelper.generateRandomCondition(),
       expiresAt: new Date(Date.now() + timeout)
     }
@@ -1217,7 +1217,7 @@ export class Connection extends EventEmitter {
     // Return the receiver's response if there was one
     let responsePacket
     if (ilpReject.code === 'F99' && ilpReject.data.length > 0) {
-      responsePacket = Packet.decryptAndDeserialize(this._pskKey, ilpReject.data)
+      responsePacket = await Packet.decryptAndDeserialize(await this._pskKey, ilpReject.data)
 
       // Ensure the response corresponds to the request
       if (!responsePacket.sequence.isEqualTo(requestPacket.sequence)) {
@@ -1271,7 +1271,7 @@ export class Connection extends EventEmitter {
       const prepare = {
         destination: this._destinationAccount!,
         amount: '0',
-        data: packet.serializeAndEncrypt(this._pskKey),
+        data: await packet.serializeAndEncrypt(await this._pskKey),
         executionCondition: cryptoHelper.generateRandomCondition(),
         expiresAt: new Date(Date.now() + DEFAULT_PACKET_TIMEOUT)
       }
@@ -1289,7 +1289,7 @@ export class Connection extends EventEmitter {
    */
   protected async sendPacket (packet: Packet, sourceAmount: BigNumber, unfulfillable = false): Promise<Packet | void> {
     this.log.trace(`sending packet ${packet.sequence} with source amount: ${sourceAmount}: ${JSON.stringify(packet)})`)
-    const data = packet.serializeAndEncrypt(this._pskKey, (this.enablePadding ? MAX_DATA_SIZE : undefined))
+    const data = await packet.serializeAndEncrypt(await this._pskKey, (this.enablePadding ? MAX_DATA_SIZE : undefined))
 
     let fulfillment: Buffer | undefined
     let executionCondition: Buffer
@@ -1297,8 +1297,8 @@ export class Connection extends EventEmitter {
       fulfillment = undefined
       executionCondition = cryptoHelper.generateRandomCondition()
     } else {
-      fulfillment = cryptoHelper.generateFulfillment(this._fulfillmentKey, data)
-      executionCondition = cryptoHelper.hash(fulfillment)
+      fulfillment = await cryptoHelper.generateFulfillment(await this._fulfillmentKey, data)
+      executionCondition = await cryptoHelper.hash(fulfillment)
     }
     const prepare = {
       destination: this._destinationAccount!,
@@ -1327,7 +1327,7 @@ export class Connection extends EventEmitter {
 
     // Handle fulfillment
     if (fulfillment && isFulfill(response)) {
-      if (!cryptoHelper.hash(response.fulfillment).equals(executionCondition)) {
+      if (!(await cryptoHelper.hash(response.fulfillment)).equals(executionCondition)) {
         this.log.error(`got invalid fulfillment for packet ${packet.sequence}: ${response.fulfillment.toString('hex')}. expected: ${fulfillment.toString('hex')} for condition: ${executionCondition.toString('hex')}`)
         throw new Error(`Got invalid fulfillment for packet ${packet.sequence}. Actual: ${response.fulfillment.toString('hex')}, expected: ${fulfillment.toString('hex')}`)
       }
@@ -1349,7 +1349,7 @@ export class Connection extends EventEmitter {
     // Parse response data from receiver
     let responsePacket: Packet
     try {
-      responsePacket = Packet.decryptAndDeserialize(this._pskKey, response.data)
+      responsePacket = await Packet.decryptAndDeserialize(await this._pskKey, response.data)
     } catch (err) {
       this.log.error(`unable to decrypt and parse response data:`, err, response.data.toString('hex'))
       // TODO should we continue processing anyway? what if it was fulfilled?

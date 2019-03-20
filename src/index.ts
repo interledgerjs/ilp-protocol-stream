@@ -3,7 +3,6 @@ import * as ILDCP from 'ilp-protocol-ildcp'
 import * as IlpPacket from 'ilp-packet'
 import createLogger from 'ilp-logger'
 import * as cryptoHelper from './crypto'
-import { randomBytes } from 'crypto'
 import { Connection, ConnectionOpts } from './connection'
 import { Plugin } from './util/plugin-interface'
 require('source-map-support').install()
@@ -36,6 +35,7 @@ export async function createConnection (opts: CreateConnectionOpts): Promise<Con
     isServer: false,
     plugin
   })
+  // TODO: Maybe add an init
   plugin.registerDataHandler(async (data: Buffer): Promise<Buffer> => {
     let prepare: IlpPacket.IlpPrepare
     try {
@@ -105,7 +105,7 @@ export class Server extends EventEmitter {
 
   constructor (opts: ServerOpts) {
     super()
-    this.serverSecret = opts.serverSecret || randomBytes(32)
+    this.serverSecret = opts.serverSecret || cryptoHelper.generateRandomCondition()
     this.plugin = opts.plugin
     this.log = createLogger('ilp-protocol-stream:Server')
     this.connections = {}
@@ -259,9 +259,9 @@ export class Server extends EventEmitter {
         let sharedSecret
         try {
           const token = Buffer.from(connectionId, 'ascii')
-          sharedSecret = cryptoHelper.generateSharedSecretFromToken(this.serverSecret, token)
-          const pskKey = cryptoHelper.generatePskEncryptionKey(sharedSecret)
-          cryptoHelper.decrypt(pskKey, prepare.data)
+          sharedSecret = await cryptoHelper.generateSharedSecretFromTokenAsync(this.serverSecret, token)
+          const pskKey = await cryptoHelper.generatePskEncryptionKey(sharedSecret)
+          await cryptoHelper.decrypt(pskKey, prepare.data)
         } catch (err) {
           this.log.error(`got prepare for an address and token that we did not generate: ${prepare.destination}`)
           // See "Why no error message here?" note above
