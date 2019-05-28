@@ -1091,7 +1091,7 @@ export class Connection extends EventEmitter {
     })
 
     // Figure out which test packet discovered the exchange rate with the most precision and gather packet error codes
-    const { maxDigits, exchangeRate, packetErrors } = results.reduce<any>(({ maxDigits, exchangeRate, packetErrors }, result, index) => {
+    const { maxSuccessAmount, maxDigits, exchangeRate, packetErrors } = results.reduce<any>(({ maxSuccessAmount, maxDigits, exchangeRate, packetErrors }, result, index) => {
       const sourceAmount = testPacketAmounts[index]
       if (result && (result as IlpPacket.IlpReject).code) {
         packetErrors.push({
@@ -1105,15 +1105,16 @@ export class Connection extends EventEmitter {
         this.log.debug(`sending test packet of ${sourceAmount} delivered ${prepareAmount} (exchange rate: ${exchangeRate})`)
         if (prepareAmount.precision(true) >= maxDigits) {
           return {
+            maxSuccessAmount: sourceAmount,
             maxDigits: prepareAmount.precision(true),
             exchangeRate,
             packetErrors
           }
         }
       }
-      return { maxDigits, exchangeRate, packetErrors }
-    }, { maxDigits: 0, exchangeRate: new BigNumber(0), packetErrors: [] })
-    return { maxDigits, exchangeRate, maxPacketAmounts, packetErrors }
+      return { maxSuccessAmount, maxDigits, exchangeRate, packetErrors }
+    }, { maxSuccessAmount: 0, maxDigits: 0, exchangeRate: new BigNumber(0), packetErrors: [] })
+    return { maxSuccessAmount, maxDigits, exchangeRate, maxPacketAmounts, packetErrors }
   }
 
   /**
@@ -1133,10 +1134,10 @@ export class Connection extends EventEmitter {
     // set a max attempts in case F08 & TXX errors keep occurring
     while (!this.exchangeRate && testPacketAmounts.length > 0 && attempts < TEST_PACKET_MAX_ATTEMPTS) {
       attempts++
-      const { maxDigits, exchangeRate, maxPacketAmounts, packetErrors } = await this.sendTestPacketVolley(testPacketAmounts)
+      const { maxSuccessAmount, maxDigits, exchangeRate, maxPacketAmounts, packetErrors } = await this.sendTestPacketVolley(testPacketAmounts)
 
       this.maximumPacketAmount = BigNumber.minimum(...maxPacketAmounts.concat(this.maximumPacketAmount))
-      this.testMaximumPacketAmount = this.maximumPacketAmount
+      this.testMaximumPacketAmount = maxSuccessAmount ? new BigNumber(maxSuccessAmount) : this.maximumPacketAmount
       if (this.maximumPacketAmount.isEqualTo(0)) {
         this.log.error(`cannot send anything through this path. the maximum packet amount is 0`)
         throw new Error('Cannot send. Path has a Maximum Packet Amount of 0')
