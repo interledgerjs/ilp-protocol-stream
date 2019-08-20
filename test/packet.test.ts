@@ -1,5 +1,6 @@
 import 'mocha'
 import { assert } from 'chai'
+import * as PacketModule from '../src/packet'
 import {
   Packet,
   StreamMoneyFrame,
@@ -10,6 +11,7 @@ import {
 } from '../src/packet'
 import { Reader, Writer } from 'oer-utils'
 import * as Long from 'long'
+
 require('source-map-support').install()
 
 describe('Packet Format', function () {
@@ -102,3 +104,48 @@ describe('Packet Format', function () {
     })
   })
 })
+
+describe('Packet Fixtures', function () {
+  const fixtures = require('./fixtures/packets.json')
+  fixtures.forEach(function (fixture: any) {
+    const wantBuffer = Buffer.from(fixture.buffer, 'base64')
+    const wantPacket = new Packet(
+      fixture.packet.sequence,
+      fixture.packet.packetType,
+      fixture.packet.amount,
+      fixture.packet.frames.map(buildFrame)
+    )
+
+    it('deserializes ' + fixture.name, function () {
+      const gotPacket = Packet._deserializeUnencrypted(wantBuffer)
+      /*for (const key in gotPacket) {
+        const value = gotPacket[key]
+        if (BigNumber.isBigNumber(value)) {
+          gotPacket[key] = value.toString()
+        }
+      }*/
+      assert.deepStrictEqual(gotPacket, wantPacket)
+    })
+
+    it('serializes ' + fixture.name, function () {
+      const gotBuffer = wantPacket._serialize()
+      assert(gotBuffer.equals(wantBuffer))
+    })
+  })
+})
+
+function buildFrame (options: any) {
+  for (const key in options) {
+    const value = options[key]
+    if (typeof value === 'string' && /^\d+$/.test(value)) {
+      options[key] = Long.fromString(value, true)
+    }
+  }
+  if (typeof options.data === 'string') {
+    options.data = Buffer.from(options.data, 'base64')
+  }
+  return Object.assign(
+    Object.create(PacketModule[options.name + 'Frame'].prototype),
+    options
+  )
+}
