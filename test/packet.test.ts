@@ -1,5 +1,5 @@
+import * as assert from 'assert'
 import 'mocha'
-import { assert } from 'chai'
 import * as PacketModule from '../src/packet'
 import {
   Packet,
@@ -19,13 +19,17 @@ describe('Packet Format', function () {
     it('should throw an error if it cannot decrypt the packet', function () {
       const packet = Buffer.from('9c4f511dbc865607311609d7559e01e1fd22f985292539e1f5d8f3eb0832060f', 'hex')
 
-      assert.throws(() => Packet.decryptAndDeserialize(Buffer.alloc(32), packet), 'Unable to decrypt packet. Data was corrupted or packet was encrypted with the wrong key')
+      assert.throws(() => {
+        return Packet.decryptAndDeserialize(Buffer.alloc(32), packet)
+      }, new Error('Unable to decrypt packet. Data was corrupted or packet was encrypted with the wrong key'))
     })
 
     it('should throw an error if the version is unsupported', function () {
       const decryptedPacket = Buffer.from('9c4f511dbc865607311609d7559e01e1fd22f985292539e1f5d8f3eb0832060f', 'hex')
 
-      assert.throws(() => Packet._deserializeUnencrypted(decryptedPacket), 'Unsupported protocol version: 156')
+      assert.throws(() => {
+        return Packet._deserializeUnencrypted(decryptedPacket)
+      }, new Error('Unsupported protocol version: 156'))
     })
 
     it('should skip unknown frames', function () {
@@ -118,14 +122,10 @@ describe('Packet Fixtures', function () {
 
     it('deserializes ' + fixture.name, function () {
       const gotPacket = Packet._deserializeUnencrypted(wantBuffer)
-      /*for (const key in gotPacket) {
-        const value = gotPacket[key]
-        if (BigNumber.isBigNumber(value)) {
-          gotPacket[key] = value.toString()
-        }
-      }*/
-      assert.deepStrictEqual(gotPacket, wantPacket)
+      assert.deepEqual(gotPacket, wantPacket)
     })
+
+    if (fixture.decode_only) return
 
     it('serializes ' + fixture.name, function () {
       const gotBuffer = wantPacket._serialize()

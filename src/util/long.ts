@@ -155,3 +155,7 @@ export function multiplyDivide (a: Long, b: Long, c: Long): {
   }
   return { quo, rem }
 }
+
+Long.prototype['toJSON'] = function () {
+  return this.toString()
+}

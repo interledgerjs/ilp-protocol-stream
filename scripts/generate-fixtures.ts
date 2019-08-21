@@ -1,12 +1,15 @@
-import BigNumber from 'bignumber.js'
+import * as Long from 'long'
 import * as Packet from '../src/packet'
 
-const MAX_UINT_64 = new BigNumber('18446744073709551615')
 const NUMBERS = [
   { name: '0', value: 0 },
   { name: 'max_js', value: Number.MAX_SAFE_INTEGER },
-  { name: 'max_uint_64', value: MAX_UINT_64 }
+  { name: 'max_uint_64', value: Long.MAX_UNSIGNED_VALUE }
 ]
+
+Long.prototype['toJSON'] = function () {
+  return this.toString()
+}
 
 Packet.StreamDataFrame.prototype.toJSON = function () {
   return {
@@ -25,7 +28,6 @@ const variants = Array.prototype.concat.apply([], [
   { name: 'type:reject', packetType: Packet.IlpPacketType.Reject },
   NUMBERS.map((pair) => ({ name: 'amount:' + pair.name, amount: pair.value })),
 
-  // TODO test too-large-for-u64
   {
     name: 'frame:connection_close',
     frame: new Packet.ConnectionCloseFrame(0x01, 'fail')
@@ -70,7 +72,7 @@ const variants = Array.prototype.concat.apply([], [
     frame: new Packet.StreamMoneyFrame(123, pair.value)
   })),
   NUMBERS.map((pair) => ({
-    name: 'frame:stream_max_money:received_max:' + pair.name,
+    name: 'frame:stream_max_money:receive_max:' + pair.name,
     frame: new Packet.StreamMaxMoneyFrame(123, pair.value, 456)
   })),
   NUMBERS.map((pair) => ({
@@ -134,6 +136,32 @@ const fixtures = variants.map(function (params: any) {
     packet: packetOptions,
     buffer: packet._serialize().toString('base64')
   }
+})
+
+// The receive_max is set to `Long.MAX_UNSIGNED_VALUE + 1`.
+fixtures.push({
+  name: 'frame:stream_max_money:receive_max:too_big',
+  packet: {
+    sequence: '0',
+    packetType: Packet.IlpPacketType.Prepare,
+    amount: '0',
+    frames: [new Packet.StreamMaxMoneyFrame(123, Long.MAX_UNSIGNED_VALUE, 456)],
+  },
+  buffer: 'AQwBAAEAAQESDwF7CQEAAAAAAAAAAAIByA==',
+  decode_only: true
+})
+
+// The send_max is set to `Long.MAX_UNSIGNED_VALUE + 1`.
+fixtures.push({
+  name: 'frame:stream_money_blocked:send_max:too_big',
+  packet: {
+    sequence: '0',
+    packetType: Packet.IlpPacketType.Prepare,
+    amount: '0',
+    frames: [new Packet.StreamMoneyBlockedFrame(123, Long.MAX_UNSIGNED_VALUE, 456)]
+  },
+  buffer: 'AQwBAAEAAQETDwF7CQEAAAAAAAAAAAIByA==',
+  decode_only: true
 })
 
 console.log(JSON.stringify(fixtures, null, '  '))

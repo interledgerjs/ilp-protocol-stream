@@ -417,7 +417,7 @@
     "buffer": "AQwBAAEAAQERCwF7CP//////////"
   },
   {
-    "name": "frame:stream_max_money:received_max:0",
+    "name": "frame:stream_max_money:receive_max:0",
     "packet": {
       "sequence": "0",
       "packetType": 12,
@@ -435,7 +435,7 @@
     "buffer": "AQwBAAEAAQESBwF7AQACAcg="
   },
   {
-    "name": "frame:stream_max_money:received_max:max_js",
+    "name": "frame:stream_max_money:receive_max:max_js",
     "packet": {
       "sequence": "0",
       "packetType": 12,
@@ -453,7 +453,7 @@
     "buffer": "AQwBAAEAAQESDQF7Bx////////8CAcg="
   },
   {
-    "name": "frame:stream_max_money:received_max:max_uint_64",
+    "name": "frame:stream_max_money:receive_max:max_uint_64",
     "packet": {
       "sequence": "0",
       "packetType": 12,
@@ -805,5 +805,43 @@
       ]
     },
     "buffer": "AQwBAAEAAQEWCwF7CP//////////"
+  },
+  {
+    "name": "frame:stream_max_money:receive_max:too_big",
+    "packet": {
+      "sequence": "0",
+      "packetType": 12,
+      "amount": "0",
+      "frames": [
+        {
+          "type": 18,
+          "name": "StreamMaxMoney",
+          "streamId": "123",
+          "receiveMax": "18446744073709551615",
+          "totalReceived": "456"
+        }
+      ]
+    },
+    "buffer": "AQwBAAEAAQESDwF7CQEAAAAAAAAAAAIByA==",
+    "decode_only": true
+  },
+  {
+    "name": "frame:stream_money_blocked:send_max:too_big",
+    "packet": {
+      "sequence": "0",
+      "packetType": 12,
+      "amount": "0",
+      "frames": [
+        {
+          "type": 19,
+          "name": "StreamMoneyBlocked",
+          "streamId": "123",
+          "sendMax": "18446744073709551615",
+          "totalSent": "456"
+        }
+      ]
+    },
+    "buffer": "AQwBAAEAAQETDwF7CQEAAAAAAAAAAAIByA==",
+    "decode_only": true
   }
 ]
