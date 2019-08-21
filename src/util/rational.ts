@@ -1,7 +1,6 @@
 import * as assert from 'assert'
 import * as Long from 'long'
 import {
-  multiplyDivide,
   multiplyDivideFloor,
   multiplyDivideCeil,
   multiplyDivideRound
@@ -54,7 +53,7 @@ export default class Rational {
     // Really simple float → rational conversion. There's probably a better way
     // to do this. That said, creating a Rational from two Longs is always going
     // to be more precise.
-    let mag = Math.floor(Math.log(value) / Math.LN10)
+    const mag = Math.floor(Math.log(value) / Math.LN10)
     let shift = mag < 0 ? 18 : (18 - mag)
     let den = 1
     while (

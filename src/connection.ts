@@ -163,6 +163,9 @@ export class Connection extends EventEmitter {
     this.sharedSecret = opts.sharedSecret
     this.isServer = opts.isServer
     this.slippage = Rational.fromNumber(opts.slippage === undefined ? 0.01 : opts.slippage, true)
+    if (this.slippage.greaterThanOne()) {
+      throw new Error('slippage must be less than one')
+    }
     this.allowableReceiveExtra = Rational.fromNumber(1.01, true)
     this.enablePadding = !!opts.enablePadding
     this.connectionTag = opts.connectionTag

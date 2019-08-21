@@ -145,7 +145,7 @@ fixtures.push({
     sequence: '0',
     packetType: Packet.IlpPacketType.Prepare,
     amount: '0',
-    frames: [new Packet.StreamMaxMoneyFrame(123, Long.MAX_UNSIGNED_VALUE, 456)],
+    frames: [new Packet.StreamMaxMoneyFrame(123, Long.MAX_UNSIGNED_VALUE, 456)]
   },
   buffer: 'AQwBAAEAAQESDwF7CQEAAAAAAAAAAAIByA==',
   decode_only: true

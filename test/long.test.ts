@@ -85,6 +85,7 @@ describe('util/long', function () {
 
   describe('countDigits', function () {
     it('returns the number of digits', function () {
+      assert.equal(countDigits(L(0)), 0)
       assert.equal(countDigits(L(1)), 1)
       assert.equal(countDigits(L(12)), 2)
       assert.equal(countDigits(L(99999999)), 8)

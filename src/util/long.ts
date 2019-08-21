@@ -23,7 +23,6 @@ export function longFromValue (value: LongValue, unsigned: boolean): Long {
     return longValue
   }
 
-  // TODO maybe just convert to correct sign?
   if (value.unsigned !== unsigned) {
     throw new Error('Expected ' + (unsigned ? 'unsigned' : 'signed') + ' Long')
   }
