@@ -69,13 +69,13 @@ export function checkedAdd (a: Long, b: Long): {
 
 export function checkedSubtract (a: Long, b: Long): {
   difference: Long,
-  overflow: boolean
+  underflow: boolean
 } {
   const difference = a.subtract(b)
-  const overflow = difference.greaterThan(a) && difference.greaterThan(b)
+  const underflow = difference.greaterThan(a) && difference.greaterThan(b)
   return {
-    difference: overflow ? Long.UZERO : difference,
-    overflow
+    difference: underflow ? Long.UZERO : difference,
+    underflow
   }
 }
 

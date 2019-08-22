@@ -113,19 +113,19 @@ describe('util/long', function () {
   })
 
   describe('checkedSubtract', function () {
-    it('returns the difference and whether a-b overflows', function () {
+    it('returns the difference and whether a-b underflows', function () {
       assert.deepEqual(
         checkedSubtract(L(2), L(1)),
         {
           difference: L(1),
-          overflow: false
+          underflow: false
         }
       )
       assert.deepEqual(
         checkedSubtract(L(1), L(2)),
         {
           difference: L(0),
-          overflow: true
+          underflow: true
         }
       )
     })
@@ -153,9 +153,9 @@ describe('util/long', function () {
   describe('multiplyDivideFloor', function () {
     it('is equivalent to a*b/c', function () {
       for (let i = 0; i < REPS; i++) {
-        const a = Math.floor(Math.random() * 100000000)
-        const b = Math.floor(Math.random() * 100000000)
-        const c = Math.floor(Math.random() * 100000000)
+        const a = Math.floor(Math.random() * 1.0e8)
+        const b = Math.floor(Math.random() * 1.0e8)
+        const c = Math.floor(Math.random() * 1.0e8)
 
         const expect = new BigNumber(a)
           .times(b)
