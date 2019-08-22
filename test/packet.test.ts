@@ -77,7 +77,7 @@ describe('Packet Format', function () {
   })
 
   describe('StreamMaxMoneyFrame', function () {
-    it('converts larger sendMax to MaxUInt64', function () {
+    it('converts larger receiveMax to MaxUInt64', function () {
       const writer = new Writer()
       writer.writeVarUInt(123) // streamId
       writer.writeVarOctetString(new Buffer([ // receiveMax
