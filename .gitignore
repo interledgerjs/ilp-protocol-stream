@@ -1,4 +1,5 @@
 .vscode
+.idea
 node_modules
 **/*.js
 **/*.js.map
@@ -9,3 +10,5 @@ node_modules
 coverage
 .nyc_output
 doc
+# package-lock.json currently in use
+yarn.lock
