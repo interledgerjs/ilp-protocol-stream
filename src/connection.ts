@@ -1398,7 +1398,7 @@ export class Connection extends EventEmitter {
       this.log.error(`response packet sequence does not match the request packet. expected sequence: ${packet.sequence}, got response packet:`, JSON.stringify(responsePacket))
       throw new Error(`Response packet sequence does not correspond to the request. Actual: ${responsePacket.sequence}, expected: ${packet.sequence}`)
     }
-    if (responsePacket.ilpPacketType !== responseData[0]) {
+    if ((responsePacket.ilpPacketType as number) !== responseData[0]) {
       this.log.error(`response packet was on wrong ILP packet type. expected ILP packet type: ${responseData[0]}, got:`, JSON.stringify(responsePacket))
       throw new Error(`Response says it should be on an ILP packet of type: ${responsePacket.ilpPacketType} but it was carried on an ILP packet of type: ${responseData[0]}`)
     }
