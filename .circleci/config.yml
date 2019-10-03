@@ -11,7 +11,7 @@ aliases:
 jobs:
   build_node_v10:
     docker:
-      - image: circleci/node:10
+      - image: circleci/node:10-browsers
     working_directory: ~/repo
     steps:
       - checkout
@@ -21,7 +21,6 @@ jobs:
           - v10-dependencies-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v10-dependencies-
-      - run: *install-puppeteer
       - run: npm install
       - save_cache:
           paths:
@@ -33,7 +32,7 @@ jobs:
 
   build_node_v12:
     docker:
-      - image: circleci/node:12
+      - image: circleci/node:12-browsers
     working_directory: ~/repo_v12
     steps:
       - checkout
@@ -43,7 +42,6 @@ jobs:
           - v12-dependencies-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v12-dependencies-
-      - run: *install-puppeteer
       - run: npm install
       - save_cache:
           paths:
