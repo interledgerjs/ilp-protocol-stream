@@ -22,9 +22,12 @@ const BTP_SERVER_OPTS = {
 describe('Puppeteer', function () {
   before(async function () {
     // Webpack can take >2s.
-    this.timeout(5000)
+    this.timeout(20e3)
+    console.log('building bundle')
     await buildClientBundle()
+    console.log('finished building bundle, launching puppeeteer')
     this.browser = await puppeteer.launch()
+    console.log('finished puppeteer launch')
   })
 
   after(async function () {
@@ -32,6 +35,8 @@ describe('Puppeteer', function () {
   })
 
   beforeEach('Set up server', async function () {
+    this.timeout(5e3)
+
     this.serverPlugin = new PluginMiniAccounts(BTP_SERVER_OPTS)
     this.server = await createServer({ plugin: this.serverPlugin })
     this.server.on('connection', (connection: Connection) => {
@@ -43,6 +48,8 @@ describe('Puppeteer', function () {
   })
 
   beforeEach('Set up client', async function () {
+    this.timeout(5e3)
+
     this.page = await this.browser.newPage()
     this.page.on('error', (err: Error) => {
       console.log('puppeteer_error:', err.stack)
@@ -73,7 +80,7 @@ describe('Puppeteer', function () {
           btpToken: 'secret'
         }, opts)
       } catch (err) {
-        console.error("uncaught error:", err.stack)
+        console.error('uncaught error:', err.stack)
         throw err
       }
     }, {
@@ -84,6 +91,8 @@ describe('Puppeteer', function () {
   })
 
   afterEach('Tear down client & server', async function () {
+    this.timeout(5e3)
+
     await this.page.evaluate(async function () {
       await window['streamClient'].end()
     })
@@ -92,6 +101,8 @@ describe('Puppeteer', function () {
   })
 
   describe('stream money', function () {
+    this.timeout(5e3)
+
     it('sends money', async function () {
       await this.page.evaluate(async function () {
         const stream = window['streamClient'].createStream()
