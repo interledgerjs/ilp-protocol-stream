@@ -91,8 +91,10 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_index_.createconnectionopts.html#connectiontag" class="tsd-kind-icon">connection<wbr>Tag</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="_index_.createconnectionopts.html#destinationaccount" class="tsd-kind-icon">destination<wbr>Account</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_index_.createconnectionopts.html#enablepadding" class="tsd-kind-icon">enable<wbr>Padding</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_index_.createconnectionopts.html#exchangerate" class="tsd-kind-icon">exchange<wbr>Rate</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_index_.createconnectionopts.html#idletimeout" class="tsd-kind-icon">idle<wbr>Timeout</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_index_.createconnectionopts.html#maxremotestreams" class="tsd-kind-icon">max<wbr>Remote<wbr>Streams</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_index_.createconnectionopts.html#maximumpacketamount" class="tsd-kind-icon">maximum<wbr>Packet<wbr>Amount</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_index_.createconnectionopts.html#minexchangerateprecision" class="tsd-kind-icon">min<wbr>Exchange<wbr>Rate<wbr>Precision</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_index_.createconnectionopts.html#plugin" class="tsd-kind-icon">plugin</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_index_.createconnectionopts.html#sharedsecret" class="tsd-kind-icon">shared<wbr>Secret</a></li>
@@ -112,7 +114,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#connectionbuffersize">connectionBufferSize</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L72">connection.ts:72</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L72">connection.ts:72</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -128,7 +130,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#connectiontag">connectionTag</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L68">connection.ts:68</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L68">connection.ts:68</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -144,7 +146,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#destinationaccount">destinationAccount</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/index.ts#L18">index.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/index.ts#L18">index.ts:18</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -160,7 +162,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#enablepadding">enablePadding</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L66">connection.ts:66</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L66">connection.ts:66</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -170,13 +172,32 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="exchangerate" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> exchange<wbr>Rate</h3>
+					<div class="tsd-signature tsd-kind-icon">exchange<wbr>Rate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#exchangerate">exchangeRate</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L89">connection.ts:89</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Fixed exchange rate. When set, the connection skips the packet volley step.
+								Note that the minimum acceptable exchange rate is usually slightly lower than
+							this (depending on the connection&#39;s slippage).</p>
+						</div>
+						<p>This option should usually be used in concert with <code>ConnectionOpts.maximumPacketAmount</code>.</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="idletimeout" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> idle<wbr>Timeout</h3>
 					<div class="tsd-signature tsd-kind-icon">idle<wbr>Timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#idletimeout">idleTimeout</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L76">connection.ts:76</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L76">connection.ts:76</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -192,12 +213,29 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#maxremotestreams">maxRemoteStreams</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L70">connection.ts:70</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L70">connection.ts:70</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Maximum number of streams the other entity can have open at once. Defaults to 10</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="maximumpacketamount" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> maximum<wbr>Packet<wbr>Amount</h3>
+					<div class="tsd-signature tsd-kind-icon">maximum<wbr>Packet<wbr>Amount<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#maximumpacketamount">maximumPacketAmount</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L81">connection.ts:81</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Fixed maximum packet amount. When set, the connection&#39;s maximum packet amount
+							is the minimum of this setting and the path&#39;s discovered maximum amount.</p>
 						</div>
 					</div>
 				</section>
@@ -208,7 +246,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#minexchangerateprecision">minExchangeRatePrecision</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L74">connection.ts:74</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L74">connection.ts:74</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -224,7 +262,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#plugin">plugin</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L58">connection.ts:58</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L58">connection.ts:58</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -239,7 +277,7 @@
 					<div class="tsd-signature tsd-kind-icon">shared<wbr>Secret<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Buffer</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/index.ts#L20">index.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/index.ts#L20">index.ts:20</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -255,7 +293,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#slippage">slippage</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L64">connection.ts:64</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L64">connection.ts:64</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -271,7 +309,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#sourceaccount">sourceAccount</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L62">connection.ts:62</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L62">connection.ts:62</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -301,9 +339,6 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/_index_.server.html" class="tsd-kind-icon">Server</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
@@ -322,10 +357,16 @@
 								<a href="_index_.createconnectionopts.html#enablepadding" class="tsd-kind-icon">enable<wbr>Padding</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_index_.createconnectionopts.html#exchangerate" class="tsd-kind-icon">exchange<wbr>Rate</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_index_.createconnectionopts.html#idletimeout" class="tsd-kind-icon">idle<wbr>Timeout</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_index_.createconnectionopts.html#maxremotestreams" class="tsd-kind-icon">max<wbr>Remote<wbr>Streams</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_index_.createconnectionopts.html#maximumpacketamount" class="tsd-kind-icon">maximum<wbr>Packet<wbr>Amount</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_index_.createconnectionopts.html#minexchangerateprecision" class="tsd-kind-icon">min<wbr>Exchange<wbr>Rate<wbr>Precision</a>
@@ -346,20 +387,11 @@
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_index_.serveropts.html" class="tsd-kind-icon">Server<wbr>Opts</a>
-					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="../modules/_index_.html#connection_id_regex" class="tsd-kind-icon">CONNECTION_<wbr>ID_<wbr>REGEX</a>
 					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="../modules/_index_.html#base64url" class="tsd-kind-icon">base64url</a>
-					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="../modules/_index_.html#createconnection" class="tsd-kind-icon">create<wbr>Connection</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="../modules/_index_.html#createserver" class="tsd-kind-icon">create<wbr>Server</a>
 					</li>
 				</ul>
 			</nav>
@@ -378,6 +410,7 @@
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
@@ -426,7 +459,7 @@
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>

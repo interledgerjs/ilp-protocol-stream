@@ -62,7 +62,9 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="ilp-stream">ILP/STREAM</h1>
+				<a href="#ilpstream" id="ilpstream" style="color: inherit; text-decoration: none;">
+					<h1>ILP/STREAM</h1>
+				</a>
 				<blockquote>
 					<p>Interledger Transport Protocol for sending multiple streams of money and data over ILP.</p>
 				</blockquote>
@@ -74,10 +76,14 @@
 				<a href="https://app.fossa.io/projects/git%2Bgithub.com%2Finterledgerjs%2Filp-protocol-stream?ref=badge_shield"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Finterledgerjs%2Filp-protocol-stream.svg?type=shield" alt="FOSSA Status"></a></p>
 				<p>STREAM is the recommended Transport Protocol to use for most Interledger applications.</p>
 				<p>The protocol allows a &quot;client&quot; and &quot;server&quot; to establish a bidirectional connection through Interledger that can be used to send money and data. This module handles authentication, encryption, flow control (making sure one party doesn&#39;t send more than the other can handle at once), and congestion control (avoiding sending more packets than the network can handle).</p>
-				<h2 id="install">Install</h2>
-				<p>Requires Node &gt;= v8.10.</p>
+				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
+					<h2>Install</h2>
+				</a>
+				<p>Requires Node &gt;=10. Alternatively, <code>ilp-protocol-stream</code> will run in the browser via webpack, but only as client.</p>
 				<pre><code class="language-sh">npm install ilp-protocol-stream</code></pre>
-				<h2 id="usage">Usage</h2>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
 				<p>These snippets assume you are running a local <a href="https://github.com/interledgerjs/moneyd-xrp"><code>moneyd</code></a>.</p>
 				<p>You&#39;ll need <a href="https://github.com/interledgerjs/ilp-plugin"><code>ilp-plugin</code></a> to run the example.</p>
 				<pre><code class="language-sh">npm install ilp-plugin</code></pre>
@@ -139,7 +145,9 @@ run().catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =
 }
 
 run().catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(err))</code></pre>
-				<h2 id="api">API</h2>
+				<a href="#api" id="api" style="color: inherit; text-decoration: none;">
+					<h2>API</h2>
+				</a>
 				<p>See the full API docs at: <a href="https://interledgerjs.github.io/ilp-protocol-stream">https://interledgerjs.github.io/ilp-protocol-stream</a></p>
 				<p>The most important functions and classes to look at are:</p>
 				<ul>
@@ -148,10 +156,14 @@ run().catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =
 					<li><a href="https://interledgerjs.github.io/ilp-protocol-stream/classes/_connection_.connection.html"><code>Connection</code></a> - class that manages the communication between a Client and a Server</li>
 					<li><a href="https://interledgerjs.github.io/ilp-protocol-stream/classes/_stream_.dataandmoneystream.html"><code>DataAndMoneyStream</code></a> - stream class that can be used to send/receive data and money</li>
 				</ul>
-				<h2 id="contribute">Contribute</h2>
+				<a href="#contribute" id="contribute" style="color: inherit; text-decoration: none;">
+					<h2>Contribute</h2>
+				</a>
 				<p>PRs, new ideas, and questions are very welcome!</p>
 				<p>Please feel free to <a href="https://github.com/interledgerjs/ilp-protocol-stream/issues/new">open issues</a> to discuss any problems you run into or suggestions you have.</p>
-				<h2 id="license">License</h2>
+				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+					<h2>License</h2>
+				</a>
 				<p>Apache-2.0</p>
 				<p><a href="https://app.fossa.io/projects/git%2Bgithub.com%2Finterledgerjs%2Filp-protocol-stream?ref=badge_large"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Finterledgerjs%2Filp-protocol-stream.svg?type=large" alt="FOSSA Status"></a></p>
 			</div>
@@ -192,6 +204,7 @@ run().catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
@@ -240,7 +253,7 @@ run().catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>

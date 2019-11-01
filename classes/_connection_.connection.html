@@ -70,7 +70,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Class representing the connection between a <a href="../modules/_index_.html#createconnection"><code>Client</code></a> and a <a href="_index_.server.html"><code>Server</code></a>.
+						<p>Class representing the connection between a <a href="../modules/_index_.html#createconnection"><code>Client</code></a> and a [<code>Server</code>]{@link Server}.
 						A single connection can be used to send or receive on <a href="_stream_.dataandmoneystream.html">Streams</a>.</p>
 					</div>
 					<p>Streams are created using the <a href="_connection_.connection.html#createstream"><code>createStream</code></a> method.
@@ -146,6 +146,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="_connection_.connection.html#build" class="tsd-kind-icon">build</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="_connection_.connection.html#listenercount-1" class="tsd-kind-icon">listener<wbr>Count</a></li>
 							</ul>
 						</section>
@@ -158,19 +159,19 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Connection<span class="tsd-signature-symbol">(</span>opts<span class="tsd-signature-symbol">: </span><a href="../interfaces/_connection_.fullconnectionopts.html" class="tsd-signature-type">FullConnectionOpts</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_connection_.connection.html" class="tsd-signature-type">Connection</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Connection<span class="tsd-signature-symbol">(</span>opts<span class="tsd-signature-symbol">: </span><a href="../interfaces/_connection_.newconnectionopts.html" class="tsd-signature-type">NewConnectionOpts</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_connection_.connection.html" class="tsd-signature-type">Connection</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L154">connection.ts:154</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L171">connection.ts:171</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>opts: <a href="../interfaces/_connection_.fullconnectionopts.html" class="tsd-signature-type">FullConnectionOpts</a></h5>
+									<h5>opts: <a href="../interfaces/_connection_.newconnectionopts.html" class="tsd-signature-type">NewConnectionOpts</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_connection_.connection.html" class="tsd-signature-type">Connection</a></h4>
@@ -186,7 +187,7 @@
 					<div class="tsd-signature tsd-kind-icon">connection<wbr>Tag<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L106">connection.ts:106</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L124">connection.ts:124</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -202,7 +203,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from EventEmitter.defaultMaxListeners</p>
 						<ul>
-							<li>Defined in /home/circleci/repo/node_modules/@types/node/index.d.ts:1080</li>
+							<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:8</li>
 						</ul>
 					</aside>
 				</section>
@@ -219,7 +220,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L345">connection.ts:345</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L379">connection.ts:379</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -244,7 +245,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L359">connection.ts:359</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L393">connection.ts:393</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -269,7 +270,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L352">connection.ts:352</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L386">connection.ts:386</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -294,7 +295,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L399">connection.ts:399</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L433">connection.ts:433</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -316,7 +317,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L387">connection.ts:387</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L421">connection.ts:421</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -338,7 +339,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L366">connection.ts:366</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L400">connection.ts:400</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -360,7 +361,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L380">connection.ts:380</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L414">connection.ts:414</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -382,7 +383,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L373">connection.ts:373</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L407">connection.ts:407</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -404,7 +405,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L406">connection.ts:406</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L440">connection.ts:440</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -426,7 +427,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L420">connection.ts:420</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L454">connection.ts:454</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -448,7 +449,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L413">connection.ts:413</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L447">connection.ts:447</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -475,7 +476,7 @@
 								<p>Inherited from EventEmitter.addListener</p>
 								<p>Overrides EventEmitter.addListener</p>
 								<ul>
-									<li>Defined in /home/circleci/repo/node_modules/@types/node/index.d.ts:1082</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:10</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -519,7 +520,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L216">connection.ts:216</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L249">connection.ts:249</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -546,7 +547,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L319">connection.ts:319</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L353">connection.ts:353</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -568,7 +569,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L294">connection.ts:294</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L327">connection.ts:327</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -598,7 +599,7 @@
 								<p>Inherited from EventEmitter.emit</p>
 								<p>Overrides EventEmitter.emit</p>
 								<ul>
-									<li>Defined in /home/circleci/repo/node_modules/@types/node/index.d.ts:1094</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:22</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -624,7 +625,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L257">connection.ts:257</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L290">connection.ts:290</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -648,7 +649,7 @@
 								<p>Inherited from EventEmitter.eventNames</p>
 								<p>Overrides EventEmitter.eventNames</p>
 								<ul>
-									<li>Defined in /home/circleci/repo/node_modules/@types/node/index.d.ts:1095</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:23</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -667,7 +668,7 @@
 								<p>Inherited from EventEmitter.getMaxListeners</p>
 								<p>Overrides EventEmitter.getMaxListeners</p>
 								<ul>
-									<li>Defined in /home/circleci/repo/node_modules/@types/node/index.d.ts:1091</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:19</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -684,7 +685,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/9b49b1c/src/connection.ts#L430">connection.ts:430</a></li>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L464">connection.ts:464</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -716,7 +717,7 @@
 								<p>Inherited from EventEmitter.listenerCount</p>
 								<p>Overrides EventEmitter.listenerCount</p>
 								<ul>
-									<li>Defined in /home/circleci/repo/node_modules/@types/node/index.d.ts:1096</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:24</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -741,7 +742,7 @@
 								<p>Inherited from EventEmitter.listeners</p>
 								<p>Overrides EventEmitter.listeners</p>
 								<ul>
-									<li>Defined in /home/circleci/repo/node_modules/@types/node/index.d.ts:1092</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:20</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -766,7 +767,7 @@
 								<p>Inherited from EventEmitter.off</p>
 								<p>Overrides EventEmitter.off</p>
 								<ul>
-									<li>Defined in /home/circleci/repo/node_modules/@types/node/index.d.ts:1088</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:16</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -812,7 +813,7 @@
 								<p>Inherited from EventEmitter.on</p>
 								<p>Overrides EventEmitter.on</p>
 								<ul>
-									<li>Defined in /home/circleci/repo/node_modules/@types/node/index.d.ts:1083</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:11</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -858,7 +859,7 @@
 								<p>Inherited from EventEmitter.once</p>
 								<p>Overrides EventEmitter.once</p>
 								<ul>
-									<li>Defined in /home/circleci/repo/node_modules/@types/node/index.d.ts:1084</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:12</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -904,7 +905,7 @@
 								<p>Inherited from EventEmitter.prependListener</p>
 								<p>Overrides EventEmitter.prependListener</p>
 								<ul>
-									<li>Defined in /home/circleci/repo/node_modules/@types/node/index.d.ts:1085</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:13</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -950,7 +951,7 @@
 								<p>Inherited from EventEmitter.prependOnceListener</p>
 								<p>Overrides EventEmitter.prependOnceListener</p>
 								<ul>
-									<li>Defined in /home/circleci/repo/node_modules/@types/node/index.d.ts:1086</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:14</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -996,7 +997,7 @@
 								<p>Inherited from EventEmitter.rawListeners</p>
 								<p>Overrides EventEmitter.rawListeners</p>
 								<ul>
-									<li>Defined in /home/circleci/repo/node_modules/@types/node/index.d.ts:1093</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:21</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1021,7 +1022,7 @@
 								<p>Inherited from EventEmitter.removeAllListeners</p>
 								<p>Overrides EventEmitter.removeAllListeners</p>
 								<ul>
-									<li>Defined in /home/circleci/repo/node_modules/@types/node/index.d.ts:1089</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:17</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1046,7 +1047,7 @@
 								<p>Inherited from EventEmitter.removeListener</p>
 								<p>Overrides EventEmitter.removeListener</p>
 								<ul>
-									<li>Defined in /home/circleci/repo/node_modules/@types/node/index.d.ts:1087</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:15</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1092,7 +1093,7 @@
 								<p>Inherited from EventEmitter.setMaxListeners</p>
 								<p>Overrides EventEmitter.setMaxListeners</p>
 								<ul>
-									<li>Defined in /home/circleci/repo/node_modules/@types/node/index.d.ts:1090</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:18</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1102,6 +1103,31 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+					<a name="build" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> build</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">build<span class="tsd-signature-symbol">(</span>opts<span class="tsd-signature-symbol">: </span><a href="../interfaces/_connection_.buildconnectionopts.html" class="tsd-signature-type">BuildConnectionOpts</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_connection_.connection.html" class="tsd-signature-type">Connection</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/b601ed0/src/connection.ts#L233">connection.ts:233</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>opts: <a href="../interfaces/_connection_.buildconnectionopts.html" class="tsd-signature-type">BuildConnectionOpts</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_connection_.connection.html" class="tsd-signature-type">Connection</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1116,7 +1142,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from EventEmitter.listenerCount</p>
 								<ul>
-									<li>Defined in /home/circleci/repo/node_modules/@types/node/index.d.ts:1079</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:7</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1267,6 +1293,9 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
 								<a href="_connection_.connection.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+								<a href="_connection_.connection.html#build" class="tsd-kind-icon">build</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 								<a href="_connection_.connection.html#listenercount-1" class="tsd-kind-icon">listener<wbr>Count</a>
 							</li>
@@ -1278,10 +1307,13 @@
 						<a href="_connection_.connectionerror.html" class="tsd-kind-icon">Connection<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/_connection_.connectionopts.html" class="tsd-kind-icon">Connection<wbr>Opts</a>
+						<a href="../interfaces/_connection_.buildconnectionopts.html" class="tsd-kind-icon">Build<wbr>Connection<wbr>Opts</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/_connection_.fullconnectionopts.html" class="tsd-kind-icon">Full<wbr>Connection<wbr>Opts</a>
+						<a href="../interfaces/_connection_.connectionopts.html" class="tsd-kind-icon">Connection<wbr>Opts</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../interfaces/_connection_.newconnectionopts.html" class="tsd-kind-icon">New<wbr>Connection<wbr>Opts</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="../modules/_connection_.html#default_idle_timeout" class="tsd-kind-icon">DEFAULT_<wbr>IDLE_<wbr>TIMEOUT</a>
@@ -1330,6 +1362,7 @@
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
@@ -1378,7 +1411,7 @@
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
