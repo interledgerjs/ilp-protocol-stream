@@ -55,7 +55,7 @@
     "@types/long": "^4.0.0",
     "@types/mocha": "^5.2.5",
     "@types/puppeteer": "^1.19.1",
-    "@types/sinon": "^5.0.1",
+    "@types/sinon": "^7.5.1",
     "@types/webpack": "^4.39.1",
     "benchmark": "^2.1.4",
     "bignumber.js": "^7.2.1",
