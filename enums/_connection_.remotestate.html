@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;index&quot; | ilp-protocol-stream</title>
+	<title>RemoteState | ilp-protocol-stream</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_index_.html">&quot;index&quot;</a>
+					<a href="../modules/_connection_.html">&quot;connection&quot;</a>
+				</li>
+				<li>
+					<a href="_connection_.remotestate.html">RemoteState</a>
 				</li>
 			</ul>
-			<h1>External module &quot;index&quot;</h1>
+			<h1>Enumeration RemoteState</h1>
 		</div>
 	</div>
 </header>
@@ -68,69 +71,48 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
-							<h3>Interfaces</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_index_.createconnectionopts.html" class="tsd-kind-icon">Create<wbr>Connection<wbr>Opts</a></li>
-							</ul>
-						</section>
 						<section class="tsd-index-section tsd-is-not-exported">
-							<h3>Variables</h3>
+							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported"><a href="_index_.html#connection_id_regex" class="tsd-kind-icon">CONNECTION_<wbr>ID_<wbr>REGEX</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Functions</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_index_.html#createconnection" class="tsd-kind-icon">create<wbr>Connection</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum tsd-is-not-exported"><a href="_connection_.remotestate.html#closed" class="tsd-kind-icon">Closed</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum tsd-is-not-exported"><a href="_connection_.remotestate.html#connected" class="tsd-kind-icon">Connected</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum tsd-is-not-exported"><a href="_connection_.remotestate.html#init" class="tsd-kind-icon">Init</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
-				<h2>Variables</h2>
-				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
-					<a name="connection_id_regex" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> CONNECTION_<wbr>ID_<wbr>REGEX</h3>
-					<div class="tsd-signature tsd-kind-icon">CONNECTION_<wbr>ID_<wbr>REGEX<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> =&nbsp;/^[a-zA-Z0-9~_-]+$/</span></div>
+				<h2>Enumeration members</h2>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum tsd-is-not-exported">
+					<a name="closed" class="tsd-anchor"></a>
+					<h3>Closed</h3>
+					<div class="tsd-signature tsd-kind-icon">Closed<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/e344faf/src/index.ts#L10">index.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/e344faf/src/connection.ts#L118">connection.ts:118</a></li>
 						</ul>
 					</aside>
 				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="createconnection" class="tsd-anchor"></a>
-					<h3>create<wbr>Connection</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Connection<span class="tsd-signature-symbol">(</span>opts<span class="tsd-signature-symbol">: </span><a href="../interfaces/_index_.createconnectionopts.html" class="tsd-signature-type">CreateConnectionOpts</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/_connection_.connection.html" class="tsd-signature-type">Connection</a><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/e344faf/src/index.ts#L26">index.ts:26</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Create a <a href="../classes/_connection_.connection.html"><code>Connection</code></a> to a [<code>Server</code>]{@link Server} using the <code>destinationAccount</code> and <code>sharedSecret</code> provided.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>opts: <a href="../interfaces/_index_.createconnectionopts.html" class="tsd-signature-type">CreateConnectionOpts</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/_connection_.connection.html" class="tsd-signature-type">Connection</a><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum tsd-is-not-exported">
+					<a name="connected" class="tsd-anchor"></a>
+					<h3>Connected</h3>
+					<div class="tsd-signature tsd-kind-icon">Connected<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/e344faf/src/connection.ts#L117">connection.ts:117</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum tsd-is-not-exported">
+					<a name="init" class="tsd-anchor"></a>
+					<h3>Init</h3>
+					<div class="tsd-signature tsd-kind-icon">Init<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/e344faf/src/connection.ts#L116">connection.ts:116</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -140,27 +122,81 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_connection_.html">"connection"</a>
-					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_index_.html">"index"</a>
+						<a href="../modules/_connection_.html">"connection"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_stream_.html">"stream"</a>
+						<a href="../modules/_index_.html">"index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_stream_.html">"stream"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-enum tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_connection_.remotestate.html" class="tsd-kind-icon">Remote<wbr>State</a>
+						<ul>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum tsd-is-not-exported">
+								<a href="_connection_.remotestate.html#closed" class="tsd-kind-icon">Closed</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum tsd-is-not-exported">
+								<a href="_connection_.remotestate.html#connected" class="tsd-kind-icon">Connected</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum tsd-is-not-exported">
+								<a href="_connection_.remotestate.html#init" class="tsd-kind-icon">Init</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/_connection_.connection.html" class="tsd-kind-icon">Connection</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/_connection_.connectionerror.html" class="tsd-kind-icon">Connection<wbr>Error</a>
+					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/_index_.createconnectionopts.html" class="tsd-kind-icon">Create<wbr>Connection<wbr>Opts</a>
+						<a href="../interfaces/_connection_.buildconnectionopts.html" class="tsd-kind-icon">Build<wbr>Connection<wbr>Opts</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/_connection_.connectionopts.html" class="tsd-kind-icon">Connection<wbr>Opts</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../interfaces/_connection_.newconnectionopts.html" class="tsd-kind-icon">New<wbr>Connection<wbr>Opts</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_index_.html#connection_id_regex" class="tsd-kind-icon">CONNECTION_<wbr>ID_<wbr>REGEX</a>
+						<a href="../modules/_connection_.html#default_idle_timeout" class="tsd-kind-icon">DEFAULT_<wbr>IDLE_<wbr>TIMEOUT</a>
 					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_index_.html#createconnection" class="tsd-kind-icon">create<wbr>Connection</a>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_connection_.html#default_max_remote_streams" class="tsd-kind-icon">DEFAULT_<wbr>MAX_<wbr>REMOTE_<wbr>STREAMS</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_connection_.html#default_minimum_exchange_rate_precision" class="tsd-kind-icon">DEFAULT_<wbr>MINIMUM_<wbr>EXCHANGE_<wbr>RATE_<wbr>PRECISION</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_connection_.html#default_packet_timeout" class="tsd-kind-icon">DEFAULT_<wbr>PACKET_<wbr>TIMEOUT</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_connection_.html#max_data_size" class="tsd-kind-icon">MAX_<wbr>DATA_<wbr>SIZE</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_connection_.html#retry_delay_increase_factor" class="tsd-kind-icon">RETRY_<wbr>DELAY_<wbr>INCREASE_<wbr>FACTOR</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_connection_.html#retry_delay_max" class="tsd-kind-icon">RETRY_<wbr>DELAY_<wbr>MAX</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_connection_.html#retry_delay_start" class="tsd-kind-icon">RETRY_<wbr>DELAY_<wbr>START</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_connection_.html#test_packet_max_attempts" class="tsd-kind-icon">TEST_<wbr>PACKET_<wbr>MAX_<wbr>ATTEMPTS</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_connection_.html#isfulfill" class="tsd-kind-icon">is<wbr>Fulfill</a>
 					</li>
 				</ul>
 			</nav>
