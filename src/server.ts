@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events'
 import * as IlpPacket from 'ilp-packet'
-import * as ILDCP from 'ilp-protocol-ildcp'
+import * as ILDCP from './ildcp'
 import createLogger from 'ilp-logger'
 import * as cryptoHelper from './crypto'
 import { Connection, ConnectionOpts } from './connection'
@@ -66,7 +66,10 @@ export class Server extends EventEmitter {
     }
     this.plugin.registerDataHandler(this.handleData.bind(this))
     await this.plugin.connect()
-    const { clientAddress, assetCode, assetScale } = await ILDCP.fetch(this.plugin.sendData.bind(this.plugin))
+    const { clientAddress, assetCode, assetScale } = await ILDCP.fetch(
+      this.plugin.sendData.bind(this.plugin),
+      this.connectionOpts.getNetworkTimeMs
+    )
     this.serverAccount = clientAddress
     this.serverAssetCode = assetCode
     this.serverAssetScale = assetScale

@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events'
-import * as ILDCP from 'ilp-protocol-ildcp'
+import * as ILDCP from './ildcp'
 import * as IlpPacket from 'ilp-packet'
 import createLogger from 'ilp-logger'
 import './util/formatters'
@@ -27,7 +27,9 @@ export async function createConnection (opts: CreateConnectionOpts): Promise<Con
   const plugin = opts.plugin
   await plugin.connect()
   const log = createLogger('ilp-protocol-stream:Client')
-  const { clientAddress, assetCode, assetScale } = await ILDCP.fetch(plugin.sendData.bind(plugin))
+  const { clientAddress, assetCode, assetScale } = await ILDCP.fetch(plugin.sendData.bind(plugin),
+      opts.getNetworkTimeMs
+  )
   const connection = await Connection.build({
     ...opts,
     sourceAccount: clientAddress,
