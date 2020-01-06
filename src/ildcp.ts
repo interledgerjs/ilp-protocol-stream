@@ -31,11 +31,12 @@ const deserializeIldcpResponse = (response: Buffer): IldcpResponse => {
 }
 
 const fetch = async (sendData: (data: Buffer) => Promise<Buffer>, getNetworkTimeMs?: () => Promise<number>): Promise<IldcpResponse> => {
-  const netTime = (getNetworkTimeMs ? await getNetworkTimeMs() : Date.now()) + PEER_PROTOCOL_EXPIRY_DURATION
+  const netTime = getNetworkTimeMs ? await getNetworkTimeMs() : Date.now()
+  const expiresAt = netTime + PEER_PROTOCOL_EXPIRY_DURATION
   const data = await sendData(IlpPacket.serializeIlpPrepare({
     amount: '0',
     executionCondition: PEER_PROTOCOL_CONDITION,
-    expiresAt: new Date(netTime),
+    expiresAt: new Date(expiresAt),
     destination: 'peer.config',
     data: Buffer.alloc(0)
   }))

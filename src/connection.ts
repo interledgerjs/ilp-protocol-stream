@@ -89,7 +89,7 @@ export interface ConnectionOpts {
   exchangeRate?: number,
   /**
    * Allow application level network time syncing.
-   * Used only for setting `expiresAt` fields in ILP Prepare packets.
+   * Used for setting `expiresAt` fields in ILP Prepare packets (money / ILDCP / etc)
    */
   getNetworkTimeMs?: () => Promise<number>
 }
