@@ -71,6 +71,8 @@ export class DataAndMoneyStream extends Duplex {
   protected _outgoingDataToRetry: { data: Buffer, offset: number }[]
   protected outgoingOffset: number
 
+  protected _receipt?: Buffer
+
   protected emittedEnd: boolean
   protected emittedClose: boolean
 
@@ -193,6 +195,13 @@ export class DataAndMoneyStream extends Duplex {
     } else {
       return this['_writableState'].highWaterMark
     }
+  }
+
+  /**
+   * Latest receipt for total sent amount.
+   */
+  get receipt (): Buffer | undefined {
+    return this._receipt
   }
 
   /**
@@ -672,6 +681,14 @@ export class DataAndMoneyStream extends Duplex {
       this.push(null)
       this.end()
     }
+  }
+
+  /**
+   * (Used by the Connection class but not meant to be part of the public API)
+   * @private
+   */
+  _setReceipt (receipt: Buffer): void {
+    this._receipt = receipt
   }
 
   protected safeEmit (event: string, ...args: any[]) {

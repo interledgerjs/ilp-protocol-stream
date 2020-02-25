@@ -20,11 +20,12 @@ import {
   ConnectionMaxStreamIdFrame,
   StreamMaxDataFrame,
   StreamDataBlockedFrame,
+  StreamReceiptFrame,
   ConnectionMaxDataFrame,
   ConnectionDataBlockedFrame,
   StreamMoneyBlockedFrame
 } from './packet'
-import { Reader } from 'oer-utils'
+import { Reader, Writer } from 'oer-utils'
 import { CongestionController } from './util/congestion'
 import { Plugin } from './util/plugin-interface'
 import {
@@ -49,6 +50,7 @@ const MAX_DATA_SIZE = 32767
 const DEFAULT_MAX_REMOTE_STREAMS = 10
 const DEFAULT_MINIMUM_EXCHANGE_RATE_PRECISION = 3
 const TEST_PACKET_MAX_ATTEMPTS = 20
+const RECEIPT_VERSION = 1
 
 export interface ConnectionOpts {
   /** Token in the ILP address uniquely identifying this connection */
@@ -65,6 +67,10 @@ export interface ConnectionOpts {
   enablePadding?: boolean,
   /** User-specified connection identifier that was passed into [`generateAddressAndSecret`]{@link Server#generateAddressAndSecret} */
   connectionTag?: string,
+  /** User-specified receipt nonce that was passed into [`generateAddressAndSecret`]{@link Server#generateAddressAndSecret} */
+  receiptNonce?: Buffer,
+  /** User-specified receipt secret that was passed into [`generateAddressAndSecret`]{@link Server#generateAddressAndSecret} */
+  receiptSecret?: Buffer,
   /** Maximum number of streams the other entity can have open at once. Defaults to 10 */
   maxRemoteStreams?: number,
   /** Number of bytes each connection can have in the buffer. Defaults to 65534 */
@@ -147,6 +153,8 @@ function defaultGetExpiry (): Date {
 export class Connection extends EventEmitter {
   /** Application identifier for a certain connection */
   readonly connectionTag?: string
+  protected readonly _receiptNonce?: Buffer
+  protected readonly _receiptSecret?: Buffer
 
   protected connectionId: string
   protected plugin: Plugin
@@ -221,6 +229,8 @@ export class Connection extends EventEmitter {
     this.allowableReceiveExtra = Rational.fromNumber(1.01, true)
     this.enablePadding = !!opts.enablePadding
     this.connectionTag = opts.connectionTag
+    this._receiptNonce = opts.receiptNonce
+    this._receiptSecret = opts.receiptSecret
     this.maxStreamId = 2 * (opts.maxRemoteStreams || DEFAULT_MAX_REMOTE_STREAMS)
     this.maxBufferedData = opts.connectionBufferSize || MAX_DATA_SIZE * 2
     this.minExchangeRatePrecision = opts.minExchangeRatePrecision || DEFAULT_MINIMUM_EXCHANGE_RATE_PRECISION
@@ -681,8 +691,17 @@ export class Connection extends EventEmitter {
     }
 
     // Add incoming amounts to each stream
+    const totalsReceived: Map<number, string> = new Map()
     for (let { stream, amount } of amountsToReceive) {
       stream._addToIncoming(amount)
+      totalsReceived.set(stream.id, stream.totalReceived)
+    }
+
+    // Add receipt frame(s)
+    if (this._receiptNonce) {
+      for (let [streamId, totalReceived] of totalsReceived) {
+        responseFrames.push(new StreamReceiptFrame(streamId, await this.createReceipt(streamId, totalReceived)))
+      }
     }
 
     // TODO make sure the queued frames aren't too big
@@ -1142,6 +1161,17 @@ export class Connection extends EventEmitter {
       }
 
       if (responsePacket.ilpPacketType === IlpPacketType.Fulfill) {
+        for (let frame of responsePacket.frames) {
+          if (frame.type === FrameType.StreamReceipt) {
+            const stream = this.streams.get(frame.streamId.toNumber())
+            if (stream) {
+              stream._setReceipt(frame.receipt)
+            } else {
+              this.log.debug('received receipt for unknown stream %d: %h', frame.streamId, frame.receipt)
+            }
+          }
+        }
+
         for (let stream of streamsSentFrom) {
           stream._executeHold(requestPacket.sequence.toString())
         }
@@ -1158,7 +1188,7 @@ export class Connection extends EventEmitter {
   }
 
   /**
-   * (Internal) Send volly of test packests to find the exchange rate, its precision, and potential other amounts to try.
+   * (Internal) Send volley of test packets to find the exchange rate, its precision, and potential other amounts to try.
    * @private
    */
   protected async sendTestPacketVolley (testPacketAmounts: number[]): Promise<any> {
@@ -1689,6 +1719,20 @@ export class Connection extends EventEmitter {
       requestPacket.frames.push(new ConnectionNewAddressFrame(this._sourceAccount))
       requestPacket.frames.push(new ConnectionAssetDetailsFrame(this._sourceAssetCode, this._sourceAssetScale))
     }
+  }
+
+  private async createReceipt (streamId: LongValue, totalReceived: LongValue): Promise<Buffer> {
+    if (!this._receiptNonce || !this._receiptSecret) {
+      throw new Error('Nonce and secret required to create receipt')
+    }
+
+    const receipt = new Writer(58)
+    receipt.writeUInt8(RECEIPT_VERSION)
+    receipt.writeOctetString(this._receiptNonce, 16)
+    receipt.writeUInt8(streamId)
+    receipt.writeUInt64(longFromValue(totalReceived, true))
+    receipt.writeOctetString(await cryptoHelper.hmac(this._receiptSecret, receipt.getBuffer()), 32)
+    return receipt.getBuffer()
   }
 }
 

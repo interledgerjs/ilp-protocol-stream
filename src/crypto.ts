@@ -2,13 +2,16 @@
 import { hmac, randomBytes } from './util/crypto-node'
 export {
   decrypt,
+  decryptToken, // only in node, not browser
   encrypt,
+  encryptToken, // only in node, not browser
   generateSharedSecretFromToken, // only in node, not browser
   hash,
+  hmac,
   randomBytes
 } from './util/crypto-node'
 
-const TOKEN_LENGTH = 18
+export const TOKEN_LENGTH = 18
 const ENCRYPTION_KEY_STRING = Buffer.from('ilp_stream_encryption', 'utf8')
 const FULFILLMENT_GENERATION_STRING = Buffer.from('ilp_stream_fulfillment', 'utf8')
 const PACKET_ID_STRING = Buffer.from('ilp_stream_packet_id', 'utf8')
