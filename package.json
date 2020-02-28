@@ -55,7 +55,7 @@
     "@types/chai-as-promised": "^7.1.0",
     "@types/long": "^4.0.0",
     "@types/mocha": "^5.2.5",
-    "@types/puppeteer": "^1.19.1",
+    "@types/puppeteer": "^2.0.1",
     "@types/sinon": "^5.0.1",
     "@types/uuid": "^3.4.6",
     "@types/webpack": "^4.39.1",
