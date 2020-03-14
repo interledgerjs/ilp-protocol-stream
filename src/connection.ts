@@ -29,15 +29,12 @@ import { Reader } from 'oer-utils'
 import { CongestionController } from './util/congestion'
 import { Plugin } from './util/plugin-interface'
 import {
-  LongValue,
-  longFromValue,
   maxLong,
   minLong,
   minLongs,
   countDigits,
   checkedAdd,
   checkedSubtract,
-  checkedMultiply,
   multiplyDivideFloor
 } from './util/long'
 import * as Long from 'long'
