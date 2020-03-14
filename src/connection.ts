@@ -52,6 +52,8 @@ const DEFAULT_MINIMUM_EXCHANGE_RATE_PRECISION = 3
 const TEST_PACKET_MAX_ATTEMPTS = 20
 
 export interface ConnectionOpts {
+  /** Token in the ILP address uniquely identifying this connection */
+  connectionId?: string,
   /** Ledger plugin (V2) */
   plugin: Plugin,
   /** ILP Address of the remote entity */
@@ -186,7 +188,11 @@ export class Connection extends EventEmitter {
 
   constructor (opts: NewConnectionOpts) {
     super()
-    this.connectionId = uuid()
+
+    // Use the same connetionId for loggin on both client & server
+    const lastAddressSegment = opts.destinationAccount ? opts.destinationAccount.split('.').slice(-1)[0] : undefined
+    this.connectionId = opts.connectionId || lastAddressSegment || uuid()
+
     this.plugin = opts.plugin
     this._sourceAccount = opts.sourceAccount
     this._sourceAssetCode = opts.assetCode
