@@ -1,5 +1,4 @@
 import { EventEmitter } from 'events'
-import * as assert from 'assert'
 import createLogger from 'ilp-logger'
 import { DataAndMoneyStream } from './stream'
 import * as IlpPacket from 'ilp-packet'
@@ -92,6 +91,17 @@ export interface ConnectionOpts {
    * When omitted, use a timeout of 30 seconds.
    */
   getExpiry?: (destination: string) => Date,
+  /**
+   * Callback for the consumer to perform accounting and choose to fulfill an incoming ILP Prepare,
+   * given the identifier of the connection, sequence of the packet, and amount received.
+   *
+   * If the returned Promise is resolved, the ILP Prepare will be fulfilled; if it is rejected,
+   * the ILP Prepare will be rejected. The ILP Fulfill will be immediately sent back after
+   * the Promise is resolved.
+   *
+   * If a sender is non-compliant with the spec, they can trigger duplicate sequence numbers.
+   */
+  shouldFulfill?: (connectionId: string, sequence: Long, amount: Long) => Promise<void>,
 }
 
 export interface BuildConnectionOpts extends ConnectionOpts {
@@ -185,6 +195,7 @@ export class Connection extends EventEmitter {
   protected _totalDelivered: Long
   protected _lastPacketExchangeRate: Rational
   protected getExpiry: (destination: string) => Date
+  protected shouldFulfill?: (connectionId: string, sequence: Long, amount: Long) => Promise<void>
 
   constructor (opts: NewConnectionOpts) {
     super()
@@ -216,6 +227,7 @@ export class Connection extends EventEmitter {
       ? undefined
       : Rational.fromNumber(opts.exchangeRate, true)
     this.getExpiry = opts.getExpiry || defaultGetExpiry
+    this.shouldFulfill = opts.shouldFulfill
     this.idleTimeout = opts.idleTimeout || DEFAULT_IDLE_TIMEOUT
     this.lastActive = new Date()
 
@@ -631,11 +643,6 @@ export class Connection extends EventEmitter {
       }
     }
 
-    // Add incoming amounts to each stream
-    for (let { stream, amount } of amountsToReceive) {
-      stream._addToIncoming(amount)
-    }
-
     // Tell peer about closed streams and how much each stream can receive
     if (!this.closed && this.remoteState !== RemoteState.Closed) {
       for (let [_, stream] of this.streams) {
@@ -656,6 +663,20 @@ export class Connection extends EventEmitter {
           responseFrames.push(new StreamMaxDataFrame(stream.id, stream._getIncomingOffsets().maxAcceptable))
         }
       }
+    }
+
+    // Allow consumer to choose to fulfill each packet and/or perform other logic before fulfilling
+    if (this.shouldFulfill && incomingAmount.greaterThan(0)) {
+      await this.shouldFulfill(this.connectionId, requestPacket.sequence, incomingAmount).catch(async err => {
+        this.log.debug('application declined to fulfill packet %s:', requestPacket.sequence, err)
+
+        await throwFinalApplicationError()
+      })
+    }
+
+    // Add incoming amounts to each stream
+    for (let { stream, amount } of amountsToReceive) {
+      stream._addToIncoming(amount)
     }
 
     // TODO make sure the queued frames aren't too big
@@ -1589,16 +1610,7 @@ export class Connection extends EventEmitter {
   private bumpIdle (): void { this.lastActive = new Date() }
 
   private addTotalReceived (value: Long): void {
-    const result = checkedAdd(this._totalReceived, value)
-    if (result.overflow) {
-      const err = new IlpPacket.Errors.BadRequestError('Total received exceeded MaxUint64')
-      err['ilpErrorMessage'] = err.message
-      /* tslint:disable-next-line:no-floating-promises */
-      this.destroy(err)
-      throw err
-    } else {
-      this._totalReceived = result.sum
-    }
+    this._totalReceived = checkedAdd(this._totalReceived, value).sum
   }
 
   private addTotalSent (value: Long): void {
