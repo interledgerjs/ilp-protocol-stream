@@ -32,6 +32,7 @@ export class Server extends EventEmitter {
   protected enablePadding?: boolean
   protected connected: boolean
   protected connectionOpts: ConnectionOpts
+  protected pendingRequests: Promise<any> = Promise.resolve()
   private pool: ServerConnectionPool
 
   constructor (opts: ServerOpts) {
@@ -64,7 +65,12 @@ export class Server extends EventEmitter {
     if (this.connected && this.plugin.isConnected()) {
       return
     }
-    this.plugin.registerDataHandler(this.handleData.bind(this))
+    this.plugin.registerDataHandler(data => {
+      this.emit('_incoming_prepare')
+      const request = this.handleData(data)
+      this.pendingRequests = this.pendingRequests.then(() => request.finally())
+      return request
+    })
     await this.plugin.connect()
     const { clientAddress, assetCode, assetScale } = await ILDCP.fetch(this.plugin.sendData.bind(this.plugin))
     this.serverAccount = clientAddress
@@ -87,9 +93,15 @@ export class Server extends EventEmitter {
    * End all connections and disconnect the plugin
    */
   async close (): Promise<void> {
+    // Stop handling new requests: close all streams and the connection
     await this.pool.close()
     this.plugin.deregisterDataHandler()
+
+    // Wait for in-progress requests to finish
+    await this.pendingRequests
+    await new Promise(r => setTimeout(r, 100))
     await this.plugin.disconnect()
+
     this.emit('_close')
     this.connected = false
   }

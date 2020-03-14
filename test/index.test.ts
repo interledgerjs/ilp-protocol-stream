@@ -135,30 +135,53 @@ describe('Server', function () {
       await this.server.listen()
     })
 
-    it('should close all connections', async function () {
-      const spy = sinon.spy()
-      this.server.on('connection', (serverConn: Connection) => {
-        serverConn.on('stream', (stream: DataAndMoneyStream) => {
-          stream.setReceiveMax(100)
-        })
-        serverConn.on('end', spy)
-      })
+    it('safely closes all connections', async function () {
+      const serverPromise = this.server.acceptConnection()
 
       const clientConn = await createConnection({
         ...this.server.generateAddressAndSecret(),
         plugin: this.clientPlugin
       })
+      const clientStream = clientConn.createStream()
 
-      await clientConn.createStream().sendTotal(100)
+      const serverEndSpy = sinon.spy()
+      const serverConn: Connection = await serverPromise
+      let serverStream: DataAndMoneyStream
+      serverConn.once('stream', (stream: DataAndMoneyStream) => {
+        serverStream = stream
+        serverStream.setReceiveMax(100)
+      })
+      serverConn.on('end', serverEndSpy)
 
-      await this.server.close()
-      assert.calledOnce(spy)
+      // Wait for initial connection establishment to finish before sending any money
+      await new Promise(r => clientStream.once('_send_loop_finished', r))
+      await new Promise(r => serverStream.once('_send_loop_finished', r))
+
+      // After it receives the next packet, immediately try to close the server
+      let closePromise: Promise<void>
+      const pluginDisconnectSpy = sinon.spy(this.serverPlugin, 'disconnect')
+      this.server.once('_incoming_prepare', () => {
+        process.nextTick(() => {
+          closePromise = this.server.close()
+        })
     })
 
-    it('should disconnect the plugin', async function () {
-      const spy = sinon.spy(this.serverPlugin, 'disconnect')
-      await this.server.close()
-      assert.calledOnce(spy)
+      // First payment should succeed because the packet
+      // was accepted before the server closed
+      await assert.isFulfilled(clientStream.sendTotal(100))
+      assert.equal('50', serverConn.totalReceived)
+      assert.equal('50', clientConn.totalDelivered)
+
+      // Second payment should fail because the server already closed
+      await assert.isRejected(clientStream.sendTotal(150))
+      assert.equal('50', serverConn.totalReceived)
+      assert.equal('50', clientConn.totalDelivered)
+
+      // @ts-ignore
+      await closePromise
+
+      assert.calledOnce(serverEndSpy)
+      assert.calledOnce(pluginDisconnectSpy)
     })
   })
 
