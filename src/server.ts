@@ -8,9 +8,16 @@ import { ServerConnectionPool } from './pool'
 import { Plugin } from './util/plugin-interface'
 
 const CONNECTION_ID_REGEX = /^[a-zA-Z0-9~_-]+$/
+const DEFAULT_DISCONNECT_DELAY = 100
 
 export interface ServerOpts extends ConnectionOpts {
   serverSecret?: Buffer
+
+  /**
+   * Number of milliseconds to wait between closing the server and disconnecting
+   * the plugin so packets may be safely returned
+   */
+  disconnectDelay?: number
 }
 
 /**
@@ -33,6 +40,7 @@ export class Server extends EventEmitter {
   protected connected: boolean
   protected connectionOpts: ConnectionOpts
   protected pendingRequests: Promise<any> = Promise.resolve()
+  protected disconnectDelay: number
   private pool: ServerConnectionPool
 
   constructor (opts: ServerOpts) {
@@ -43,6 +51,7 @@ export class Server extends EventEmitter {
     this.connectionOpts = Object.assign({}, opts, {
       serverSecret: undefined
     }) as ConnectionOpts
+    this.disconnectDelay = opts.disconnectDelay || DEFAULT_DISCONNECT_DELAY
     this.connected = false
   }
 
@@ -99,7 +108,7 @@ export class Server extends EventEmitter {
 
     // Wait for in-progress requests to finish
     await this.pendingRequests
-    await new Promise(r => setTimeout(r, 100))
+    await new Promise(r => setTimeout(r, this.disconnectDelay))
     await this.plugin.disconnect()
 
     this.emit('_close')
