@@ -130,7 +130,10 @@ describe('Server', function () {
     beforeEach(async function () {
       this.server = new Server({
         serverSecret: Buffer.alloc(32),
-        plugin: this.serverPlugin
+        plugin: this.serverPlugin,
+        async shouldFulfill() {
+          await new Promise(r => setTimeout(r, 1000))
+        }
       })
       await this.server.listen()
     })
@@ -139,7 +142,7 @@ describe('Server', function () {
       const serverPromise = this.server.acceptConnection()
 
       const clientConn = await createConnection({
-        ...this.server.generateAddressAndSecret(),
+        ...this.server.generateAddressAndSecret('hello'),
         plugin: this.clientPlugin
       })
       const clientStream = clientConn.createStream()
@@ -164,7 +167,7 @@ describe('Server', function () {
         process.nextTick(() => {
           closePromise = this.server.close()
         })
-    })
+      })
 
       // First payment should succeed because the packet
       // was accepted before the server closed
