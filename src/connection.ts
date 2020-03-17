@@ -99,9 +99,12 @@ export interface ConnectionOpts {
    * the ILP Prepare will be rejected. The ILP Fulfill will be immediately sent back after
    * the Promise is resolved.
    *
-   * If a sender is non-compliant with the spec, they can trigger duplicate sequence numbers.
+   * If `shouldFulfill` is provided, all connections MUST have a `connectionTag`, otherwise
+   * the packets are rejected.
+   *
+   * If a sender is non-compliant with STREAM, they can trigger duplicate sequence numbers.
    */
-  shouldFulfill?: (connectionId: string, sequence: Long, amount: Long) => Promise<void>,
+  shouldFulfill?: (connectionTag: string, sequence: Long, amount: Long) => Promise<void>,
 }
 
 export interface BuildConnectionOpts extends ConnectionOpts {
@@ -195,12 +198,12 @@ export class Connection extends EventEmitter {
   protected _totalDelivered: Long
   protected _lastPacketExchangeRate: Rational
   protected getExpiry: (destination: string) => Date
-  protected shouldFulfill?: (connectionId: string, sequence: Long, amount: Long) => Promise<void>
+  protected shouldFulfill?: (connectionTag: string, sequence: Long, amount: Long) => Promise<void>
 
   constructor (opts: NewConnectionOpts) {
     super()
 
-    // Use the same connetionId for loggin on both client & server
+    // Use the same connetionId for logging on both client & server
     const lastAddressSegment = opts.destinationAccount ? opts.destinationAccount.split('.').slice(-1)[0] : undefined
     this.connectionId = opts.connectionId || lastAddressSegment || uuid()
 
@@ -491,7 +494,8 @@ export class Connection extends EventEmitter {
 
   /**
    * (Internal) Handle incoming ILP Prepare packets.
-   * This will automatically fulfill all valid and expected Prepare packets.
+   * This will automatically fulfill all valid and expected Prepare packets, or
+   * defer to custom application logic using the `shouldFulfill` callback, if provided.
    * It passes the incoming money and/or data to the relevant streams.
    * @private
    */
@@ -667,9 +671,13 @@ export class Connection extends EventEmitter {
 
     // Allow consumer to choose to fulfill each packet and/or perform other logic before fulfilling
     if (this.shouldFulfill && incomingAmount.greaterThan(0)) {
-      await this.shouldFulfill(this.connectionId, requestPacket.sequence, incomingAmount).catch(async err => {
-        this.log.debug('application declined to fulfill packet %s:', requestPacket.sequence, err)
+      if (!this.connectionTag) {
+        this.log.error('rejecting packet %s without connection tag:', requestPacket.sequence)
+        return throwFinalApplicationError()
+      }
 
+      await this.shouldFulfill(this.connectionTag, requestPacket.sequence, incomingAmount).catch(async err => {
+        this.log.debug('application declined to fulfill packet %s:', requestPacket.sequence, err)
         await throwFinalApplicationError()
       })
     }

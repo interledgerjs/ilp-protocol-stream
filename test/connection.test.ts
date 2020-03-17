@@ -1222,10 +1222,7 @@ describe('Connection', function () {
 
     it('use shouldFulfill callback to fulfill or reject packets', async function () {
       const serverMoneySpy = sinon.spy()
-      let addressAndSecret: {
-        sharedSecret: Buffer
-        destinationAccount: string
-      }
+      const actualConnectionTag = 'helloworld'
       let serverConn: Connection
 
       /**
@@ -1247,13 +1244,14 @@ describe('Connection', function () {
        *     Destination amount: 20 (source amount: 40)
        *     Fulfilled by application
        *
+       * (Packets with sequence numbers 1-6 are test packets.)
+       *
        * Only those packets must trigger a call to `shouldFulfill`.
        * If any other packets call it, the test will fail.
        */
 
-      const shouldFulfillSpy = sinon.spy(async (connectionId: string, sequence: Long, amount: Long) => {
-        const [actualConnectionId] = addressAndSecret.destinationAccount.split('.').slice(-1)
-        assert.equal(actualConnectionId, connectionId)
+      const shouldFulfillSpy = sinon.spy(async (connectionTag: string, sequence: Long, amount: Long) => {
+        assert.equal(actualConnectionTag, connectionTag)
 
         const seqNum = sequence.toNumber()
         const amountNum = amount.toNumber()
@@ -1293,7 +1291,7 @@ describe('Connection', function () {
         shouldFulfill: shouldFulfillSpy
       })
 
-      addressAndSecret = this.server.generateAddressAndSecret()
+      const addressAndSecret = this.server.generateAddressAndSecret(actualConnectionTag)
       const serverPromise = this.server.acceptConnection()
 
       this.clientPlugin.maxAmount = 60
