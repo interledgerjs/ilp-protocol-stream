@@ -102,13 +102,25 @@ export class Server extends EventEmitter {
    * End all connections and disconnect the plugin
    */
   async close (): Promise<void> {
-    // Stop handling new requests: close all streams and the connection
-    await this.pool.close()
+    // Stop handling new requests, and return T99 while the connection is closing.
+    // If an F02 unreachable was returned on new packets: clients would immediately destroy the connection
+    // If an F99 was returned on on new packets: clients would retry with no backoff
     this.plugin.deregisterDataHandler()
+    this.plugin.registerDataHandler(async () => IlpPacket.serializeIlpReject({
+      code: 'T99', // Temporary application error
+      triggeredBy: this.serverAccount,
+      message: 'Closing connection',
+      data: Buffer.alloc(0)
+    }))
 
-    // Wait for in-progress requests to finish
+    // Wait for in-progress requests to finish so all Fulfills are returned
     await this.pendingRequests
     await new Promise(r => setTimeout(r, this.disconnectDelay))
+
+    // Gracefully close the connection and all streams
+    await this.pool.close()
+
+    this.plugin.deregisterDataHandler()
     await this.plugin.disconnect()
 
     this.emit('_close')

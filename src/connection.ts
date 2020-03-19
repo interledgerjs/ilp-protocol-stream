@@ -647,6 +647,19 @@ export class Connection extends EventEmitter {
       }
     }
 
+    // Allow consumer to choose to fulfill each packet and/or perform other logic before fulfilling
+    if (this.shouldFulfill && incomingAmount.greaterThan(0)) {
+      if (!this.connectionTag) {
+        this.log.error('rejecting packet %s without connection tag:', requestPacket.sequence)
+        return throwFinalApplicationError()
+      }
+
+      await this.shouldFulfill(this.connectionTag, requestPacket.sequence, incomingAmount).catch(async err => {
+        this.log.debug('application declined to fulfill packet %s:', requestPacket.sequence, err)
+        await throwFinalApplicationError()
+      })
+    }
+
     // Tell peer about closed streams and how much each stream can receive
     if (!this.closed && this.remoteState !== RemoteState.Closed) {
       for (let [_, stream] of this.streams) {
@@ -667,19 +680,6 @@ export class Connection extends EventEmitter {
           responseFrames.push(new StreamMaxDataFrame(stream.id, stream._getIncomingOffsets().maxAcceptable))
         }
       }
-    }
-
-    // Allow consumer to choose to fulfill each packet and/or perform other logic before fulfilling
-    if (this.shouldFulfill && incomingAmount.greaterThan(0)) {
-      if (!this.connectionTag) {
-        this.log.error('rejecting packet %s without connection tag:', requestPacket.sequence)
-        return throwFinalApplicationError()
-      }
-
-      await this.shouldFulfill(this.connectionTag, requestPacket.sequence, incomingAmount).catch(async err => {
-        this.log.debug('application declined to fulfill packet %s:', requestPacket.sequence, err)
-        await throwFinalApplicationError()
-      })
     }
 
     // Add incoming amounts to each stream
