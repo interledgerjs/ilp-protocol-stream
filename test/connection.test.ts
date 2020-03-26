@@ -1171,7 +1171,7 @@ describe('Connection', function () {
       await assert.isRejected(clientStream.sendTotal(1000), 'Stream was closed before the desired amount was sent (target: 1000, totalSent: 0)')
     })
 
-    it.skip('closes the connection if totalReceived exceeds MaxUint64', async function () {
+    it('closes the connection if totalReceived exceeds MaxUint64', async function () {
       this.serverPlugin.maxAmount = Long.MAX_UNSIGNED_VALUE
 
       const serverPromise = this.server.acceptConnection()
