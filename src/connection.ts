@@ -99,12 +99,14 @@ export interface ConnectionOpts {
    * the ILP Prepare will be rejected. The ILP Fulfill will be immediately sent back after
    * the Promise is resolved.
    *
-   * If `shouldFulfill` is provided, all connections MUST have a `connectionTag`, otherwise
-   * the packets are rejected.
-   *
-   * If a sender is non-compliant with STREAM, they can trigger duplicate sequence numbers.
+   * Notes:
+   * - If `shouldFulfill` is provided, all connections MUST have a `connectionTag`, otherwise
+   *   the packets are rejected.
+   * - If the total amount received on the connection exceeds the max u64, the packet will be
+   *   rejected, even if the callback is resolved.
+   * - If a sender is non-compliant with STREAM, they can trigger duplicate sequence numbers.
    */
-  shouldFulfill?: (connectionTag: string, sequence: Long, amount: Long) => Promise<void>,
+  shouldFulfill?: (connectionTag: string, sequence: Long, packetAmount: Long) => Promise<void>,
 }
 
 export interface BuildConnectionOpts extends ConnectionOpts {
@@ -198,14 +200,14 @@ export class Connection extends EventEmitter {
   protected _totalDelivered: Long
   protected _lastPacketExchangeRate: Rational
   protected getExpiry: (destination: string) => Date
-  protected shouldFulfill?: (connectionTag: string, sequence: Long, amount: Long) => Promise<void>
+  protected shouldFulfill?: (connectionTag: string, sequence: Long, packetAmount: Long) => Promise<void>
 
   constructor (opts: NewConnectionOpts) {
     super()
 
     // Use the same connetionId for logging on both client & server
     const lastAddressSegment = opts.destinationAccount ? opts.destinationAccount.split('.').slice(-1)[0] : undefined
-    this.connectionId = opts.connectionId || lastAddressSegment || uuid()
+    this.connectionId = (opts.connectionId || lastAddressSegment || uuid()).slice(0, 8)
 
     this.plugin = opts.plugin
     this._sourceAccount = opts.sourceAccount
@@ -1621,7 +1623,16 @@ export class Connection extends EventEmitter {
   private bumpIdle (): void { this.lastActive = new Date() }
 
   private addTotalReceived (value: Long): void {
-    this._totalReceived = checkedAdd(this._totalReceived, value).sum
+    const result = checkedAdd(this._totalReceived, value)
+    if (result.overflow) {
+      const err = new IlpPacket.Errors.BadRequestError('Total received exceeded MaxUint64')
+      err['ilpErrorMessage'] = err.message
+      /* tslint:disable-next-line:no-floating-promises */
+      this.destroy(err)
+      throw err
+    } else {
+      this._totalReceived = result.sum
+    }
   }
 
   private addTotalSent (value: Long): void {
