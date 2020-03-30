@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DataAndMoneyStream | ilp-protocol-stream - v2.4.0</title>
+	<title>DataAndMoneyStream | ilp-protocol-stream</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,9 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">ilp-protocol-stream - v2.4.0</a>
+					<ul class="results-priority" style="display:none">
+					</ul>
+					<a href="../index.html" class="title">ilp-protocol-stream</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -51,31 +53,46 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../globals.html">Globals</a>
-				</li>
-				<li>
-					<a href="../modules/_stream_.html">&quot;stream&quot;</a>
+					<a href="../modules/_stream_.html">stream</a>
 				</li>
 				<li>
 					<a href="_stream_.dataandmoneystream.html">DataAndMoneyStream</a>
 				</li>
 			</ul>
-			<h1>Class DataAndMoneyStream</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
-		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
+		<div class="col-3 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html" style="display:none"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_connection_.html" style="display:none">connection</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_index_.html" style="display:none">index</a>
+					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/_stream_.html" style="display:none">stream</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="col-7 offset-3 col-content">
+			<h1>Class DataAndMoneyStream</h1>
+			<section class="tsd-panel tsd-comment"><div class="tsd-comment tsd-typography tsd-comment-shorttext">
 					<div class="lead">
 						<p>Class used to send money and data over a <a href="_connection_.connection.html">Connection</a>.</p>
-					</div>
+						</div><p>This exposes the Node <a href="https://nodejs.org/dist/latest-v10.x/docs/api/stream.html#stream_class_stream_duplex">Duplex Stream</a> interface for sending data,
+					as well as additional functions for sending money.</p>
+					</div><div class="tsd-comment tsd-typography tsd-comment-text">
 					<p>This exposes the Node <a href="https://nodejs.org/dist/latest-v10.x/docs/api/stream.html#stream_class_stream_duplex">Duplex Stream</a> interface for sending data,
 					as well as additional functions for sending money.</p>
-				</div>
-			</section>
+			</div></section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -97,7 +114,6 @@
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
-				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
@@ -109,92 +125,92 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_errormessage" class="tsd-kind-icon">_error<wbr>Message</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_remoteclosed" class="tsd-kind-icon">_remote<wbr>Closed</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_remotemaxoffset" class="tsd-kind-icon">_remote<wbr>Max<wbr>Offset</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_remotereceivemax" class="tsd-kind-icon">_remote<wbr>Receive<wbr>Max</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_remotereceived" class="tsd-kind-icon">_remote<wbr>Received</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_remotesentend" class="tsd-kind-icon">_remote<wbr>Sent<wbr>End</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_sentend" class="tsd-kind-icon">_sent<wbr>End</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_errormessage" class="tsd-kind-icon">_errorMessage</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_remoteclosed" class="tsd-kind-icon">_remoteClosed</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_remotemaxoffset" class="tsd-kind-icon">_remoteMaxOffset</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_remotereceivemax" class="tsd-kind-icon">_remoteReceiveMax</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_remotereceived" class="tsd-kind-icon">_remoteReceived</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_remotesentend" class="tsd-kind-icon">_remoteSentEnd</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_sentend" class="tsd-kind-icon">_sentEnd</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#id" class="tsd-kind-icon">id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#readable" class="tsd-kind-icon">readable</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#writable" class="tsd-kind-icon">writable</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="_stream_.dataandmoneystream.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="_stream_.dataandmoneystream.html#defaultmaxlisteners" class="tsd-kind-icon">defaultMaxListeners</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-overwrite"><a href="_stream_.dataandmoneystream.html#readablehighwatermark" class="tsd-kind-icon">readable<wbr>High<wbr>Water<wbr>Mark</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-overwrite"><a href="_stream_.dataandmoneystream.html#readablelength" class="tsd-kind-icon">readable<wbr>Length</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#receivemax" class="tsd-kind-icon">receive<wbr>Max</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#sendmax" class="tsd-kind-icon">send<wbr>Max</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#totalreceived" class="tsd-kind-icon">total<wbr>Received</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#totalsent" class="tsd-kind-icon">total<wbr>Sent</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-overwrite"><a href="_stream_.dataandmoneystream.html#writablehighwatermark" class="tsd-kind-icon">writable<wbr>High<wbr>Water<wbr>Mark</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-overwrite"><a href="_stream_.dataandmoneystream.html#writablelength" class="tsd-kind-icon">writable<wbr>Length</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-overwrite"><a href="_stream_.dataandmoneystream.html#readablehighwatermark" class="tsd-kind-icon">readableHighWaterMark</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-overwrite"><a href="_stream_.dataandmoneystream.html#readablelength" class="tsd-kind-icon">readableLength</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#receivemax" class="tsd-kind-icon">receiveMax</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#sendmax" class="tsd-kind-icon">sendMax</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#totalreceived" class="tsd-kind-icon">totalReceived</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#totalsent" class="tsd-kind-icon">totalSent</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-overwrite"><a href="_stream_.dataandmoneystream.html#writablehighwatermark" class="tsd-kind-icon">writableHighWaterMark</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-overwrite"><a href="_stream_.dataandmoneystream.html#writablelength" class="tsd-kind-icon">writableLength</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#_symbol_asynciterator_" class="tsd-kind-icon">[<wbr>Symbol.async<wbr>Iterator]</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_addtoincoming" class="tsd-kind-icon">_add<wbr>ToIncoming</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_cancelhold" class="tsd-kind-icon">_cancel<wbr>Hold</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#___asynciterator" class="tsd-kind-icon">__@asyncIterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_addtoincoming" class="tsd-kind-icon">_addToIncoming</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_cancelhold" class="tsd-kind-icon">_cancelHold</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-private"><a href="_stream_.dataandmoneystream.html#_destroy" class="tsd-kind-icon">_destroy</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_executehold" class="tsd-kind-icon">_execute<wbr>Hold</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_executehold" class="tsd-kind-icon">_executeHold</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-private"><a href="_stream_.dataandmoneystream.html#_final" class="tsd-kind-icon">_final</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_getamountavailabletosend" class="tsd-kind-icon">_get<wbr>Amount<wbr>Available<wbr>ToSend</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_getamountstreamcanreceive" class="tsd-kind-icon">_get<wbr>Amount<wbr>Stream<wbr>Can<wbr>Receive</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_getavailabledatatosend" class="tsd-kind-icon">_get<wbr>Available<wbr>Data<wbr>ToSend</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_getincomingoffsets" class="tsd-kind-icon">_get<wbr>Incoming<wbr>Offsets</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_getoutgoingoffsets" class="tsd-kind-icon">_get<wbr>Outgoing<wbr>Offsets</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_hasdatatosend" class="tsd-kind-icon">_has<wbr>Data<wbr>ToSend</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_holdoutgoing" class="tsd-kind-icon">_hold<wbr>Outgoing</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_isdatablocked" class="tsd-kind-icon">_is<wbr>Data<wbr>Blocked</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_pushincomingdata" class="tsd-kind-icon">_push<wbr>Incoming<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_getamountavailabletosend" class="tsd-kind-icon">_getAmountAvailableToSend</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_getamountstreamcanreceive" class="tsd-kind-icon">_getAmountStreamCanReceive</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_getavailabledatatosend" class="tsd-kind-icon">_getAvailableDataToSend</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_getincomingoffsets" class="tsd-kind-icon">_getIncomingOffsets</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_getoutgoingoffsets" class="tsd-kind-icon">_getOutgoingOffsets</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_hasdatatosend" class="tsd-kind-icon">_hasDataToSend</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_holdoutgoing" class="tsd-kind-icon">_holdOutgoing</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_isdatablocked" class="tsd-kind-icon">_isDataBlocked</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_pushincomingdata" class="tsd-kind-icon">_pushIncomingData</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-private"><a href="_stream_.dataandmoneystream.html#_read" class="tsd-kind-icon">_read</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_remoteended" class="tsd-kind-icon">_remote<wbr>Ended</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_resendoutgoingdata" class="tsd-kind-icon">_resend<wbr>Outgoing<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_remoteended" class="tsd-kind-icon">_remoteEnded</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_resendoutgoingdata" class="tsd-kind-icon">_resendOutgoingData</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-private"><a href="_stream_.dataandmoneystream.html#_write" class="tsd-kind-icon">_write</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-private"><a href="_stream_.dataandmoneystream.html#_writev" class="tsd-kind-icon">_writev</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#addlistener" class="tsd-kind-icon">addListener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#cork" class="tsd-kind-icon">cork</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#destroy" class="tsd-kind-icon">destroy</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#emit" class="tsd-kind-icon">emit</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#end" class="tsd-kind-icon">end</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#getmaxlisteners" class="tsd-kind-icon">get<wbr>Max<wbr>Listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#isopen" class="tsd-kind-icon">is<wbr>Open</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#ispaused" class="tsd-kind-icon">is<wbr>Paused</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#listenercount" class="tsd-kind-icon">listener<wbr>Count</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#eventnames" class="tsd-kind-icon">eventNames</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#getmaxlisteners" class="tsd-kind-icon">getMaxListeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#isopen" class="tsd-kind-icon">isOpen</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#ispaused" class="tsd-kind-icon">isPaused</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#listenercount" class="tsd-kind-icon">listenerCount</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#listeners" class="tsd-kind-icon">listeners</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#off" class="tsd-kind-icon">off</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#on" class="tsd-kind-icon">on</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#once" class="tsd-kind-icon">once</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#pause" class="tsd-kind-icon">pause</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#pipe" class="tsd-kind-icon">pipe</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#prependlistener" class="tsd-kind-icon">prepend<wbr>Listener</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#prependlistener" class="tsd-kind-icon">prependListener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#prependoncelistener" class="tsd-kind-icon">prependOnceListener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#push" class="tsd-kind-icon">push</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#rawlisteners" class="tsd-kind-icon">raw<wbr>Listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#rawlisteners" class="tsd-kind-icon">rawListeners</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#read" class="tsd-kind-icon">read</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#receivetotal" class="tsd-kind-icon">receive<wbr>Total</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#receivetotal" class="tsd-kind-icon">receiveTotal</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#removealllisteners" class="tsd-kind-icon">removeAllListeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#removelistener" class="tsd-kind-icon">removeListener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#resume" class="tsd-kind-icon">resume</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#sendtotal" class="tsd-kind-icon">send<wbr>Total</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#setdefaultencoding" class="tsd-kind-icon">set<wbr>Default<wbr>Encoding</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#setencoding" class="tsd-kind-icon">set<wbr>Encoding</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#setreceivemax" class="tsd-kind-icon">set<wbr>Receive<wbr>Max</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#setsendmax" class="tsd-kind-icon">set<wbr>Send<wbr>Max</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#sendtotal" class="tsd-kind-icon">sendTotal</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#setdefaultencoding" class="tsd-kind-icon">setDefaultEncoding</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#setencoding" class="tsd-kind-icon">setEncoding</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#setmaxlisteners" class="tsd-kind-icon">setMaxListeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#setreceivemax" class="tsd-kind-icon">setReceiveMax</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#setsendmax" class="tsd-kind-icon">setSendMax</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#uncork" class="tsd-kind-icon">uncork</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#unpipe" class="tsd-kind-icon">unpipe</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#unshift" class="tsd-kind-icon">unshift</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#wrap" class="tsd-kind-icon">wrap</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#write" class="tsd-kind-icon">write</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="_stream_.dataandmoneystream.html#listenercount-1" class="tsd-kind-icon">listener<wbr>Count</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="_stream_.dataandmoneystream.html#listenercount-1" class="tsd-kind-icon">listenerCount</a></li>
 							</ul>
 						</section>
 					</div>
@@ -213,7 +229,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Duplex.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L75">src/stream.ts:75</a></li>
+									<li>Defined in stream.ts:75</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -235,11 +251,9 @@
 					<div class="tsd-signature tsd-kind-icon">_error<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L43">src/stream.ts:43</a></li>
+							<li>Defined in stream.ts:43</li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_remoteclosed" class="tsd-anchor"></a>
@@ -247,11 +261,9 @@
 					<div class="tsd-signature tsd-kind-icon">_remote<wbr>Closed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L45">src/stream.ts:45</a></li>
+							<li>Defined in stream.ts:45</li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_remotemaxoffset" class="tsd-anchor"></a>
@@ -259,11 +271,9 @@
 					<div class="tsd-signature tsd-kind-icon">_remote<wbr>Max<wbr>Offset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L51">src/stream.ts:51</a></li>
+							<li>Defined in stream.ts:51</li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_remotereceivemax" class="tsd-anchor"></a>
@@ -271,11 +281,9 @@
 					<div class="tsd-signature tsd-kind-icon">_remote<wbr>Receive<wbr>Max<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Long</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L47">src/stream.ts:47</a></li>
+							<li>Defined in stream.ts:47</li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_remotereceived" class="tsd-anchor"></a>
@@ -283,11 +291,9 @@
 					<div class="tsd-signature tsd-kind-icon">_remote<wbr>Received<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Long</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L49">src/stream.ts:49</a></li>
+							<li>Defined in stream.ts:49</li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_remotesentend" class="tsd-anchor"></a>
@@ -295,11 +301,9 @@
 					<div class="tsd-signature tsd-kind-icon">_remote<wbr>Sent<wbr>End<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L55">src/stream.ts:55</a></li>
+							<li>Defined in stream.ts:55</li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_sentend" class="tsd-anchor"></a>
@@ -307,11 +311,9 @@
 					<div class="tsd-signature tsd-kind-icon">_sent<wbr>End<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L53">src/stream.ts:53</a></li>
+							<li>Defined in stream.ts:53</li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="id" class="tsd-anchor"></a>
@@ -319,7 +321,7 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L40">src/stream.ts:40</a></li>
+							<li>Defined in stream.ts:40</li>
 						</ul>
 					</aside>
 				</section>
@@ -330,7 +332,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Readable.readable</p>
 						<ul>
-							<li>Defined in node_modules/@types/node/stream.d.ts:20</li>
+							<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:20</li>
 						</ul>
 					</aside>
 				</section>
@@ -341,7 +343,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Duplex.writable</p>
 						<ul>
-							<li>Defined in node_modules/@types/node/stream.d.ts:209</li>
+							<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:207</li>
 						</ul>
 					</aside>
 				</section>
@@ -352,7 +354,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from EventEmitter.defaultMaxListeners</p>
 						<ul>
-							<li>Defined in node_modules/@types/node/events.d.ts:18</li>
+							<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:8</li>
 						</ul>
 					</aside>
 				</section>
@@ -370,13 +372,14 @@
 							<aside class="tsd-sources">
 								<p>Overrides Readable.readableHighWaterMark</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L175">src/stream.ts:175</a></li>
+									<li>Defined in stream.ts:175</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Returns the value of readableHighWaterMark passed when constructing this stream</p>
-								</div>
+								</div><p>This property exists on streams after Node 8.10 so it is added here for backwards compatibility</p>
+								</div><div class="tsd-comment tsd-typography tsd-comment-text">
 								<p>This property exists on streams after Node 8.10 so it is added here for backwards compatibility</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -394,13 +397,14 @@
 							<aside class="tsd-sources">
 								<p>Overrides Readable.readableLength</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L153">src/stream.ts:153</a></li>
+									<li>Defined in stream.ts:153</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Number of bytes buffered and waiting to be read</p>
-								</div>
+								</div><p>This property exists on streams after Node 9.4 so it is added here for backwards compatibility</p>
+								</div><div class="tsd-comment tsd-typography tsd-comment-text">
 								<p>This property exists on streams after Node 9.4 so it is added here for backwards compatibility</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -417,15 +421,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L144">src/stream.ts:144</a></li>
+									<li>Defined in stream.ts:144</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>The current limit up to which the stream will try to send, denominated in the connection plugin&#39;s units.
 									(If the <code>receiveMax</code> is greater than the <code>totalReceived</code>, the stream will continue to receive money when the other side sends it)</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
@@ -440,15 +443,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L136">src/stream.ts:136</a></li>
+									<li>Defined in stream.ts:136</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>The current limit up to which the stream will try to send, denominated in the connection plugin&#39;s units.
 									(If the <code>sendMax</code> is greater than the <code>totalSent</code>, the stream will continue to send the difference)</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
@@ -463,14 +465,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L128">src/stream.ts:128</a></li>
+									<li>Defined in stream.ts:128</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Total amount received so far, denominated in the connection plugin&#39;s units.</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
@@ -485,14 +486,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L121">src/stream.ts:121</a></li>
+									<li>Defined in stream.ts:121</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Total amount sent so far, denominated in the connection plugin&#39;s units.</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
@@ -508,13 +508,14 @@
 							<aside class="tsd-sources">
 								<p>Overrides Duplex.writableHighWaterMark</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L189">src/stream.ts:189</a></li>
+									<li>Defined in stream.ts:189</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Returns the value of writableHighWaterMark passed when constructing this stream</p>
-								</div>
+								</div><p>This property exists on streams after Node 8.10 so it is added here for backwards compatibility</p>
+								</div><div class="tsd-comment tsd-typography tsd-comment-text">
 								<p>This property exists on streams after Node 8.10 so it is added here for backwards compatibility</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -532,13 +533,14 @@
 							<aside class="tsd-sources">
 								<p>Overrides Duplex.writableLength</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L164">src/stream.ts:164</a></li>
+									<li>Defined in stream.ts:164</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Number of bytes buffered and waiting to be sent</p>
-								</div>
+								</div><p>This property exists on streams after Node 9.4 so it is added here for backwards compatibility</p>
+								</div><div class="tsd-comment tsd-typography tsd-comment-text">
 								<p>This property exists on streams after Node 9.4 so it is added here for backwards compatibility</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -549,17 +551,17 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-					<a name="_symbol_asynciterator_" class="tsd-anchor"></a>
-					<h3>[<wbr>Symbol.async<wbr>Iterator]</h3>
+					<a name="___asynciterator" class="tsd-anchor"></a>
+					<h3>__@async<wbr>Iterator</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">[<wbr>Symbol.async<wbr>Iterator]<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">__@async<wbr>Iterator<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from Readable.[Symbol.asyncIterator]</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:95</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:95</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AsyncIterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -576,15 +578,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L381">src/stream.ts:381</a></li>
+									<li>Defined in stream.ts:381</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>(Internal) Add money to the stream (from an external source)
 									(Used by the Connection class but not meant to be part of the public API)</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -605,15 +606,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L447">src/stream.ts:447</a></li>
+									<li>Defined in stream.ts:447</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>(Internal) Cancel hold if sending money failed
 									(Used by the Connection class but not meant to be part of the public API)</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -635,14 +635,13 @@
 							<aside class="tsd-sources">
 								<p>Overrides Duplex._destroy</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L502">src/stream.ts:502</a></li>
+									<li>Defined in stream.ts:502</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>(Called internally by the Node Stream when stream.destroy is called)</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -684,15 +683,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L425">src/stream.ts:425</a></li>
+									<li>Defined in stream.ts:425</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>(Internal) Execute hold when money has been successfully transferred
 									(Used by the Connection class but not meant to be part of the public API)</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -714,14 +712,13 @@
 							<aside class="tsd-sources">
 								<p>Overrides Duplex._final</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L461">src/stream.ts:461</a></li>
+									<li>Defined in stream.ts:461</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>(Called internally by the Node Stream when the stream ends)</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -760,15 +757,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L393">src/stream.ts:393</a></li>
+									<li>Defined in stream.ts:393</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>(Internal) Check how much is available to send
 									(Used by the Connection class but not meant to be part of the public API)</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Long</span></h4>
 						</li>
 					</ul>
@@ -783,15 +779,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L369">src/stream.ts:369</a></li>
+									<li>Defined in stream.ts:369</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>(Internal) Determine how much more the stream can receive
 									(Used by the Connection class but not meant to be part of the public API)</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Long</span></h4>
 						</li>
 					</ul>
@@ -806,14 +801,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L583">src/stream.ts:583</a></li>
+									<li>Defined in stream.ts:583</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>(Used by the Connection class but not meant to be part of the public API)</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -842,14 +836,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L643">src/stream.ts:643</a></li>
+									<li>Defined in stream.ts:643</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>(Used by the Connection class but not meant to be part of the public API)</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter">
@@ -875,14 +868,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L632">src/stream.ts:632</a></li>
+									<li>Defined in stream.ts:632</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>(Used by the Connection class but not meant to be part of the public API)</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter">
@@ -905,14 +897,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L575">src/stream.ts:575</a></li>
+									<li>Defined in stream.ts:575</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>(Used by the Connection class but not meant to be part of the public API)</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
@@ -927,15 +918,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L409">src/stream.ts:409</a></li>
+									<li>Defined in stream.ts:409</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>(Internal) Hold outgoing balance
 									(Used by the Connection class but not meant to be part of the public API)</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -959,14 +949,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L622">src/stream.ts:622</a></li>
+									<li>Defined in stream.ts:622</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>(Used by the Connection class but not meant to be part of the public API)</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span>
 								<span class="tsd-signature-symbol"> | </span>
 								<span class="tsd-signature-type">undefined</span>
@@ -984,14 +973,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L655">src/stream.ts:655</a></li>
+									<li>Defined in stream.ts:655</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>(Used by the Connection class but not meant to be part of the public API)</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1016,14 +1004,13 @@
 							<aside class="tsd-sources">
 								<p>Overrides Readable._read</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L554">src/stream.ts:554</a></li>
+									<li>Defined in stream.ts:554</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>(Called internally by the Node Stream when stream.read is called)</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1044,14 +1031,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L665">src/stream.ts:665</a></li>
+									<li>Defined in stream.ts:665</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>(Used by the Connection class but not meant to be part of the public API)</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1072,14 +1058,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L613">src/stream.ts:613</a></li>
+									<li>Defined in stream.ts:613</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>(Used by the Connection class but not meant to be part of the public API)</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1104,14 +1089,13 @@
 							<aside class="tsd-sources">
 								<p>Overrides Duplex._write</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L526">src/stream.ts:526</a></li>
+									<li>Defined in stream.ts:526</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>(Called internally by the Node Stream when stream.write is called)</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1157,14 +1141,13 @@
 							<aside class="tsd-sources">
 								<p>Overrides Duplex._writev</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L536">src/stream.ts:536</a></li>
+									<li>Defined in stream.ts:536</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>(Called internally by the Node Stream when stream.write is called)</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1213,10 +1196,10 @@
 								<p>Inherited from Readable.addListener</p>
 								<p>Overrides EventEmitter.addListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:46</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:46</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Event emitter
 									The defined events on documents including:</p>
@@ -1227,8 +1210,7 @@
 										<li>readable</li>
 										<li>error</li>
 									</ol>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1257,7 +1239,7 @@
 								<p>Inherited from Readable.addListener</p>
 								<p>Overrides EventEmitter.addListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:47</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:47</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1294,7 +1276,7 @@
 								<p>Inherited from Readable.addListener</p>
 								<p>Overrides EventEmitter.addListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:48</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:48</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1325,7 +1307,7 @@
 								<p>Inherited from Readable.addListener</p>
 								<p>Overrides EventEmitter.addListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:49</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:49</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1356,7 +1338,7 @@
 								<p>Inherited from Readable.addListener</p>
 								<p>Overrides EventEmitter.addListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:50</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:50</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1393,7 +1375,7 @@
 								<p>Inherited from Readable.addListener</p>
 								<p>Overrides EventEmitter.addListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:51</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:51</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1438,7 +1420,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Duplex.cork</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:223</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:221</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1456,7 +1438,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Readable.destroy</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:35</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:35</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1486,7 +1468,7 @@
 								<p>Inherited from Readable.emit</p>
 								<p>Overrides EventEmitter.emit</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:53</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:53</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1502,7 +1484,7 @@
 								<p>Inherited from Readable.emit</p>
 								<p>Overrides EventEmitter.emit</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:54</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:54</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1521,7 +1503,7 @@
 								<p>Inherited from Readable.emit</p>
 								<p>Overrides EventEmitter.emit</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:55</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:55</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1537,7 +1519,7 @@
 								<p>Inherited from Readable.emit</p>
 								<p>Overrides EventEmitter.emit</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:56</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:56</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1553,7 +1535,7 @@
 								<p>Inherited from Readable.emit</p>
 								<p>Overrides EventEmitter.emit</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:57</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:57</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1572,7 +1554,7 @@
 								<p>Inherited from Readable.emit</p>
 								<p>Overrides EventEmitter.emit</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:58</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:58</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1601,7 +1583,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Duplex.end</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:220</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:218</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1616,7 +1598,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Duplex.end</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:221</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:219</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1634,7 +1616,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Duplex.end</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:222</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:220</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1665,7 +1647,7 @@
 								<p>Inherited from EventEmitter.eventNames</p>
 								<p>Overrides EventEmitter.eventNames</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:33</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:23</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1684,7 +1666,7 @@
 								<p>Inherited from EventEmitter.getMaxListeners</p>
 								<p>Overrides EventEmitter.getMaxListeners</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:29</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:19</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -1701,14 +1683,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L201">src/stream.ts:201</a></li>
+									<li>Defined in stream.ts:201</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Returns true if the stream is open for sending and/or receiving.</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
@@ -1724,7 +1705,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Readable.isPaused</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:29</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:29</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -1743,7 +1724,7 @@
 								<p>Inherited from EventEmitter.listenerCount</p>
 								<p>Overrides EventEmitter.listenerCount</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:34</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:24</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1768,7 +1749,7 @@
 								<p>Inherited from EventEmitter.listeners</p>
 								<p>Overrides EventEmitter.listeners</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:30</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:20</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1793,7 +1774,7 @@
 								<p>Inherited from EventEmitter.off</p>
 								<p>Overrides EventEmitter.off</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:26</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:16</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1844,7 +1825,7 @@
 								<p>Inherited from Readable.on</p>
 								<p>Overrides EventEmitter.on</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:60</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:60</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1875,7 +1856,7 @@
 								<p>Inherited from Readable.on</p>
 								<p>Overrides EventEmitter.on</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:61</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:61</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1912,7 +1893,7 @@
 								<p>Inherited from Readable.on</p>
 								<p>Overrides EventEmitter.on</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:62</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:62</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1943,7 +1924,7 @@
 								<p>Inherited from Readable.on</p>
 								<p>Overrides EventEmitter.on</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:63</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:63</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1974,7 +1955,7 @@
 								<p>Inherited from Readable.on</p>
 								<p>Overrides EventEmitter.on</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:64</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:64</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2011,7 +1992,7 @@
 								<p>Inherited from Readable.on</p>
 								<p>Overrides EventEmitter.on</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:65</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:65</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2062,7 +2043,7 @@
 								<p>Inherited from Readable.once</p>
 								<p>Overrides EventEmitter.once</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:67</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:67</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2093,7 +2074,7 @@
 								<p>Inherited from Readable.once</p>
 								<p>Overrides EventEmitter.once</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:68</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:68</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2130,7 +2111,7 @@
 								<p>Inherited from Readable.once</p>
 								<p>Overrides EventEmitter.once</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:69</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:69</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2161,7 +2142,7 @@
 								<p>Inherited from Readable.once</p>
 								<p>Overrides EventEmitter.once</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:70</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:70</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2192,7 +2173,7 @@
 								<p>Inherited from Readable.once</p>
 								<p>Overrides EventEmitter.once</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:71</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:71</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2229,7 +2210,7 @@
 								<p>Inherited from Readable.once</p>
 								<p>Overrides EventEmitter.once</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:72</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:72</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2274,7 +2255,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Readable.pause</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:27</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:27</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -2292,7 +2273,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from internal.pipe</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:5</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:5</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -2331,7 +2312,7 @@
 								<p>Inherited from Readable.prependListener</p>
 								<p>Overrides EventEmitter.prependListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:74</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:74</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2362,7 +2343,7 @@
 								<p>Inherited from Readable.prependListener</p>
 								<p>Overrides EventEmitter.prependListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:75</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:75</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2399,7 +2380,7 @@
 								<p>Inherited from Readable.prependListener</p>
 								<p>Overrides EventEmitter.prependListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:76</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:76</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2430,7 +2411,7 @@
 								<p>Inherited from Readable.prependListener</p>
 								<p>Overrides EventEmitter.prependListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:77</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:77</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2461,7 +2442,7 @@
 								<p>Inherited from Readable.prependListener</p>
 								<p>Overrides EventEmitter.prependListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:78</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:78</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2498,7 +2479,7 @@
 								<p>Inherited from Readable.prependListener</p>
 								<p>Overrides EventEmitter.prependListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:79</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:79</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2549,7 +2530,7 @@
 								<p>Inherited from Readable.prependOnceListener</p>
 								<p>Overrides EventEmitter.prependOnceListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:81</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:81</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2580,7 +2561,7 @@
 								<p>Inherited from Readable.prependOnceListener</p>
 								<p>Overrides EventEmitter.prependOnceListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:82</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:82</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2617,7 +2598,7 @@
 								<p>Inherited from Readable.prependOnceListener</p>
 								<p>Overrides EventEmitter.prependOnceListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:83</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:83</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2648,7 +2629,7 @@
 								<p>Inherited from Readable.prependOnceListener</p>
 								<p>Overrides EventEmitter.prependOnceListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:84</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:84</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2679,7 +2660,7 @@
 								<p>Inherited from Readable.prependOnceListener</p>
 								<p>Overrides EventEmitter.prependOnceListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:85</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:85</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2716,7 +2697,7 @@
 								<p>Inherited from Readable.prependOnceListener</p>
 								<p>Overrides EventEmitter.prependOnceListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:86</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:86</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2761,7 +2742,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Readable.push</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:33</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:33</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2789,7 +2770,7 @@
 								<p>Inherited from EventEmitter.rawListeners</p>
 								<p>Overrides EventEmitter.rawListeners</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:31</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:21</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2813,7 +2794,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Readable.read</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:25</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:25</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2836,14 +2817,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L315">src/stream.ts:315</a></li>
+									<li>Defined in stream.ts:315</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Set the total amount the stream will receive and wait for that amount to be received.
 									Note that this is absolute, not relative so calling <code>receiveTotal(100)</code> twice will only receive 100 units.</p>
-								</div>
+								</div><p>This promise will only resolve when the absolute amount specified is reached, so lowering the <code>receiveMax</code> may cause this not to resolve.</p>
+								</div><div class="tsd-comment tsd-typography tsd-comment-text">
 								<p>This promise will only resolve when the absolute amount specified is reached, so lowering the <code>receiveMax</code> may cause this not to resolve.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2871,7 +2853,7 @@
 								<p>Inherited from EventEmitter.removeAllListeners</p>
 								<p>Overrides EventEmitter.removeAllListeners</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:27</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:17</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2901,7 +2883,7 @@
 								<p>Inherited from Readable.removeListener</p>
 								<p>Overrides EventEmitter.removeListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:88</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:88</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2932,7 +2914,7 @@
 								<p>Inherited from Readable.removeListener</p>
 								<p>Overrides EventEmitter.removeListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:89</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:89</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2969,7 +2951,7 @@
 								<p>Inherited from Readable.removeListener</p>
 								<p>Overrides EventEmitter.removeListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:90</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:90</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3000,7 +2982,7 @@
 								<p>Inherited from Readable.removeListener</p>
 								<p>Overrides EventEmitter.removeListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:91</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:91</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3031,7 +3013,7 @@
 								<p>Inherited from Readable.removeListener</p>
 								<p>Overrides EventEmitter.removeListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:92</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:92</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3068,7 +3050,7 @@
 								<p>Inherited from Readable.removeListener</p>
 								<p>Overrides EventEmitter.removeListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:93</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:93</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3113,7 +3095,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Readable.resume</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:28</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:28</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -3130,14 +3112,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L260">src/stream.ts:260</a></li>
+									<li>Defined in stream.ts:260</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Set the total amount the stream will send and wait for that amount to be sent.
 									Note that this is absolute, not relative so calling <code>sendTotal(100)</code> twice will only send 100 units.</p>
-								</div>
+								</div><p>This promise will only resolve when the absolute amount specified is reached, so lowering the <code>sendMax</code> may cause this not to resolve.</p>
+								</div><div class="tsd-comment tsd-typography tsd-comment-text">
 								<p>This promise will only resolve when the absolute amount specified is reached, so lowering the <code>sendMax</code> may cause this not to resolve.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3164,7 +3147,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Duplex.setDefaultEncoding</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:219</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:217</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3188,7 +3171,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Readable.setEncoding</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:26</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:26</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3213,7 +3196,7 @@
 								<p>Inherited from EventEmitter.setMaxListeners</p>
 								<p>Overrides EventEmitter.setMaxListeners</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:28</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:18</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3236,19 +3219,17 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L236">src/stream.ts:236</a></li>
+									<li>Defined in stream.ts:236</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Set the total amount this stream will receive, denominated in the connection plugin&#39;s units.
 									Note that this is absolute, not relative so calling <code>setReceiveMax(100)</code> twice will only let the stream receive 100 units.</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>fires</dt>
+								</div></div><div class="tsd-comment tsd-typography tsd-comment-tags">
+								<dl class="tsd-comment-tags"><dt>fires</dt>
 									<dd><p>money</p>
-									</dd>
-								</dl>
+								</dd></dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -3270,15 +3251,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/stream.ts#L209">src/stream.ts:209</a></li>
+									<li>Defined in stream.ts:209</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Set the total amount this stream will send, denominated in the connection plugin&#39;s units.
 									Note that this is absolute, not relative so calling <code>setSendMax(100)</code> twice will only send 100 units.</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -3300,7 +3280,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Duplex.uncork</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:224</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:222</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -3318,7 +3298,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Readable.unpipe</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:30</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:30</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3342,7 +3322,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Readable.unshift</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:31</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:31</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3366,7 +3346,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Readable.wrap</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:32</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:32</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3391,7 +3371,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Duplex.write</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:217</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:215</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3409,7 +3389,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Duplex.write</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/stream.d.ts:218</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/stream.d.ts:216</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3439,15 +3419,13 @@
 							<aside class="tsd-sources">
 								<p>Inherited from EventEmitter.listenerCount</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:17</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:7</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<dl class="tsd-comment-tags">
-									<dt>deprecated</dt>
+							<div class="tsd-comment tsd-typography tsd-comment-tags">
+								<dl class="tsd-comment-tags"><dt>deprecated</dt>
 									<dd><p>since v4.0.0</p>
-									</dd>
-								</dl>
+								</dd></dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -3463,29 +3441,14 @@
 					</ul>
 				</section>
 			</section>
+			<!--{&quot;options&quot;:&quot;typedoc.js&quot;,&quot;theme&quot;:&quot;node_modules/typedoc-neo-theme/bin/default&quot;,&quot;out&quot;:&quot;doc&quot;,&quot;excludePrivate&quot;:true,&quot;excludeProtected&quot;:true,&quot;excludeExternals&quot;:true,&quot;mode&quot;:1}-->
 		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class="globals  ">
-						<a href="../globals.html"><em>Globals</em></a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_connection_.html">&quot;connection&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">&quot;index&quot;</a>
-					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="../modules/_stream_.html">&quot;stream&quot;</a>
-					</li>
-				</ul>
-			</nav>
+		<div class="col-2 col-menu secondary-menu">
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-external-module">
+					<li class="current tsd-kind-class tsd-parent-kind-external-module root">
 						<a href="_stream_.dataandmoneystream.html" class="tsd-kind-icon">Data<wbr>And<wbr>Money<wbr>Stream</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
@@ -3549,7 +3512,7 @@
 								<a href="_stream_.dataandmoneystream.html#writablelength" class="tsd-kind-icon">writable<wbr>Length</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_stream_.dataandmoneystream.html#_symbol_asynciterator_" class="tsd-kind-icon">[<wbr>Symbol.async<wbr>Iterator]</a>
+								<a href="_stream_.dataandmoneystream.html#___asynciterator" class="tsd-kind-icon">__@async<wbr>Iterator</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_stream_.dataandmoneystream.html#_addtoincoming" class="tsd-kind-icon">_add<wbr>ToIncoming</a>
@@ -3723,19 +3686,19 @@
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="../interfaces/_stream_.receiveopts.html" class="tsd-kind-icon">Receive<wbr>Opts</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="../interfaces/_stream_.sendopts.html" class="tsd-kind-icon">Send<wbr>Opts</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="../interfaces/_stream_.streamopts.html" class="tsd-kind-icon">Stream<wbr>Opts</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported root">
 						<a href="../modules/_stream_.html#default_timeout" class="tsd-kind-icon">DEFAULT_<wbr>TIMEOUT</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported root">
 						<a href="../modules/_stream_.html#max_remote_receive" class="tsd-kind-icon">MAX_<wbr>REMOTE_<wbr>RECEIVE</a>
 					</li>
 				</ul>
@@ -3744,67 +3707,9 @@
 	</div>
 </div>
 <footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
-			</ul>
-		</div>
-	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Connection | ilp-protocol-stream - v2.4.0</title>
+	<title>Connection | ilp-protocol-stream</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,9 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">ilp-protocol-stream - v2.4.0</a>
+					<ul class="results-priority" style="display:none">
+					</ul>
+					<a href="../index.html" class="title">ilp-protocol-stream</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -51,32 +53,47 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../globals.html">Globals</a>
-				</li>
-				<li>
-					<a href="../modules/_connection_.html">&quot;connection&quot;</a>
+					<a href="../modules/_connection_.html">connection</a>
 				</li>
 				<li>
 					<a href="_connection_.connection.html">Connection</a>
 				</li>
 			</ul>
-			<h1>Class Connection</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
-		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
+		<div class="col-3 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html" style="display:none"><em>Globals</em></a>
+					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/_connection_.html" style="display:none">connection</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_index_.html" style="display:none">index</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_stream_.html" style="display:none">stream</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="col-7 offset-3 col-content">
+			<h1>Class Connection</h1>
+			<section class="tsd-panel tsd-comment"><div class="tsd-comment tsd-typography tsd-comment-shorttext">
 					<div class="lead">
 						<p>Class representing the connection between a <a href="../modules/_index_.html#createconnection"><code>Client</code></a> and a [<code>Server</code>]{@link Server}.
 						A single connection can be used to send or receive on <a href="_stream_.dataandmoneystream.html">Streams</a>.</p>
-					</div>
+						</div><p>Streams are created using the <a href="_connection_.connection.html#createstream"><code>createStream</code></a> method.
+					The <code>&#39;stream&#39;</code> event will be emitted whenever a new incoming stream is opened by the other party.</p>
+					</div><div class="tsd-comment tsd-typography tsd-comment-text">
 					<p>Streams are created using the <a href="_connection_.connection.html#createstream"><code>createStream</code></a> method.
 					The <code>&#39;stream&#39;</code> event will be emitted whenever a new incoming stream is opened by the other party.</p>
-				</div>
-			</section>
+			</div></section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -91,7 +108,6 @@
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
-				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
@@ -103,51 +119,51 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_connection_.connection.html#connectiontag" class="tsd-kind-icon">connection<wbr>Tag</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="_connection_.connection.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_connection_.connection.html#connectiontag" class="tsd-kind-icon">connectionTag</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="_connection_.connection.html#defaultmaxlisteners" class="tsd-kind-icon">defaultMaxListeners</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#destinationaccount" class="tsd-kind-icon">destination<wbr>Account</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#destinationassetcode" class="tsd-kind-icon">destination<wbr>Asset<wbr>Code</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#destinationassetscale" class="tsd-kind-icon">destination<wbr>Asset<wbr>Scale</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#lastpacketexchangerate" class="tsd-kind-icon">last<wbr>Packet<wbr>Exchange<wbr>Rate</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#minimumacceptableexchangerate" class="tsd-kind-icon">minimum<wbr>Acceptable<wbr>Exchange<wbr>Rate</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#sourceaccount" class="tsd-kind-icon">source<wbr>Account</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#sourceassetcode" class="tsd-kind-icon">source<wbr>Asset<wbr>Code</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#sourceassetscale" class="tsd-kind-icon">source<wbr>Asset<wbr>Scale</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#totaldelivered" class="tsd-kind-icon">total<wbr>Delivered</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#totalreceived" class="tsd-kind-icon">total<wbr>Received</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#totalsent" class="tsd-kind-icon">total<wbr>Sent</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#destinationaccount" class="tsd-kind-icon">destinationAccount</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#destinationassetcode" class="tsd-kind-icon">destinationAssetCode</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#destinationassetscale" class="tsd-kind-icon">destinationAssetScale</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#lastpacketexchangerate" class="tsd-kind-icon">lastPacketExchangeRate</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#minimumacceptableexchangerate" class="tsd-kind-icon">minimumAcceptableExchangeRate</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#sourceaccount" class="tsd-kind-icon">sourceAccount</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#sourceassetcode" class="tsd-kind-icon">sourceAssetCode</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#sourceassetscale" class="tsd-kind-icon">sourceAssetScale</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#totaldelivered" class="tsd-kind-icon">totalDelivered</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#totalreceived" class="tsd-kind-icon">totalReceived</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_connection_.connection.html#totalsent" class="tsd-kind-icon">totalSent</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#addlistener" class="tsd-kind-icon">addListener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_connection_.connection.html#connect" class="tsd-kind-icon">connect</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_connection_.connection.html#createstream" class="tsd-kind-icon">create<wbr>Stream</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_connection_.connection.html#createstream" class="tsd-kind-icon">createStream</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_connection_.connection.html#destroy" class="tsd-kind-icon">destroy</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#emit" class="tsd-kind-icon">emit</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_connection_.connection.html#end" class="tsd-kind-icon">end</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#getmaxlisteners" class="tsd-kind-icon">get<wbr>Max<wbr>Listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_connection_.connection.html#handleprepare" class="tsd-kind-icon">handle<wbr>Prepare</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#listenercount" class="tsd-kind-icon">listener<wbr>Count</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#eventnames" class="tsd-kind-icon">eventNames</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#getmaxlisteners" class="tsd-kind-icon">getMaxListeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_connection_.connection.html#handleprepare" class="tsd-kind-icon">handlePrepare</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#listenercount" class="tsd-kind-icon">listenerCount</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#listeners" class="tsd-kind-icon">listeners</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#off" class="tsd-kind-icon">off</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#on" class="tsd-kind-icon">on</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#once" class="tsd-kind-icon">once</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#prependlistener" class="tsd-kind-icon">prepend<wbr>Listener</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#rawlisteners" class="tsd-kind-icon">raw<wbr>Listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#prependlistener" class="tsd-kind-icon">prependListener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#prependoncelistener" class="tsd-kind-icon">prependOnceListener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#rawlisteners" class="tsd-kind-icon">rawListeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#removealllisteners" class="tsd-kind-icon">removeAllListeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#removelistener" class="tsd-kind-icon">removeListener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_connection_.connection.html#setmaxlisteners" class="tsd-kind-icon">setMaxListeners</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="_connection_.connection.html#build" class="tsd-kind-icon">build</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="_connection_.connection.html#listenercount-1" class="tsd-kind-icon">listener<wbr>Count</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="_connection_.connection.html#listenercount-1" class="tsd-kind-icon">listenerCount</a></li>
 							</ul>
 						</section>
 					</div>
@@ -165,7 +181,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/connection.ts#L188">src/connection.ts:188</a></li>
+									<li>Defined in connection.ts:188</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -187,14 +203,13 @@
 					<div class="tsd-signature tsd-kind-icon">connection<wbr>Tag<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/connection.ts#L140">src/connection.ts:140</a></li>
+							<li>Defined in connection.ts:140</li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
+					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 						<div class="lead">
 							<p>Application identifier for a certain connection</p>
-						</div>
-					</div>
+					</div></div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 					<a name="defaultmaxlisteners" class="tsd-anchor"></a>
@@ -203,7 +218,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from EventEmitter.defaultMaxListeners</p>
 						<ul>
-							<li>Defined in node_modules/@types/node/events.d.ts:18</li>
+							<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:8</li>
 						</ul>
 					</aside>
 				</section>
@@ -220,14 +235,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/connection.ts#L398">src/connection.ts:398</a></li>
+									<li>Defined in connection.ts:398</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>ILP Address of the remote party to this connection.</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span>
 								<span class="tsd-signature-symbol"> | </span>
 								<span class="tsd-signature-type">undefined</span>
@@ -245,14 +259,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/connection.ts#L412">src/connection.ts:412</a></li>
+									<li>Defined in connection.ts:412</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Code of the asset used by the remote party to this connection</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span>
 								<span class="tsd-signature-symbol"> | </span>
 								<span class="tsd-signature-type">undefined</span>
@@ -270,14 +283,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/connection.ts#L405">src/connection.ts:405</a></li>
+									<li>Defined in connection.ts:405</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Scale of the asset used by the remote party to this connection</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span>
 								<span class="tsd-signature-symbol"> | </span>
 								<span class="tsd-signature-type">undefined</span>
@@ -295,14 +307,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/connection.ts#L452">src/connection.ts:452</a></li>
+									<li>Defined in connection.ts:452</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Calculates the last exchange rate based on last packet successfully sent.</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
@@ -317,14 +328,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/connection.ts#L440">src/connection.ts:440</a></li>
+									<li>Defined in connection.ts:440</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Connections minimum exchange rate with slippage included, if not set &#39;0&#39; is returned.</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
@@ -339,14 +349,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/connection.ts#L419">src/connection.ts:419</a></li>
+									<li>Defined in connection.ts:419</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>ILP Address of the plugin passed to this connection.</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
@@ -361,14 +370,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/connection.ts#L433">src/connection.ts:433</a></li>
+									<li>Defined in connection.ts:433</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Code of the asset used by the plugin passed to this connection</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
@@ -383,14 +391,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/connection.ts#L426">src/connection.ts:426</a></li>
+									<li>Defined in connection.ts:426</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Scale of the asset used by the plugin passed to this connection</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
@@ -405,14 +412,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/connection.ts#L459">src/connection.ts:459</a></li>
+									<li>Defined in connection.ts:459</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Total delivered so far, denominated in the connection plugin&#39;s units.</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
@@ -427,14 +433,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/connection.ts#L473">src/connection.ts:473</a></li>
+									<li>Defined in connection.ts:473</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Total received so far by the local side, denominated in the connection plugin&#39;s units.</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
@@ -449,14 +454,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/connection.ts#L466">src/connection.ts:466</a></li>
+									<li>Defined in connection.ts:466</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Total sent so far, denominated in the connection plugin&#39;s units.</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
@@ -476,7 +480,7 @@
 								<p>Inherited from EventEmitter.addListener</p>
 								<p>Overrides EventEmitter.addListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:20</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:10</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -520,18 +524,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/connection.ts#L267">src/connection.ts:267</a></li>
+									<li>Defined in connection.ts:267</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Start sending or receiving.</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>fires</dt>
+								</div></div><div class="tsd-comment tsd-typography tsd-comment-tags">
+								<dl class="tsd-comment-tags"><dt>fires</dt>
 									<dd><p>stream</p>
-									</dd>
-								</dl>
+								</dd></dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
@@ -547,14 +549,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/connection.ts#L371">src/connection.ts:371</a></li>
+									<li>Defined in connection.ts:371</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Returns a new bidirectional <a href="_stream_.dataandmoneystream.html"><code>DataAndMoneyStream</code></a></p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <a href="_stream_.dataandmoneystream.html" class="tsd-signature-type">DataAndMoneyStream</a></h4>
 						</li>
 					</ul>
@@ -569,14 +570,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/connection.ts#L345">src/connection.ts:345</a></li>
+									<li>Defined in connection.ts:345</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Immediately close the connection and all streams</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -599,7 +599,7 @@
 								<p>Inherited from EventEmitter.emit</p>
 								<p>Overrides EventEmitter.emit</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:32</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:22</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -625,14 +625,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/connection.ts#L308">src/connection.ts:308</a></li>
+									<li>Defined in connection.ts:308</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Close the connection when all streams have finished sending their money and data</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -649,7 +648,7 @@
 								<p>Inherited from EventEmitter.eventNames</p>
 								<p>Overrides EventEmitter.eventNames</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:33</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:23</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -668,7 +667,7 @@
 								<p>Inherited from EventEmitter.getMaxListeners</p>
 								<p>Overrides EventEmitter.getMaxListeners</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:29</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:19</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -685,16 +684,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/connection.ts#L483">src/connection.ts:483</a></li>
+									<li>Defined in connection.ts:483</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>(Internal) Handle incoming ILP Prepare packets.
 										This will automatically fulfill all valid and expected Prepare packets.
 									It passes the incoming money and/or data to the relevant streams.</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -717,7 +715,7 @@
 								<p>Inherited from EventEmitter.listenerCount</p>
 								<p>Overrides EventEmitter.listenerCount</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:34</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:24</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -742,7 +740,7 @@
 								<p>Inherited from EventEmitter.listeners</p>
 								<p>Overrides EventEmitter.listeners</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:30</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:20</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -767,7 +765,7 @@
 								<p>Inherited from EventEmitter.off</p>
 								<p>Overrides EventEmitter.off</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:26</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:16</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -813,7 +811,7 @@
 								<p>Inherited from EventEmitter.on</p>
 								<p>Overrides EventEmitter.on</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:21</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:11</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -859,7 +857,7 @@
 								<p>Inherited from EventEmitter.once</p>
 								<p>Overrides EventEmitter.once</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:22</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:12</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -905,7 +903,7 @@
 								<p>Inherited from EventEmitter.prependListener</p>
 								<p>Overrides EventEmitter.prependListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:23</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:13</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -951,7 +949,7 @@
 								<p>Inherited from EventEmitter.prependOnceListener</p>
 								<p>Overrides EventEmitter.prependOnceListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:24</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:14</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -997,7 +995,7 @@
 								<p>Inherited from EventEmitter.rawListeners</p>
 								<p>Overrides EventEmitter.rawListeners</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:31</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:21</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1022,7 +1020,7 @@
 								<p>Inherited from EventEmitter.removeAllListeners</p>
 								<p>Overrides EventEmitter.removeAllListeners</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:27</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:17</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1047,7 +1045,7 @@
 								<p>Inherited from EventEmitter.removeListener</p>
 								<p>Overrides EventEmitter.removeListener</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:25</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:15</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1093,7 +1091,7 @@
 								<p>Inherited from EventEmitter.setMaxListeners</p>
 								<p>Overrides EventEmitter.setMaxListeners</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:28</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:18</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1116,11 +1114,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/interledgerjs/ilp-protocol-stream/blob/d2c6b14/src/connection.ts#L251">src/connection.ts:251</a></li>
+									<li>Defined in connection.ts:251</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1142,15 +1138,13 @@
 							<aside class="tsd-sources">
 								<p>Inherited from EventEmitter.listenerCount</p>
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:17</li>
+									<li>Defined in /home/circleci/repo/node_modules/@types/node/events.d.ts:7</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<dl class="tsd-comment-tags">
-									<dt>deprecated</dt>
+							<div class="tsd-comment tsd-typography tsd-comment-tags">
+								<dl class="tsd-comment-tags"><dt>deprecated</dt>
 									<dd><p>since v4.0.0</p>
-									</dd>
-								</dl>
+								</dd></dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1166,32 +1160,17 @@
 					</ul>
 				</section>
 			</section>
+			<!--{&quot;options&quot;:&quot;typedoc.js&quot;,&quot;theme&quot;:&quot;node_modules/typedoc-neo-theme/bin/default&quot;,&quot;out&quot;:&quot;doc&quot;,&quot;excludePrivate&quot;:true,&quot;excludeProtected&quot;:true,&quot;excludeExternals&quot;:true,&quot;mode&quot;:1}-->
 		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class="globals  ">
-						<a href="../globals.html"><em>Globals</em></a>
-					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="../modules/_connection_.html">&quot;connection&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">&quot;index&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_stream_.html">&quot;stream&quot;</a>
-					</li>
-				</ul>
-			</nav>
+		<div class="col-2 col-menu secondary-menu">
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-enum tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-enum tsd-parent-kind-external-module tsd-is-not-exported root">
 						<a href="../enums/_connection_.remotestate.html" class="tsd-kind-icon">Remote<wbr>State</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-external-module">
+					<li class="current tsd-kind-class tsd-parent-kind-external-module root">
 						<a href="_connection_.connection.html" class="tsd-kind-icon">Connection</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
@@ -1306,49 +1285,49 @@
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module root">
 						<a href="_connection_.connectionerror.html" class="tsd-kind-icon">Connection<wbr>Error</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="../interfaces/_connection_.buildconnectionopts.html" class="tsd-kind-icon">Build<wbr>Connection<wbr>Opts</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module root">
 						<a href="../interfaces/_connection_.connectionopts.html" class="tsd-kind-icon">Connection<wbr>Opts</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported root">
 						<a href="../interfaces/_connection_.newconnectionopts.html" class="tsd-kind-icon">New<wbr>Connection<wbr>Opts</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported root">
 						<a href="../modules/_connection_.html#default_idle_timeout" class="tsd-kind-icon">DEFAULT_<wbr>IDLE_<wbr>TIMEOUT</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported root">
 						<a href="../modules/_connection_.html#default_max_remote_streams" class="tsd-kind-icon">DEFAULT_<wbr>MAX_<wbr>REMOTE_<wbr>STREAMS</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported root">
 						<a href="../modules/_connection_.html#default_minimum_exchange_rate_precision" class="tsd-kind-icon">DEFAULT_<wbr>MINIMUM_<wbr>EXCHANGE_<wbr>RATE_<wbr>PRECISION</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported root">
 						<a href="../modules/_connection_.html#default_packet_timeout" class="tsd-kind-icon">DEFAULT_<wbr>PACKET_<wbr>TIMEOUT</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported root">
 						<a href="../modules/_connection_.html#max_data_size" class="tsd-kind-icon">MAX_<wbr>DATA_<wbr>SIZE</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported root">
 						<a href="../modules/_connection_.html#retry_delay_increase_factor" class="tsd-kind-icon">RETRY_<wbr>DELAY_<wbr>INCREASE_<wbr>FACTOR</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported root">
 						<a href="../modules/_connection_.html#retry_delay_max" class="tsd-kind-icon">RETRY_<wbr>DELAY_<wbr>MAX</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported root">
 						<a href="../modules/_connection_.html#retry_delay_start" class="tsd-kind-icon">RETRY_<wbr>DELAY_<wbr>START</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported root">
 						<a href="../modules/_connection_.html#test_packet_max_attempts" class="tsd-kind-icon">TEST_<wbr>PACKET_<wbr>MAX_<wbr>ATTEMPTS</a>
 					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported root">
 						<a href="../modules/_connection_.html#defaultgetexpiry" class="tsd-kind-icon">default<wbr>Get<wbr>Expiry</a>
 					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported root">
 						<a href="../modules/_connection_.html#isfulfill" class="tsd-kind-icon">is<wbr>Fulfill</a>
 					</li>
 				</ul>
@@ -1357,67 +1336,9 @@
 	</div>
 </div>
 <footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
-			</ul>
-		</div>
-	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
