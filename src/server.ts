@@ -107,9 +107,9 @@ export class Server extends EventEmitter {
     // If an F99 was returned on on new packets: clients would retry with no backoff
     this.plugin.deregisterDataHandler()
     this.plugin.registerDataHandler(async () => IlpPacket.serializeIlpReject({
-      code: 'T99', // Temporary application error
+      code: IlpPacket.Errors.codes.T99_APPLICATION_ERROR,
       triggeredBy: this.serverAccount,
-      message: 'Closing connection',
+      message: 'Shutting down server',
       data: Buffer.alloc(0)
     }))
 

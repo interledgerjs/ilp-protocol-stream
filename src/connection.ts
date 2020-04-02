@@ -205,7 +205,7 @@ export class Connection extends EventEmitter {
   constructor (opts: NewConnectionOpts) {
     super()
 
-    // Use the same connetionId for logging on both client & server
+    // Use the same connectionId for logging on both client & server
     const lastAddressSegment = opts.destinationAccount ? opts.destinationAccount.split('.').slice(-1)[0] : undefined
     this.connectionId = (opts.connectionId || lastAddressSegment || uuid()).slice(0, 8)
 
