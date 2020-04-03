@@ -191,6 +191,7 @@ export class Connection extends EventEmitter {
 
   // TODO use longs for byte offsets
   protected remoteMaxOffset: number
+  protected _incomingHold: Long
   protected _totalReceived: Long
   protected _totalSent: Long
   protected _totalDelivered: Long
@@ -255,6 +256,7 @@ export class Connection extends EventEmitter {
 
     this.remoteMaxOffset = this.maxBufferedData
 
+    this._incomingHold = Long.UZERO
     this._totalReceived = Long.UZERO
     this._totalSent = Long.UZERO
     this._totalDelivered = Long.UZERO
@@ -645,10 +647,13 @@ export class Connection extends EventEmitter {
       }
     }
 
+    this.addIncomingHold(incomingAmount)
+
     // Allow consumer to choose to fulfill each packet and/or perform other logic before fulfilling
     if (this.shouldFulfill && incomingAmount.greaterThan(0)) {
       const packetId = await cryptoHelper.generateIncomingPacketId(this.sharedSecret, requestPacket.sequence)
       await this.shouldFulfill(incomingAmount, packetId.toString(), this.connectionTag).catch(async err => {
+        this.removeIncomingHold(incomingAmount)
         this.log.debug('application declined to fulfill packet %s:', requestPacket.sequence, err)
         await throwFinalApplicationError()
       })
@@ -687,6 +692,7 @@ export class Connection extends EventEmitter {
 
     // Return fulfillment and response packet
     const responsePacket = new Packet(requestPacket.sequence, IlpPacketType.Fulfill, incomingAmount, responseFrames)
+    this.removeIncomingHold(incomingAmount)
     this.addTotalReceived(incomingAmount)
     this.log.trace('fulfilling prepare with fulfillment: %h and response packet: %j', fulfillment, responsePacket)
     return {
@@ -1614,8 +1620,10 @@ export class Connection extends EventEmitter {
 
   private bumpIdle (): void { this.lastActive = new Date() }
 
-  private addTotalReceived (value: Long): void {
-    const result = checkedAdd(this._totalReceived, value)
+  private addIncomingHold (value: Long): void {
+    let result = checkedAdd(this._totalReceived, this._incomingHold)
+    result = checkedAdd(result.sum, value)
+
     if (result.overflow) {
       const err = new IlpPacket.Errors.BadRequestError('Total received exceeded MaxUint64')
       err['ilpErrorMessage'] = err.message
@@ -1623,8 +1631,20 @@ export class Connection extends EventEmitter {
       this.destroy(err)
       throw err
     } else {
-      this._totalReceived = result.sum
+      this._incomingHold = result.sum
     }
+  }
+
+  private removeIncomingHold (value: Long): void {
+    // As long as this is called after `addIncomingHold` for the same amount,
+    // this should never underflow
+    this._incomingHold = checkedSubtract(this._incomingHold, value).difference
+  }
+
+  private addTotalReceived (value: Long): void {
+    // As long as this is called after `addIncomingHold` for the same amount,
+    // this should never overflow
+    this._totalReceived = checkedAdd(this._totalReceived, value).sum
   }
 
   private addTotalSent (value: Long): void {

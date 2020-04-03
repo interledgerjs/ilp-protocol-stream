@@ -115,6 +115,7 @@ export class Server extends EventEmitter {
 
     // Wait for in-progress requests to finish so all Fulfills are returned
     await this.pendingRequests
+    // Allow the plugin time to send the reply packets back before disconnecting it
     await new Promise(r => setTimeout(r, this.disconnectDelay))
 
     // Gracefully close the connection and all streams
