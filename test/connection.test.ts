@@ -1225,6 +1225,7 @@ describe('Connection', function () {
       const serverMoneySpy = sinon.spy()
       const actualConnectionTag = 'helloworld'
       let serverConn: Connection
+      const packetIds = new Set()
 
       /**
        * Total to send: 100
@@ -1251,31 +1252,32 @@ describe('Connection', function () {
        * If any other packets call it, the test will fail.
        */
 
-      const shouldFulfillSpy = sinon.spy(async (connectionTag: string, sequence: Long, amount: Long) => {
+      const shouldFulfillSpy = sinon.spy(async (amount: Long, packetId: string, connectionTag: string) => {
         assert.equal(actualConnectionTag, connectionTag)
 
-        const seqNum = sequence.toNumber()
-        const amountNum = amount.toNumber()
+        assert.isFalse(packetIds.has(packetId)) // Test that the packet Ids are unique
+        packetIds.add(packetId)
 
-        if (seqNum === 7) {
+        const amountNum = amount.toNumber()
+        if (shouldFulfillSpy.callCount === 1) {
           assert.equal(30, amountNum)
 
           assert.equal('0', serverConn.totalReceived)
           assert(serverMoneySpy.notCalled)
 
           return // Fulfill the packet
-        } else if (seqNum === 8) {
+        } else if (shouldFulfillSpy.callCount === 2) {
           assert.equal(20, amountNum)
 
-          // From the seqeunce=7 packet
+          // Amount received from the first packet
           assert.equal('30', serverConn.totalReceived)
           assert(serverMoneySpy.calledOnceWith('30'))
 
           return Promise.reject() // Reject this packet
-        } else if (seqNum === 9) {
+        } else if (shouldFulfillSpy.callCount === 3) {
           assert.equal(20, amountNum)
 
-          // From the sequence=7 packet
+          // Amount received from the first packet
           assert.equal('30', serverConn.totalReceived)
           assert(serverMoneySpy.calledOnceWith('30'))
 

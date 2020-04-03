@@ -99,14 +99,10 @@ export interface ConnectionOpts {
    * the ILP Prepare will be rejected. The ILP Fulfill will be immediately sent back after
    * the Promise is resolved.
    *
-   * Notes:
-   * - If `shouldFulfill` is provided, all connections MUST have a `connectionTag`, otherwise
-   *   the packets are rejected.
-   * - If the total amount received on the connection exceeds the max u64, the packet will be
-   *   rejected, even if the callback is resolved.
-   * - If a sender is non-compliant with STREAM, they can trigger duplicate sequence numbers.
+   * Note: the `packetId` should be used for uniqueness, but a misbehaving sender can trigger duplicates.
+   * If receiving a duplicate packet ID, that packet should be ignored and rejected.
    */
-  shouldFulfill?: (connectionTag: string, sequence: Long, packetAmount: Long) => Promise<void>,
+  shouldFulfill?: (packetAmount: Long, packetId: string, connectionTag?: string) => Promise<void>,
 }
 
 export interface BuildConnectionOpts extends ConnectionOpts {
@@ -200,7 +196,7 @@ export class Connection extends EventEmitter {
   protected _totalDelivered: Long
   protected _lastPacketExchangeRate: Rational
   protected getExpiry: (destination: string) => Date
-  protected shouldFulfill?: (connectionTag: string, sequence: Long, packetAmount: Long) => Promise<void>
+  protected shouldFulfill?: (packetAmount: Long, packetId: string, connectionTag?: string) => Promise<void>
 
   constructor (opts: NewConnectionOpts) {
     super()
@@ -651,12 +647,8 @@ export class Connection extends EventEmitter {
 
     // Allow consumer to choose to fulfill each packet and/or perform other logic before fulfilling
     if (this.shouldFulfill && incomingAmount.greaterThan(0)) {
-      if (!this.connectionTag) {
-        this.log.error('rejecting packet %s without connection tag:', requestPacket.sequence)
-        return throwFinalApplicationError()
-      }
-
-      await this.shouldFulfill(this.connectionTag, requestPacket.sequence, incomingAmount).catch(async err => {
+      const packetId = await cryptoHelper.generateIncomingPacketId(this.sharedSecret, requestPacket.sequence)
+      await this.shouldFulfill(incomingAmount, packetId.toString(), this.connectionTag).catch(async err => {
         this.log.debug('application declined to fulfill packet %s:', requestPacket.sequence, err)
         await throwFinalApplicationError()
       })
