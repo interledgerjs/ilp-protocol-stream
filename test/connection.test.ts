@@ -10,6 +10,7 @@ import { Writer } from 'oer-utils'
 import * as chaiAsPromised from 'chai-as-promised'
 import * as Long from 'long'
 import { longFromValue } from '../src/util/long'
+import { createReceipt } from '../src/util/receipt'
 import { hmac } from '../src/crypto'
 Chai.use(chaiAsPromised)
 const assert = Object.assign(Chai.assert, sinon.assert)
@@ -533,23 +534,16 @@ describe('Connection', function () {
       const spy = sinon.spy(clientStream, '_setReceipt')
       await clientStream.sendTotal(1002)
 
-      async function createReceipt(receiptNonce: Buffer, receiptSecret: Buffer, totalReceived: string): Promise<Buffer> {
-        const RECEIPT_VERSION = 1
-        const receipt = new Writer(58)
-        receipt.writeUInt8(RECEIPT_VERSION)
-        receipt.writeOctetString(receiptNonce, 16)
-        receipt.writeUInt8(clientStream.id)
-        receipt.writeUInt64(longFromValue(totalReceived, true))
-        receipt.writeOctetString(await hmac(receiptSecret, receipt.getBuffer()), 32)
-        return Promise.resolve(receipt.getBuffer())
-      }
-
       const receiptFixture = require('./fixtures/packets.json').find(({ name }: { name: string}) => name === 'frame:stream_receipt' ).packet.frames[0].receipt
 
       assert.calledTwice(spy)
       assert.calledWith(spy.firstCall, receiptFixture)
-      assert.calledWith(spy.firstCall, await createReceipt(this.receiptNonce, this.receiptSecret, '500'))
-      assert.calledWith(spy.secondCall, await createReceipt(this.receiptNonce, this.receiptSecret, '501'))
+      assert.calledWith(spy.secondCall, createReceipt({
+        nonce: this.receiptNonce,
+        streamId: clientStream.id,
+        totalReceived: '501',
+        secret: this.receiptSecret
+      }))
     })
   })
 

@@ -39,6 +39,7 @@ import {
 } from './util/long'
 import * as Long from 'long'
 import Rational from './util/rational'
+import { createReceipt, RECEIPT_VERSION } from './util/receipt'
 import { v4 as uuid } from 'uuid'
 
 const RETRY_DELAY_START = 100
@@ -50,7 +51,6 @@ const MAX_DATA_SIZE = 32767
 const DEFAULT_MAX_REMOTE_STREAMS = 10
 const DEFAULT_MINIMUM_EXCHANGE_RATE_PRECISION = 3
 const TEST_PACKET_MAX_ATTEMPTS = 20
-const RECEIPT_VERSION = 1
 
 export interface ConnectionOpts {
   /** Token in the ILP address uniquely identifying this connection */
@@ -698,9 +698,14 @@ export class Connection extends EventEmitter {
     }
 
     // Add receipt frame(s)
-    if (this._receiptNonce) {
+    if (this._receiptNonce && this._receiptSecret) {
       for (let [streamId, totalReceived] of totalsReceived) {
-        responseFrames.push(new StreamReceiptFrame(streamId, await this.createReceipt(streamId, totalReceived)))
+        responseFrames.push(new StreamReceiptFrame(streamId, createReceipt({
+          nonce: this._receiptNonce,
+          streamId,
+          totalReceived,
+          secret: this._receiptSecret
+        })))
       }
     }
 
@@ -1719,20 +1724,6 @@ export class Connection extends EventEmitter {
       requestPacket.frames.push(new ConnectionNewAddressFrame(this._sourceAccount))
       requestPacket.frames.push(new ConnectionAssetDetailsFrame(this._sourceAssetCode, this._sourceAssetScale))
     }
-  }
-
-  private async createReceipt (streamId: LongValue, totalReceived: LongValue): Promise<Buffer> {
-    if (!this._receiptNonce || !this._receiptSecret) {
-      throw new Error('Nonce and secret required to create receipt')
-    }
-
-    const receipt = new Writer(58)
-    receipt.writeUInt8(RECEIPT_VERSION)
-    receipt.writeOctetString(this._receiptNonce, 16)
-    receipt.writeUInt8(streamId)
-    receipt.writeUInt64(longFromValue(totalReceived, true))
-    receipt.writeOctetString(await cryptoHelper.hmac(this._receiptSecret, receipt.getBuffer()), 32)
-    return receipt.getBuffer()
   }
 }
 

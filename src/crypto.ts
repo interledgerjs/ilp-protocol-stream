@@ -6,6 +6,7 @@ export {
   encrypt,
   encryptToken, // only in node, not browser
   generateSharedSecretFromToken, // only in node, not browser
+  generateReceiptHMAC, // only in node, not browser
   hash,
   hmac,
   randomBytes

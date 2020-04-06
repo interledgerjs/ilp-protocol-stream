@@ -67,6 +67,10 @@ export function generateSharedSecretFromToken (seed: Buffer, token: Buffer): Buf
   return sharedSecret
 }
 
+export function generateReceiptHMAC (secret: Buffer, receipt: Buffer): Buffer {
+  return hmacSync(secret, receipt)
+}
+
 export function encryptToken (seed: Buffer, token: Buffer): Buffer {
   return encryptSync(seed, token)
 }
