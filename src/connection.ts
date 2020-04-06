@@ -93,16 +93,15 @@ export interface ConnectionOpts {
   getExpiry?: (destination: string) => Date,
   /**
    * Callback for the consumer to perform accounting and choose to fulfill an incoming ILP Prepare,
-   * given the identifier of the connection, sequence of the packet, and amount received.
+   * given the amount received, a unique identifier for the packet, and `connectionTag`.
    *
    * If the returned Promise is resolved, the ILP Prepare will be fulfilled; if it is rejected,
    * the ILP Prepare will be rejected. The ILP Fulfill will be immediately sent back after
    * the Promise is resolved.
    *
-   * Note: the `packetId` should be used for uniqueness, but a misbehaving sender can trigger duplicates.
-   * If receiving a duplicate packet ID, that packet should be ignored and rejected.
+   * Note: a misbehaving sender can trigger duplicate packetIds, which should be ignored and rejected.
    */
-  shouldFulfill?: (packetAmount: Long, packetId: string, connectionTag?: string) => Promise<void>,
+  shouldFulfill?: (packetAmount: Long, packetId: Buffer, connectionTag?: string) => Promise<void>,
 }
 
 export interface BuildConnectionOpts extends ConnectionOpts {
@@ -197,14 +196,14 @@ export class Connection extends EventEmitter {
   protected _totalDelivered: Long
   protected _lastPacketExchangeRate: Rational
   protected getExpiry: (destination: string) => Date
-  protected shouldFulfill?: (packetAmount: Long, packetId: string, connectionTag?: string) => Promise<void>
+  protected shouldFulfill?: (packetAmount: Long, packetId: Buffer, connectionTag?: string) => Promise<void>
 
   constructor (opts: NewConnectionOpts) {
     super()
 
     // Use the same connectionId for logging on both client & server
     const lastAddressSegment = opts.destinationAccount ? opts.destinationAccount.split('.').slice(-1)[0] : undefined
-    this.connectionId = (opts.connectionId || lastAddressSegment || uuid()).slice(0, 8)
+    this.connectionId = (opts.connectionId || lastAddressSegment || uuid()).replace(/[-_]/g, '').slice(0, 8)
 
     this.plugin = opts.plugin
     this._sourceAccount = opts.sourceAccount
@@ -652,7 +651,7 @@ export class Connection extends EventEmitter {
     // Allow consumer to choose to fulfill each packet and/or perform other logic before fulfilling
     if (this.shouldFulfill && incomingAmount.greaterThan(0)) {
       const packetId = await cryptoHelper.generateIncomingPacketId(this.sharedSecret, requestPacket.sequence)
-      await this.shouldFulfill(incomingAmount, packetId.toString(), this.connectionTag).catch(async err => {
+      await this.shouldFulfill(incomingAmount, packetId, this.connectionTag).catch(async err => {
         this.removeIncomingHold(incomingAmount)
         this.log.debug('application declined to fulfill packet %s:', requestPacket.sequence, err)
         await throwFinalApplicationError()

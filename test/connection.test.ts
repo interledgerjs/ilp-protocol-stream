@@ -1252,11 +1252,11 @@ describe('Connection', function () {
        * If any other packets call it, the test will fail.
        */
 
-      const shouldFulfillSpy = sinon.spy(async (amount: Long, packetId: string, connectionTag: string) => {
+      const shouldFulfillSpy = sinon.spy(async (amount: Long, packetId: Buffer, connectionTag: string) => {
         assert.equal(actualConnectionTag, connectionTag)
 
-        assert.isFalse(packetIds.has(packetId)) // Test that the packet Ids are unique
-        packetIds.add(packetId)
+        assert.isFalse(packetIds.has(packetId.toString())) // Test that the packet Ids are unique
+        packetIds.add(packetId.toString())
 
         const amountNum = amount.toNumber()
         if (shouldFulfillSpy.callCount === 1) {
