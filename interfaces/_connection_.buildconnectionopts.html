@@ -111,6 +111,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_connection_.buildconnectionopts.html#assetcode" class="tsd-kind-icon">assetCode</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_connection_.buildconnectionopts.html#assetscale" class="tsd-kind-icon">assetScale</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_connection_.buildconnectionopts.html#connectionbuffersize" class="tsd-kind-icon">connectionBufferSize</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_connection_.buildconnectionopts.html#connectionid" class="tsd-kind-icon">connectionId</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_connection_.buildconnectionopts.html#connectiontag" class="tsd-kind-icon">connectionTag</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_connection_.buildconnectionopts.html#destinationaccount" class="tsd-kind-icon">destinationAccount</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_connection_.buildconnectionopts.html#enablepadding" class="tsd-kind-icon">enablePadding</a></li>
@@ -123,6 +124,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_connection_.buildconnectionopts.html#minexchangerateprecision" class="tsd-kind-icon">minExchangeRatePrecision</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_connection_.buildconnectionopts.html#plugin" class="tsd-kind-icon">plugin</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_connection_.buildconnectionopts.html#sharedsecret" class="tsd-kind-icon">sharedSecret</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_connection_.buildconnectionopts.html#shouldfulfill" class="tsd-kind-icon">shouldFulfill</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_connection_.buildconnectionopts.html#slippage" class="tsd-kind-icon">slippage</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="_connection_.buildconnectionopts.html#sourceaccount" class="tsd-kind-icon">sourceAccount</a></li>
 							</ul>
@@ -138,7 +140,7 @@
 					<div class="tsd-signature tsd-kind-icon">asset<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in connection.ts:100</li>
+							<li>Defined in connection.ts:109</li>
 						</ul>
 					</aside>
 				</section>
@@ -148,7 +150,7 @@
 					<div class="tsd-signature tsd-kind-icon">asset<wbr>Scale<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in connection.ts:101</li>
+							<li>Defined in connection.ts:110</li>
 						</ul>
 					</aside>
 				</section>
@@ -159,12 +161,27 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#connectionbuffersize">connectionBufferSize</a></p>
 						<ul>
-							<li>Defined in connection.ts:73</li>
+							<li>Defined in connection.ts:71</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 						<div class="lead">
 							<p>Number of bytes each connection can have in the buffer. Defaults to 65534</p>
+					</div></div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="connectionid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> connection<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">connection<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#connectionid">connectionId</a></p>
+						<ul>
+							<li>Defined in connection.ts:55</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+						<div class="lead">
+							<p>Token in the ILP address uniquely identifying this connection</p>
 					</div></div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
@@ -174,7 +191,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#connectiontag">connectionTag</a></p>
 						<ul>
-							<li>Defined in connection.ts:69</li>
+							<li>Defined in connection.ts:67</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -189,7 +206,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#destinationaccount">destinationAccount</a></p>
 						<ul>
-							<li>Defined in connection.ts:61</li>
+							<li>Defined in connection.ts:59</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -204,7 +221,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#enablepadding">enablePadding</a></p>
 						<ul>
-							<li>Defined in connection.ts:67</li>
+							<li>Defined in connection.ts:65</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -219,7 +236,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#exchangerate">exchangeRate</a></p>
 						<ul>
-							<li>Defined in connection.ts:90</li>
+							<li>Defined in connection.ts:88</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -239,7 +256,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#getexpiry">getExpiry</a></p>
 						<ul>
-							<li>Defined in connection.ts:95</li>
+							<li>Defined in connection.ts:93</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -255,7 +272,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#idletimeout">idleTimeout</a></p>
 						<ul>
-							<li>Defined in connection.ts:77</li>
+							<li>Defined in connection.ts:75</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -269,7 +286,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Server<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in connection.ts:102</li>
+							<li>Defined in connection.ts:111</li>
 						</ul>
 					</aside>
 				</section>
@@ -280,7 +297,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#maxremotestreams">maxRemoteStreams</a></p>
 						<ul>
-							<li>Defined in connection.ts:71</li>
+							<li>Defined in connection.ts:69</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -295,7 +312,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#maximumpacketamount">maximumPacketAmount</a></p>
 						<ul>
-							<li>Defined in connection.ts:82</li>
+							<li>Defined in connection.ts:80</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -311,7 +328,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#minexchangerateprecision">minExchangeRatePrecision</a></p>
 						<ul>
-							<li>Defined in connection.ts:75</li>
+							<li>Defined in connection.ts:73</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -326,7 +343,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#plugin">plugin</a></p>
 						<ul>
-							<li>Defined in connection.ts:59</li>
+							<li>Defined in connection.ts:57</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -340,7 +357,7 @@
 					<div class="tsd-signature tsd-kind-icon">shared<wbr>Secret<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Buffer</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in connection.ts:104</li>
+							<li>Defined in connection.ts:113</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -349,13 +366,38 @@
 					</div></div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="shouldfulfill" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> should<wbr>Fulfill</h3>
+					<div class="tsd-signature tsd-kind-icon">should<wbr>Fulfill<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#shouldfulfill">shouldFulfill</a></p>
+						<ul>
+							<li>Defined in connection.ts:104</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+						<div class="lead">
+							<p>Callback for the consumer to perform accounting and choose to fulfill an incoming ILP Prepare,
+							given the amount received, a unique identifier for the packet, and <code>connectionTag</code>.</p>
+							</div><p>If the returned Promise is resolved, the ILP Prepare will be fulfilled; if it is rejected,
+							the ILP Prepare will be rejected. The ILP Fulfill will be immediately sent back after
+						the Promise is resolved.</p>
+						<p>Note: a misbehaving sender can trigger duplicate packetIds, which should be ignored and rejected.</p>
+						</div><div class="tsd-comment tsd-typography tsd-comment-text">
+						<p>If the returned Promise is resolved, the ILP Prepare will be fulfilled; if it is rejected,
+							the ILP Prepare will be rejected. The ILP Fulfill will be immediately sent back after
+						the Promise is resolved.</p>
+						<p>Note: a misbehaving sender can trigger duplicate packetIds, which should be ignored and rejected.</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="slippage" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> slippage</h3>
 					<div class="tsd-signature tsd-kind-icon">slippage<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#slippage">slippage</a></p>
 						<ul>
-							<li>Defined in connection.ts:65</li>
+							<li>Defined in connection.ts:63</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -370,7 +412,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="_connection_.connectionopts.html">ConnectionOpts</a>.<a href="_connection_.connectionopts.html#sourceaccount">sourceAccount</a></p>
 						<ul>
-							<li>Defined in connection.ts:99</li>
+							<li>Defined in connection.ts:108</li>
 						</ul>
 					</aside>
 				</section>
@@ -402,6 +444,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_connection_.buildconnectionopts.html#connectionbuffersize" class="tsd-kind-icon">connection<wbr>Buffer<wbr>Size</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_connection_.buildconnectionopts.html#connectionid" class="tsd-kind-icon">connection<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_connection_.buildconnectionopts.html#connectiontag" class="tsd-kind-icon">connection<wbr>Tag</a>
@@ -438,6 +483,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_connection_.buildconnectionopts.html#sharedsecret" class="tsd-kind-icon">shared<wbr>Secret</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_connection_.buildconnectionopts.html#shouldfulfill" class="tsd-kind-icon">should<wbr>Fulfill</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_connection_.buildconnectionopts.html#slippage" class="tsd-kind-icon">slippage</a>

@@ -84,15 +84,6 @@
 		</div>
 		<div class="col-7 offset-3 col-content">
 			<h1>Class DataAndMoneyStream</h1>
-			<section class="tsd-panel tsd-comment"><div class="tsd-comment tsd-typography tsd-comment-shorttext">
-					<div class="lead">
-						<p>Class used to send money and data over a <a href="_connection_.connection.html">Connection</a>.</p>
-						</div><p>This exposes the Node <a href="https://nodejs.org/dist/latest-v10.x/docs/api/stream.html#stream_class_stream_duplex">Duplex Stream</a> interface for sending data,
-					as well as additional functions for sending money.</p>
-					</div><div class="tsd-comment tsd-typography tsd-comment-text">
-					<p>This exposes the Node <a href="https://nodejs.org/dist/latest-v10.x/docs/api/stream.html#stream_class_stream_duplex">Duplex Stream</a> interface for sending data,
-					as well as additional functions for sending money.</p>
-			</div></section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -364,188 +355,132 @@
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-overwrite">
 					<a name="readablehighwatermark" class="tsd-anchor"></a>
 					<h3>readable<wbr>High<wbr>Water<wbr>Mark</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> readableHighWaterMark<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Overrides Readable.readableHighWaterMark</p>
-								<ul>
-									<li>Defined in stream.ts:175</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
-								<div class="lead">
-									<p>Returns the value of readableHighWaterMark passed when constructing this stream</p>
-								</div><p>This property exists on streams after Node 8.10 so it is added here for backwards compatibility</p>
-								</div><div class="tsd-comment tsd-typography tsd-comment-text">
-								<p>This property exists on streams after Node 8.10 so it is added here for backwards compatibility</p>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">readable<wbr>High<wbr>Water<wbr>Mark<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<p>Overrides Readable.readableHighWaterMark</p>
+						<ul>
+							<li>Defined in stream.ts:175</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+						<div class="lead">
+							<p>Returns the value of readableHighWaterMark passed when constructing this stream</p>
+						</div><p>This property exists on streams after Node 8.10 so it is added here for backwards compatibility</p>
+						</div><div class="tsd-comment tsd-typography tsd-comment-text">
+						<p>This property exists on streams after Node 8.10 so it is added here for backwards compatibility</p>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-overwrite">
 					<a name="readablelength" class="tsd-anchor"></a>
 					<h3>readable<wbr>Length</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> readableLength<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Overrides Readable.readableLength</p>
-								<ul>
-									<li>Defined in stream.ts:153</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
-								<div class="lead">
-									<p>Number of bytes buffered and waiting to be read</p>
-								</div><p>This property exists on streams after Node 9.4 so it is added here for backwards compatibility</p>
-								</div><div class="tsd-comment tsd-typography tsd-comment-text">
-								<p>This property exists on streams after Node 9.4 so it is added here for backwards compatibility</p>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">readable<wbr>Length<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<p>Overrides Readable.readableLength</p>
+						<ul>
+							<li>Defined in stream.ts:153</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+						<div class="lead">
+							<p>Number of bytes buffered and waiting to be read</p>
+						</div><p>This property exists on streams after Node 9.4 so it is added here for backwards compatibility</p>
+						</div><div class="tsd-comment tsd-typography tsd-comment-text">
+						<p>This property exists on streams after Node 9.4 so it is added here for backwards compatibility</p>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="receivemax" class="tsd-anchor"></a>
 					<h3>receive<wbr>Max</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> receiveMax<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in stream.ts:144</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
-								<div class="lead">
-									<p>The current limit up to which the stream will try to send, denominated in the connection plugin&#39;s units.
-									(If the <code>receiveMax</code> is greater than the <code>totalReceived</code>, the stream will continue to receive money when the other side sends it)</p>
-							</div></div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">receive<wbr>Max<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in stream.ts:144</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+						<div class="lead">
+							<p>The current limit up to which the stream will try to send, denominated in the connection plugin&#39;s units.
+							(If the <code>receiveMax</code> is greater than the <code>totalReceived</code>, the stream will continue to receive money when the other side sends it)</p>
+					</div></div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="sendmax" class="tsd-anchor"></a>
 					<h3>send<wbr>Max</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> sendMax<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in stream.ts:136</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
-								<div class="lead">
-									<p>The current limit up to which the stream will try to send, denominated in the connection plugin&#39;s units.
-									(If the <code>sendMax</code> is greater than the <code>totalSent</code>, the stream will continue to send the difference)</p>
-							</div></div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">send<wbr>Max<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in stream.ts:136</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+						<div class="lead">
+							<p>The current limit up to which the stream will try to send, denominated in the connection plugin&#39;s units.
+							(If the <code>sendMax</code> is greater than the <code>totalSent</code>, the stream will continue to send the difference)</p>
+					</div></div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="totalreceived" class="tsd-anchor"></a>
 					<h3>total<wbr>Received</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> totalReceived<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in stream.ts:128</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
-								<div class="lead">
-									<p>Total amount received so far, denominated in the connection plugin&#39;s units.</p>
-							</div></div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">total<wbr>Received<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in stream.ts:128</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+						<div class="lead">
+							<p>Total amount received so far, denominated in the connection plugin&#39;s units.</p>
+					</div></div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="totalsent" class="tsd-anchor"></a>
 					<h3>total<wbr>Sent</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> totalSent<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in stream.ts:121</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
-								<div class="lead">
-									<p>Total amount sent so far, denominated in the connection plugin&#39;s units.</p>
-							</div></div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">total<wbr>Sent<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in stream.ts:121</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+						<div class="lead">
+							<p>Total amount sent so far, denominated in the connection plugin&#39;s units.</p>
+					</div></div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-overwrite">
 					<a name="writablehighwatermark" class="tsd-anchor"></a>
 					<h3>writable<wbr>High<wbr>Water<wbr>Mark</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> writableHighWaterMark<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Overrides Duplex.writableHighWaterMark</p>
-								<ul>
-									<li>Defined in stream.ts:189</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
-								<div class="lead">
-									<p>Returns the value of writableHighWaterMark passed when constructing this stream</p>
-								</div><p>This property exists on streams after Node 8.10 so it is added here for backwards compatibility</p>
-								</div><div class="tsd-comment tsd-typography tsd-comment-text">
-								<p>This property exists on streams after Node 8.10 so it is added here for backwards compatibility</p>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">writable<wbr>High<wbr>Water<wbr>Mark<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<p>Overrides Duplex.writableHighWaterMark</p>
+						<ul>
+							<li>Defined in stream.ts:189</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+						<div class="lead">
+							<p>Returns the value of writableHighWaterMark passed when constructing this stream</p>
+						</div><p>This property exists on streams after Node 8.10 so it is added here for backwards compatibility</p>
+						</div><div class="tsd-comment tsd-typography tsd-comment-text">
+						<p>This property exists on streams after Node 8.10 so it is added here for backwards compatibility</p>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-overwrite">
 					<a name="writablelength" class="tsd-anchor"></a>
 					<h3>writable<wbr>Length</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> writableLength<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Overrides Duplex.writableLength</p>
-								<ul>
-									<li>Defined in stream.ts:164</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
-								<div class="lead">
-									<p>Number of bytes buffered and waiting to be sent</p>
-								</div><p>This property exists on streams after Node 9.4 so it is added here for backwards compatibility</p>
-								</div><div class="tsd-comment tsd-typography tsd-comment-text">
-								<p>This property exists on streams after Node 9.4 so it is added here for backwards compatibility</p>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">writable<wbr>Length<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<p>Overrides Duplex.writableLength</p>
+						<ul>
+							<li>Defined in stream.ts:164</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+						<div class="lead">
+							<p>Number of bytes buffered and waiting to be sent</p>
+						</div><p>This property exists on streams after Node 9.4 so it is added here for backwards compatibility</p>
+						</div><div class="tsd-comment tsd-typography tsd-comment-text">
+						<p>This property exists on streams after Node 9.4 so it is added here for backwards compatibility</p>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -652,14 +587,14 @@
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
-															<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+															<h5><span class="tsd-flag ts-flagRest">Rest</span> args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -726,14 +661,14 @@
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
-															<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+															<h5><span class="tsd-flag ts-flagRest">Rest</span> args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -912,7 +847,7 @@
 					<a name="_holdoutgoing" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _hold<wbr>Outgoing</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">_hold<wbr>Outgoing<span class="tsd-signature-symbol">(</span>holdId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, maxAmount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Long</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Long</span></li>
+						<li class="tsd-signature tsd-kind-icon">_hold<wbr>Outgoing<span class="tsd-signature-symbol">(</span>holdId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, maxAmount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Long</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Long</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -1025,7 +960,7 @@
 					<a name="_remoteended" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _remote<wbr>Ended</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">_remote<wbr>Ended<span class="tsd-signature-symbol">(</span>err<span class="tsd-signature-symbol">?: </span><a href="_connection_.connectionerror.html#error" class="tsd-signature-type">Error</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">_remote<wbr>Ended<span class="tsd-signature-symbol">(</span>err<span class="tsd-signature-symbol">: </span><a href="_connection_.connectionerror.html#error" class="tsd-signature-type">Error</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -1109,14 +1044,14 @@
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
-															<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+															<h5><span class="tsd-flag ts-flagRest">Rest</span> args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1158,14 +1093,14 @@
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
-															<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+															<h5><span class="tsd-flag ts-flagRest">Rest</span> args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1388,14 +1323,14 @@
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
-															<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+															<h5><span class="tsd-flag ts-flagRest">Rest</span> args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1431,7 +1366,7 @@
 					<a name="destroy" class="tsd-anchor"></a>
 					<h3>destroy</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">destroy<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">?: </span><a href="_connection_.connectionerror.html#error" class="tsd-signature-type">Error</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">destroy<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><a href="_connection_.connectionerror.html#error" class="tsd-signature-type">Error</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -1460,7 +1395,7 @@
 						<li class="tsd-signature tsd-kind-icon">emit<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"end"</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 						<li class="tsd-signature tsd-kind-icon">emit<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"readable"</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 						<li class="tsd-signature tsd-kind-icon">emit<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"error"</span>, err<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-						<li class="tsd-signature tsd-kind-icon">emit<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span>, <span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">emit<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span>, args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -1563,7 +1498,7 @@
 									<h5>event: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -1574,9 +1509,9 @@
 					<a name="end" class="tsd-anchor"></a>
 					<h3>end</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">end<span class="tsd-signature-symbol">(</span>cb<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						<li class="tsd-signature tsd-kind-icon">end<span class="tsd-signature-symbol">(</span>chunk<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, cb<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						<li class="tsd-signature tsd-kind-icon">end<span class="tsd-signature-symbol">(</span>chunk<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, encoding<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, cb<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">end<span class="tsd-signature-symbol">(</span>cb<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">end<span class="tsd-signature-symbol">(</span>chunk<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, cb<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">end<span class="tsd-signature-symbol">(</span>chunk<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, encoding<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, cb<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -1787,14 +1722,14 @@
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
-															<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+															<h5><span class="tsd-flag ts-flagRest">Rest</span> args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -2005,14 +1940,14 @@
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
-															<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+															<h5><span class="tsd-flag ts-flagRest">Rest</span> args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -2223,14 +2158,14 @@
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
-															<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+															<h5><span class="tsd-flag ts-flagRest">Rest</span> args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -2266,7 +2201,7 @@
 					<a name="pipe" class="tsd-anchor"></a>
 					<h3>pipe</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">pipe&lt;T&gt;<span class="tsd-signature-symbol">(</span>destination<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+						<li class="tsd-signature tsd-kind-icon">pipe&lt;T&gt;<span class="tsd-signature-symbol">(</span>destination<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -2492,14 +2427,14 @@
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
-															<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+															<h5><span class="tsd-flag ts-flagRest">Rest</span> args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -2710,14 +2645,14 @@
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
-															<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+															<h5><span class="tsd-flag ts-flagRest">Rest</span> args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -2735,7 +2670,7 @@
 					<a name="push" class="tsd-anchor"></a>
 					<h3>push</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">push<span class="tsd-signature-symbol">(</span>chunk<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, encoding<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">push<span class="tsd-signature-symbol">(</span>chunk<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, encoding<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -2787,7 +2722,7 @@
 					<a name="read" class="tsd-anchor"></a>
 					<h3>read</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">read<span class="tsd-signature-symbol">(</span>size<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">read<span class="tsd-signature-symbol">(</span>size<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -2811,7 +2746,7 @@
 					<a name="receivetotal" class="tsd-anchor"></a>
 					<h3>receive<wbr>Total</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">receive<wbr>Total<span class="tsd-signature-symbol">(</span>_limit<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">LongValue</span>, opts<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_stream_.receiveopts.html" class="tsd-signature-type">ReceiveOpts</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">receive<wbr>Total<span class="tsd-signature-symbol">(</span>_limit<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">LongValue</span>, opts<span class="tsd-signature-symbol">: </span><a href="../interfaces/_stream_.receiveopts.html" class="tsd-signature-type">ReceiveOpts</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -2845,7 +2780,7 @@
 					<a name="removealllisteners" class="tsd-anchor"></a>
 					<h3>remove<wbr>All<wbr>Listeners</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">remove<wbr>All<wbr>Listeners<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>All<wbr>Listeners<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -3063,14 +2998,14 @@
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
-															<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+															<h5><span class="tsd-flag ts-flagRest">Rest</span> args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -3106,7 +3041,7 @@
 					<a name="sendtotal" class="tsd-anchor"></a>
 					<h3>send<wbr>Total</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>Total<span class="tsd-signature-symbol">(</span>_limit<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">LongValue</span>, opts<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_stream_.sendopts.html" class="tsd-signature-type">SendOpts</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">send<wbr>Total<span class="tsd-signature-symbol">(</span>_limit<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">LongValue</span>, opts<span class="tsd-signature-symbol">: </span><a href="../interfaces/_stream_.sendopts.html" class="tsd-signature-type">SendOpts</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -3291,7 +3226,7 @@
 					<a name="unpipe" class="tsd-anchor"></a>
 					<h3>unpipe</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">unpipe<span class="tsd-signature-symbol">(</span>destination<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">NodeJS.WritableStream</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">unpipe<span class="tsd-signature-symbol">(</span>destination<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NodeJS.WritableStream</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -3363,8 +3298,8 @@
 					<a name="write" class="tsd-anchor"></a>
 					<h3>write</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">write<span class="tsd-signature-symbol">(</span>chunk<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, cb<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-						<li class="tsd-signature tsd-kind-icon">write<span class="tsd-signature-symbol">(</span>chunk<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, encoding<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, cb<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">write<span class="tsd-signature-symbol">(</span>chunk<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, cb<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">write<span class="tsd-signature-symbol">(</span>chunk<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, encoding<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, cb<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
