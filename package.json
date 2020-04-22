@@ -42,7 +42,7 @@
     "url": "git+https://github.com/interledgerjs/ilp-protocol-stream.git"
   },
   "dependencies": {
-    "@types/node": "^10.14.22",
+    "@types/node": "^13.13.2",
     "ilp-logger": "^1.2.1",
     "ilp-packet": "^3.0.9",
     "ilp-protocol-ildcp": "^2.1.4",
