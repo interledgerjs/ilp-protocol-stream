@@ -535,15 +535,16 @@ describe('Connection', function () {
       await clientStream.sendTotal(1002)
 
       const receiptFixture = require('./fixtures/packets.json').find(({ name }: { name: string}) => name === 'frame:stream_receipt' ).packet.frames[0].receipt
-
       assert.calledTwice(spy)
       assert.calledWith(spy.firstCall, receiptFixture)
-      assert.calledWith(spy.secondCall, createReceipt({
+      const receipt = createReceipt({
         nonce: this.receiptNonce,
         streamId: clientStream.id,
         totalReceived: '501',
         secret: this.receiptSecret
-      }))
+      })
+      assert.calledWith(spy.secondCall, receipt)
+      assert(clientStream.receipt.equals(receipt))
     })
   })
 
