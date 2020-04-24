@@ -53,7 +53,7 @@ export class ServerConnectionPool {
     if (pendingConnection) return pendingConnection
 
     const connectionPromise = (async () => {
-      const token = decodeBase64url(id)
+      const token = Buffer.from(id, 'base64')
       const sharedSecret = await this.getSharedSecret(token, prepare)
       // If we get here, that means it was a token + sharedSecret we created
       let connectionTag: string | undefined
@@ -139,11 +139,4 @@ export class ServerConnectionPool {
       throw err
     }
   }
-}
-
-function decodeBase64url (str: string) {
-  return Buffer.from(str
-      .replace(/-/g, '+')
-      .replace(/_/g, '/'),
-    'base64')
 }
