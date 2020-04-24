@@ -55,26 +55,30 @@ describe('Receipt', function () {
       assert(receipt.totalReceived.equals(500))
     })
     it('should require 58 byte receipt', function () {
-      assert.throws(() => decodeReceipt(Buffer.alloc(32)), 'receipt must be 58 bytes')
+      assert.throws(() => decodeReceipt(Buffer.alloc(32)), 'receipt malformed')
     })
   })
 
   describe('verifyReceipt', function () {
     it('should return true for valid receipt', function () {
       const secret = Buffer.alloc(32)
-      assert.strictEqual(verifyReceipt(receiptFixture, secret), true)
+      const receipt = verifyReceipt(receiptFixture, secret)
+      assert.strictEqual(receipt.version, RECEIPT_VERSION)
+      assert(receipt.nonce.equals(Buffer.alloc(16)))
+      assert.strictEqual(receipt.streamId, '1')
+      assert(receipt.totalReceived.equals(500))
     })
-    it('should return false for invalid receipt length', function () {
+    it('should throw for invalid receipt length', function () {
       const secret = Buffer.alloc(32)
-      assert.strictEqual(verifyReceipt(Buffer.alloc(57), secret), false)
+      assert.throws(() => verifyReceipt(Buffer.alloc(57), secret), 'receipt malformed')
     })
-    it('should return false for invalid receipt version', function () {
+    it('should throw for invalid receipt version', function () {
       const secret = Buffer.alloc(32)
-      assert.strictEqual(verifyReceipt(Buffer.alloc(58), secret), false)
+      assert.throws(() => verifyReceipt(Buffer.alloc(58), secret), 'invalid version')
     })
-    it('should return false for invalid receipt hmac', function () {
+    it('should throw for invalid receipt hmac', function () {
       const secret = randomBytes(32)
-      assert.strictEqual(verifyReceipt(receiptFixture, secret), false)
+      assert.throws(() => verifyReceipt(receiptFixture, secret), 'invalid hmac')
     })
   })
 })
