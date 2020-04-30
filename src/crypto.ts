@@ -2,9 +2,9 @@
 import { hmac, randomBytes } from './util/crypto-node'
 export {
   decrypt,
-  decryptToken, // only in node, not browser
+  decryptConnectionAddressToken, // only in node, not browser
   encrypt,
-  encryptToken, // only in node, not browser
+  encryptConnectionAddressToken, // only in node, not browser
   generateSharedSecretFromToken, // only in node, not browser
   generateReceiptHMAC, // only in node, not browser
   hash,
@@ -12,14 +12,14 @@ export {
   randomBytes
 } from './util/crypto-node'
 
-export const TOKEN_LENGTH = 18
+export const TOKEN_NONCE_LENGTH = 18
 const ENCRYPTION_KEY_STRING = Buffer.from('ilp_stream_encryption', 'utf8')
 const FULFILLMENT_GENERATION_STRING = Buffer.from('ilp_stream_fulfillment', 'utf8')
 const PACKET_ID_STRING = Buffer.from('ilp_stream_packet_id', 'utf8')
 export const ENCRYPTION_OVERHEAD = 28
 
-export function generateToken (): Buffer {
-  return randomBytes(TOKEN_LENGTH)
+export function generateTokenNonce (): Buffer {
+  return randomBytes(TOKEN_NONCE_LENGTH)
 }
 
 export function generateRandomCondition (): Buffer {

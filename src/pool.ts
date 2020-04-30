@@ -59,8 +59,8 @@ export class ServerConnectionPool {
       let connectionTag: string | undefined
       let receiptNonce: Buffer | undefined
       let receiptSecret: Buffer | undefined
-      const reader = new Reader(cryptoHelper.decryptToken(this.serverSecret, token))
-      reader.skipOctetString(cryptoHelper.TOKEN_LENGTH)
+      const reader = new Reader(cryptoHelper.decryptConnectionAddressToken(this.serverSecret, token))
+      reader.skipOctetString(cryptoHelper.TOKEN_NONCE_LENGTH)
       if (reader.peekVarOctetString().length) {
         connectionTag = reader.readVarOctetString().toString('ascii')
       } else {

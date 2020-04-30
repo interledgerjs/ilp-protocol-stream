@@ -197,19 +197,19 @@ export class Server extends EventEmitter {
         connectionTag = Buffer.from(opts, 'ascii')
       }
     }
-    let token = cryptoHelper.generateToken()
+    const tokenNonce = cryptoHelper.generateTokenNonce()
     const predictor = new Predictor()
-    predictor.writeOctetString(token, cryptoHelper.TOKEN_LENGTH)
+    predictor.writeOctetString(tokenNonce, cryptoHelper.TOKEN_NONCE_LENGTH)
     predictor.writeVarOctetString(connectionTag)
     predictor.writeVarOctetString(receiptNonce)
     predictor.writeVarOctetString(receiptSecret)
     const writer = new Writer(predictor.length)
-    writer.writeOctetString(token, cryptoHelper.TOKEN_LENGTH)
+    writer.writeOctetString(tokenNonce, cryptoHelper.TOKEN_NONCE_LENGTH)
     writer.writeVarOctetString(connectionTag)
     writer.writeVarOctetString(receiptNonce)
     writer.writeVarOctetString(receiptSecret)
 
-    token = cryptoHelper.encryptToken(this.serverSecret, writer.getBuffer())
+    const token = cryptoHelper.encryptConnectionAddressToken(this.serverSecret, writer.getBuffer())
     const sharedSecret = cryptoHelper.generateSharedSecretFromToken(this.serverSecret, token)
     return {
       // TODO should this be called serverAccount or serverAddress instead?

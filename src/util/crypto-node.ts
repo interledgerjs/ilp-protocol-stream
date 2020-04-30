@@ -71,10 +71,10 @@ export function generateReceiptHMAC (secret: Buffer, message: Buffer): Buffer {
   return hmacSync(secret, message)
 }
 
-export function encryptToken (seed: Buffer, token: Buffer): Buffer {
+export function encryptConnectionAddressToken (seed: Buffer, token: Buffer): Buffer {
   return encryptSync(seed, token)
 }
 
-export function decryptToken (seed: Buffer, token: Buffer): Buffer {
+export function decryptConnectionAddressToken (seed: Buffer, token: Buffer): Buffer {
   return decryptSync(seed, token)
 }

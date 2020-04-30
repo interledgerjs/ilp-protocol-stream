@@ -6,8 +6,7 @@ import {
 import * as Long from 'long'
 import { generateReceiptHMAC } from '../crypto'
 
-const RECEIPT_VERSION = 1
-export { RECEIPT_VERSION }
+export const RECEIPT_VERSION = 1
 
 export interface ReceiptOpts {
   nonce: Buffer

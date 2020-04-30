@@ -229,6 +229,9 @@ export class Connection extends EventEmitter {
     this.allowableReceiveExtra = Rational.fromNumber(1.01, true)
     this.enablePadding = !!opts.enablePadding
     this.connectionTag = opts.connectionTag
+    if (!opts.receiptNonce !== !opts.receiptSecret) {
+      throw new Error('receiptNonce and receiptSecret must accompany each other')
+    }
     this._receiptNonce = opts.receiptNonce
     this._receiptSecret = opts.receiptSecret
     this.maxStreamId = 2 * (opts.maxRemoteStreams || DEFAULT_MAX_REMOTE_STREAMS)
