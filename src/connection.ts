@@ -696,7 +696,7 @@ export class Connection extends EventEmitter {
     // Add incoming amounts to each stream
     const totalsReceived: Map<number, string> = new Map()
     for (let { stream, amount } of amountsToReceive) {
-      stream._addToIncoming(amount)
+      stream._addToIncoming(amount, prepare)
       totalsReceived.set(stream.id, stream.totalReceived)
     }
 
