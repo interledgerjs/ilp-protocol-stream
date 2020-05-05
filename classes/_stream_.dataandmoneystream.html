@@ -134,6 +134,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-overwrite"><a href="_stream_.dataandmoneystream.html#readablehighwatermark" class="tsd-kind-icon">readableHighWaterMark</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-overwrite"><a href="_stream_.dataandmoneystream.html#readablelength" class="tsd-kind-icon">readableLength</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#receipt" class="tsd-kind-icon">receipt</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#receivemax" class="tsd-kind-icon">receiveMax</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#sendmax" class="tsd-kind-icon">sendMax</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_stream_.dataandmoneystream.html#totalreceived" class="tsd-kind-icon">totalReceived</a></li>
@@ -163,6 +164,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-private"><a href="_stream_.dataandmoneystream.html#_read" class="tsd-kind-icon">_read</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_remoteended" class="tsd-kind-icon">_remoteEnded</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_resendoutgoingdata" class="tsd-kind-icon">_resendOutgoingData</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_stream_.dataandmoneystream.html#_setreceipt" class="tsd-kind-icon">_setReceipt</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-private"><a href="_stream_.dataandmoneystream.html#_write" class="tsd-kind-icon">_write</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-private"><a href="_stream_.dataandmoneystream.html#_writev" class="tsd-kind-icon">_writev</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_stream_.dataandmoneystream.html#addlistener" class="tsd-kind-icon">addListener</a></li>
@@ -220,7 +222,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Duplex.__constructor</p>
 								<ul>
-									<li>Defined in stream.ts:76</li>
+									<li>Defined in stream.ts:78</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -359,7 +361,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides Readable.readableHighWaterMark</p>
 						<ul>
-							<li>Defined in stream.ts:176</li>
+							<li>Defined in stream.ts:178</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -377,7 +379,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides Readable.readableLength</p>
 						<ul>
-							<li>Defined in stream.ts:154</li>
+							<li>Defined in stream.ts:156</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -389,12 +391,26 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="receipt" class="tsd-anchor"></a>
+					<h3>receipt</h3>
+					<div class="tsd-signature tsd-kind-icon">receipt<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in stream.ts:204</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+						<div class="lead">
+							<p>Latest receipt for total sent amount.</p>
+					</div></div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="receivemax" class="tsd-anchor"></a>
 					<h3>receive<wbr>Max</h3>
 					<div class="tsd-signature tsd-kind-icon">receive<wbr>Max<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in stream.ts:145</li>
+							<li>Defined in stream.ts:147</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -409,7 +425,7 @@
 					<div class="tsd-signature tsd-kind-icon">send<wbr>Max<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in stream.ts:137</li>
+							<li>Defined in stream.ts:139</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -424,7 +440,7 @@
 					<div class="tsd-signature tsd-kind-icon">total<wbr>Received<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in stream.ts:129</li>
+							<li>Defined in stream.ts:131</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -438,7 +454,7 @@
 					<div class="tsd-signature tsd-kind-icon">total<wbr>Sent<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in stream.ts:122</li>
+							<li>Defined in stream.ts:124</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -453,7 +469,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides Duplex.writableHighWaterMark</p>
 						<ul>
-							<li>Defined in stream.ts:190</li>
+							<li>Defined in stream.ts:192</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -471,7 +487,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides Duplex.writableLength</p>
 						<ul>
-							<li>Defined in stream.ts:165</li>
+							<li>Defined in stream.ts:167</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -513,7 +529,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in stream.ts:382</li>
+									<li>Defined in stream.ts:391</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -544,7 +560,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in stream.ts:448</li>
+									<li>Defined in stream.ts:457</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -573,7 +589,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Duplex._destroy</p>
 								<ul>
-									<li>Defined in stream.ts:503</li>
+									<li>Defined in stream.ts:512</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -621,7 +637,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in stream.ts:426</li>
+									<li>Defined in stream.ts:435</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -650,7 +666,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Duplex._final</p>
 								<ul>
-									<li>Defined in stream.ts:462</li>
+									<li>Defined in stream.ts:471</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -695,7 +711,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in stream.ts:394</li>
+									<li>Defined in stream.ts:403</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -717,7 +733,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in stream.ts:370</li>
+									<li>Defined in stream.ts:379</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -739,7 +755,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in stream.ts:584</li>
+									<li>Defined in stream.ts:593</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -774,7 +790,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in stream.ts:644</li>
+									<li>Defined in stream.ts:653</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -806,7 +822,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in stream.ts:633</li>
+									<li>Defined in stream.ts:642</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -835,7 +851,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in stream.ts:576</li>
+									<li>Defined in stream.ts:585</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -856,7 +872,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in stream.ts:410</li>
+									<li>Defined in stream.ts:419</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -887,7 +903,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in stream.ts:623</li>
+									<li>Defined in stream.ts:632</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -911,7 +927,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in stream.ts:656</li>
+									<li>Defined in stream.ts:665</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -942,7 +958,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Readable._read</p>
 								<ul>
-									<li>Defined in stream.ts:555</li>
+									<li>Defined in stream.ts:564</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -969,7 +985,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in stream.ts:666</li>
+									<li>Defined in stream.ts:675</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -996,7 +1012,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in stream.ts:614</li>
+									<li>Defined in stream.ts:623</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -1016,6 +1032,33 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="_setreceipt" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _set<wbr>Receipt</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">_set<wbr>Receipt<span class="tsd-signature-symbol">(</span>receipt<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in stream.ts:691</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+								<div class="lead">
+									<p>(Used by the Connection class but not meant to be part of the public API)</p>
+							</div></div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>receipt: <span class="tsd-signature-type">Buffer</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-private">
 					<a name="_write" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _write</h3>
@@ -1027,7 +1070,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Duplex._write</p>
 								<ul>
-									<li>Defined in stream.ts:527</li>
+									<li>Defined in stream.ts:536</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -1079,7 +1122,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Duplex._writev</p>
 								<ul>
-									<li>Defined in stream.ts:537</li>
+									<li>Defined in stream.ts:546</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -1621,7 +1664,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in stream.ts:202</li>
+									<li>Defined in stream.ts:211</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -2755,7 +2798,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in stream.ts:316</li>
+									<li>Defined in stream.ts:325</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -3050,7 +3093,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in stream.ts:261</li>
+									<li>Defined in stream.ts:270</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -3157,7 +3200,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in stream.ts:237</li>
+									<li>Defined in stream.ts:246</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -3189,7 +3232,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in stream.ts:210</li>
+									<li>Defined in stream.ts:219</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -3432,6 +3475,9 @@
 								<a href="_stream_.dataandmoneystream.html#readablelength" class="tsd-kind-icon">readable<wbr>Length</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="_stream_.dataandmoneystream.html#receipt" class="tsd-kind-icon">receipt</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="_stream_.dataandmoneystream.html#receivemax" class="tsd-kind-icon">receive<wbr>Max</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
@@ -3502,6 +3548,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_stream_.dataandmoneystream.html#_resendoutgoingdata" class="tsd-kind-icon">_resend<wbr>Outgoing<wbr>Data</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_stream_.dataandmoneystream.html#_setreceipt" class="tsd-kind-icon">_set<wbr>Receipt</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-private">
 								<a href="_stream_.dataandmoneystream.html#_write" class="tsd-kind-icon">_write</a>
