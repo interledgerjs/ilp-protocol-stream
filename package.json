@@ -67,7 +67,6 @@
     "gh-pages": "^2.0.0",
     "ilp-plugin": "^3.2.1",
     "ilp-plugin-btp": "^1.4.1",
-    "ilp-plugin-mini-accounts": "^4.2.0",
     "mocha": "^7.1.2",
     "nyc": "^15.0.0",
     "puppeteer": "^1.19.0",
