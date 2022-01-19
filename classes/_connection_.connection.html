@@ -221,7 +221,7 @@
 					<div class="tsd-signature tsd-kind-icon">destination<wbr>Account<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in connection.ts:442</li>
+							<li>Defined in connection.ts:446</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -235,7 +235,7 @@
 					<div class="tsd-signature tsd-kind-icon">destination<wbr>Asset<wbr>Code<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in connection.ts:456</li>
+							<li>Defined in connection.ts:460</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -249,7 +249,7 @@
 					<div class="tsd-signature tsd-kind-icon">destination<wbr>Asset<wbr>Scale<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in connection.ts:449</li>
+							<li>Defined in connection.ts:453</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -263,7 +263,7 @@
 					<div class="tsd-signature tsd-kind-icon">last<wbr>Packet<wbr>Exchange<wbr>Rate<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in connection.ts:496</li>
+							<li>Defined in connection.ts:500</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -277,7 +277,7 @@
 					<div class="tsd-signature tsd-kind-icon">minimum<wbr>Acceptable<wbr>Exchange<wbr>Rate<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in connection.ts:484</li>
+							<li>Defined in connection.ts:488</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -291,7 +291,7 @@
 					<div class="tsd-signature tsd-kind-icon">source<wbr>Account<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in connection.ts:463</li>
+							<li>Defined in connection.ts:467</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -305,7 +305,7 @@
 					<div class="tsd-signature tsd-kind-icon">source<wbr>Asset<wbr>Code<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in connection.ts:477</li>
+							<li>Defined in connection.ts:481</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -319,7 +319,7 @@
 					<div class="tsd-signature tsd-kind-icon">source<wbr>Asset<wbr>Scale<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in connection.ts:470</li>
+							<li>Defined in connection.ts:474</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -333,7 +333,7 @@
 					<div class="tsd-signature tsd-kind-icon">total<wbr>Delivered<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in connection.ts:503</li>
+							<li>Defined in connection.ts:507</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -347,7 +347,7 @@
 					<div class="tsd-signature tsd-kind-icon">total<wbr>Received<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in connection.ts:517</li>
+							<li>Defined in connection.ts:521</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -361,7 +361,7 @@
 					<div class="tsd-signature tsd-kind-icon">total<wbr>Sent<span class="tsd-signature-symbol">:</span> </div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in connection.ts:510</li>
+							<li>Defined in connection.ts:514</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -453,7 +453,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in connection.ts:415</li>
+									<li>Defined in connection.ts:419</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -474,13 +474,20 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in connection.ts:385</li>
+									<li>Defined in connection.ts:389</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
-									<p>Immediately close the connection and all streams</p>
-							</div></div>
+									<p>Immediately close the connection and all streams.</p>
+									</div><p>This function must <em>never</em> return a rejection, since <code>startSendLoop</code> is run
+									as a floating promise and returns <code>destroy()</code> on errors, so the rejection
+								would be unhandled.</p>
+								</div><div class="tsd-comment tsd-typography tsd-comment-text">
+								<p>This function must <em>never</em> return a rejection, since <code>startSendLoop</code> is run
+									as a floating promise and returns <code>destroy()</code> on errors, so the rejection
+								would be unhandled.</p>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -588,7 +595,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in connection.ts:528</li>
+									<li>Defined in connection.ts:532</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
